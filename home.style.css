@@ -1,5 +1,5 @@
 body{
-    background-image: url("https://opencollective-production.s3.us-west-1.amazonaws.com/a14cbdb0-bddb-11ea-a7fc-a505803fdb6a.jpg");
+    background-image: url("https://hdqwalls.com/wallpapers/minimalist-mountains-landscape-scenery-n4.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -20,58 +20,48 @@ li > a {
     display: block;
     color: white;
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
+    
     padding: 14px 16px;
     text-decoration: none;
 }
 
 /*Main content css*/
-.rows{
-    display: flex;
-    height: 70vh;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Open Sans', sans-serif;
-    padding: 0px;
-}
-
-#main-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0px 46px 41px -13px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 46px 41px -13px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 46px 41px -13px rgba(0,0,0,0.75);
-}
-#main-box > div {
-    margin: 20px;
-    padding: 15px;
-    border-radius: 15px;
-}
-#temp-display{
-    font-size: 64px;
-}
-#main-data{
-    margin: 20px;
-    flex-grow: 1;
-}
-#main-temp{
-    flex-grow: 1;
-    margin: 20px;
-}
-#circle{
-    border: 12px solid yellow;
-    border-radius: 50%;
-    width: 100%;
-    padding: 5px;
+#data-box{
+    color: White;
+    padding: 0%;
     text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+#data-box > h2{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+}
+#data-box > p{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+#data-box > h1{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 72px;
 }
 
-.os-thin{
-    font-weight: 300;
+#input-box{
+    text-align: center;
+    padding: 0%;
 }
-.os-normal{
-    font-weight: 400;
+#input-box > form > input {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+    width: 30%;
+    box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
 }

@@ -5,11 +5,17 @@
         <!--Google font (Open Sans)-->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;700;800&display=swap" rel="stylesheet">
+        
+        
         <!--Font awesome (icons) cdn-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+        
 
-        <!--CSS-->
+        <!--CSS-->  
         <link rel="stylesheet" href="home.style.css">
+
+        <!--PureCSS-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
 
         <title>Simple Weather</title>
     </head>
@@ -24,22 +30,20 @@
         </nav>
 
         <div id="main-content">
-            <div class="rows"> <!--Flexbox container-->
-                <div id="main-box">
-                    <div id="main-temp">
-                        <div id="circle">
-                            <h1 id="temp-display">26°C</h1>
-                        </div>
-                    </div>
-                    <div id="main-data">
-                        <i id="weather-icon" class="fas fa-cloud fa-2x"></i>
-                        <h1 class="os-thin">Cloudy</h1>
-                        <p class="os-thin">Manila</p>
-                        <p class="os-normal">Phlippines</p>
-                        <p class="os-normal">January 20, 2020 - 6:43PM</p>
-                    </div> 
-                </div> 
+            <div class="container"> <!--Flexbox container-->
+                <div id="data-box">
+                    <i class="fas fa-cloud fa-2x"></i>
+                    <h2>Cloudy</h2>
+                    <p>Manila, Philippines</p>
+                    <h1>25°</h1>
+                </div>
+                <div id="input-box">
+                    <form class="pure-form" action="#">
+                        <input type="text" id="city" name="city" placeholder="Enter City">
+                    </form>
+                </div>
             </div>
         </div>
     </body>
+    <script src="process.js"></script>
 </html>
