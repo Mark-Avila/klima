@@ -1,7 +1,9 @@
 body{
     background-image: url("https://opencollective-production.s3.us-west-1.amazonaws.com/a14cbdb0-bddb-11ea-a7fc-a505803fdb6a.jpg");
-    background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
 /*Navigation bar css*/
@@ -30,30 +32,40 @@ li > a {
     justify-content: center;
     align-items: center;
     font-family: 'Open Sans', sans-serif;
+    padding: 0px;
 }
 
 #main-box {
     display: flex;
-    width: 50%;
     justify-content: center;
     align-items: center;
     background-color: white;
     border-radius: 15px;
-    padding: 20px 0px 20px 0px;
     box-shadow: 0px 46px 41px -13px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 46px 41px -13px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 46px 41px -13px rgba(0,0,0,0.75);
 }
 #main-box > div {
-    padding: 20px 50px 20px 50px;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 15px;
 }
 #temp-display{
-    font-size: 96px;
+    font-size: 64px;
+}
+#main-data{
+    margin: 20px;
+    flex-grow: 1;
+}
+#main-temp{
+    flex-grow: 1;
+    margin: 20px;
 }
 #circle{
     border: 12px solid yellow;
     border-radius: 50%;
-    width: 115%;
+    width: 100%;
+    padding: 5px;
     text-align: center;
 }
 
