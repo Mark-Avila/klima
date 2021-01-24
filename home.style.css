@@ -47,6 +47,7 @@ li > a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 72px;
+    text-shadow: 2px 2px 0px #898989;
 }
 
 #input-box{
@@ -64,4 +65,136 @@ li > a {
     box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
+}
+
+.data-container{
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(3, 32.5%);
+    overflow: auto;
+    padding: 10px;
+    margin-top: 10%;
+}
+
+@media screen and (max-width: 1203px)
+{
+    .data-container{
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: auto;
+        padding: 10px;
+        margin-top: 10%;
+    }
+    .more-info-container{
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    #forecast{
+        padding-bottom: 14px;
+    }
+    .forecast-icon-container > div{
+        padding-bottom: 14px;
+    }
+}
+.data-box{
+    background-color: white;
+    border-radius: 15px;
+}
+.data-box > div{
+    padding: 0px;
+}
+#forecast{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#forecast > #f-title{
+    font-family: 'Open Sans', sans-serif;
+    margin: -5px;
+    padding: 0%;
+    font-weight: 600;
+}
+
+.forecast-icon-container{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0%;
+    padding: 0%;
+}
+.forecast-icon-container > div{
+    text-align: center;
+    width: 96px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}
+.forecast-icon-container > div > i{
+    margin: 0%;
+    padding: 0%;
+}
+
+.more-info-container{
+    text-align: left;
+}
+.day-temp{
+    font-size: 14px;
+    font-weight: 600;
+    font-family:'Open Sans', sans-serif;
+    margin: 0%;
+    padding: 0%;
+}
+.f-days{
+    margin: 10px 0% 0% 0%;
+    padding: 0%;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#general-info{
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+#general-info > #g-time{
+    font-size: 14px;
+    margin: 0%;
+    padding: 0%;
+    font-weight: 600;
+}
+#general-info > #g-location{
+    font-size: 30px;
+    margin: 0%;
+    padding: 0%;
+    margin-top: 10px;
+}
+#mi-current-temp > h1{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 48px;
+}
+#g-feels-like{
+    font-weight: 600;
+}
+.additional-info{
+    font-size: 14px;
+    text-align: center;
+    border-top: 1px solid black;
+}
+#line{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+#line > div > p{
+    font-weight: 600;
+}
+#g-current-temp{
+    float: right;
+    margin: 0%;
+    padding: 0%;
+    font-weight: 600;
+    font-size: 64px;
+    font-family: 'Open Sans', sans-serif;
 }

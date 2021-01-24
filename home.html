@@ -21,25 +21,72 @@
     <body>
         <nav>
             <ul>
-                <li><a href=#>About</a></li>
-                <li><a href=#>Contact</a></li>
-                <li><a href=#>Forecast</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#forecast">Forecast</a></li>
             </ul>
         </nav>
 
-        <div id="main-content">
-            <div class="container"> <!--Flexbox container-->
-                <div id="data-box">
-                    <span class="icon"><i class="fas fa-cloud fa-2x"></i></span>
-                    <h2 class="weather">Cloudy</h2>
-                    <p class="city">Manila, PH</p>
-                    <h1 class="temp">25°</h1>
-                    <p class="date">Thursday 22 January 2021</p>
-                </div>
-                <div id="input-box">
-                    <input type="text" id="search" class="pure-input-1 search" name="search" placeholder="Enter City">
+        <main>
+            <div id="main-content">
+                <div class="container"> <!--Flexbox container-->
+                    <div id="data-box">
+                        <span class="icon"><i class="fas fa-cloud fa-2x"></i></span>
+                        <h2 class="weather">Cloudy</h2>
+                        <p class="city">Manila, PH</p>
+                        <h1 class="temp">25°</h1>
+                        <p class="date">Thursday 22 January 2021</p>
+                    </div>
+                    <div id="input-box">
+                        <input type="text" id="search" class="pure-input-1 search" name="search" placeholder="Enter City">
+                    </div>
                 </div>
             </div>
+        </main>
+
+        <div class="data-container">
+            <div class="data-box" id="forecast">
+                <div id="f-title">
+                    <h4>8-day Forecast</h4>
+                </div>
+                 <!-- Title -->
+                <div class="forecast-icon-container">
+                    <div class="icon"><p id="day-1" class="f-days">Sun</p><br><i class="fas fa-cloud"></i><br><h5 id="weather-1">Cloudy</h5><p id="day-1-temp" class="day-temp">30/26°C</p></div>
+                    <div class="icon"><p id="day-1" class="f-days">Mon</p><br><i class="fas fa-cloud"></i><br><h5 id="weather-2">Cloudy</h5><p id="day-2-temp" class="day-temp">30/26°C</p></div>
+                    <div class="icon"><p id="day-1" class="f-days">Tue</p><br><i class="fas fa-cloud"></i><br><h5 id="weather-3">Cloudy</h5><p id="day-3-temp" class="day-temp">30/26°C</p></div>
+                    <div class="icon"><p id="day-1" class="f-days">Wed</p><br><i class="fas fa-cloud"></i><br><h5 id="weather-4">Cloudy</h5><p id="day-4-temp" class="day-temp">30/26°C</p></div>
+                    <div class="icon"><p id="day-1" class="f-days">Thu</p><br><i class="fas fa-cloud"></i><br><h5 id="weather-5">Cloudy</h5><p id="day-5-temp" class="day-temp">30/26°C</p></div>
+                    <div class="icon"><p id="day-1" class="f-days">Fri</p><br><i class="fas fa-cloud"></i><br><h5 id="weather-6">Cloudy</h5><p id="day-6-temp" class="day-temp">30/26°C</p></div>
+                    <div class="icon"><p id="day-1" class="f-days">Sat</p><br><i class="fas fa-cloud"></i><br><h5 id="weather-7">Cloudy</h5><p id="day-7-temp" class="day-temp">30/26°C</p></div>
+                    <div class="icon"><p id="day-1" class="f-days">Sun</p><br><i class="fas fa-cloud"></i><br><h5 id="weather-8">Cloudy</h5><p id="day-8-temp" class="day-temp">30/26°C</p></div>
+                </div>
+            </div>
+            <div class="data-box more-info-container">
+                <div id="general-info">
+                    <h1 id="g-current-temp">25°C</h1>
+                    <p id="g-time">10:10am, Jan 2021</p>
+                    <p id="g-location">Manila, PH</p>
+                    <p id="g-feels-like">Feels like 25°C</p>
+                    
+                    <div class="additional-info">
+                        <div id="line">
+                            <div>
+                                <h5>Wind Speed</h5><p>2.0 m/s</p>
+                            </div>
+                            <div>
+                                <h5>Pressure</h5><p>2009 pHA</p>
+                            </div>
+                            <div>
+                                <h5>Humidity</h5><p>83%</p>
+                            </div>
+                            <div>
+                                <h5>Visibility</h5><p>10.0 km</p>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </body>
     <script src="process.js"></script>
