@@ -21,6 +21,13 @@ function fetchData(query) {
     .then(viewResults);
 }
 
+function fetchForecastData(lat, lon){
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&units=metric&appid=e1558fe0d8dcc08923d8122663466af2`)
+    .then(response => {
+        return response.json();
+    }).then(viewMoreResults);
+}
+
 function buildDate(date) {
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -34,7 +41,8 @@ function buildDate(date) {
 }
 
 function viewResults(data) {
-    console.log(data);
+    fetchForecastData(data.coord.lat, data.coord.lon);
+
     let city = document.querySelector('.city');
     let currentDate = new Date(); //gets current date
     let date = document.querySelector('.date');
@@ -76,5 +84,30 @@ function getWeatherIcon(id){
     }
     else {
         console.log("Error: weather id not found");
+    }
+}
+
+function viewMoreResults(data)
+{
+    console.log(data);
+
+    let week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    let city, day, icon, temp;
+    let date = new Date();
+
+
+    for(var i = 0; i < 8; i++){
+        city = document.querySelector(`#weather-${i+1}`);
+        city.innerText = data.daily[i].weather[0].main;
+
+        day = document.querySelector(`#day-${i+1}`);
+        day.innerText = week[(date.getDay() + 1 + i) % 7];
+
+        icon = document.querySelector(`#icon-${i+1}`);
+        icon.innerHTML = getWeatherIcon(data.daily[i].weather[0].id);
+
+        temp = document.querySelector(`#day-${i+1}-temp`);
+        temp.innerText = `${Math.round(data.daily[i].temp.max)} / ${Math.round(data.daily[i].temp.min)}°C`;
     }
 }
