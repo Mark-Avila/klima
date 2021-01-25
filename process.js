@@ -7,6 +7,8 @@ const searchInput = document.querySelector('.search');
 
 searchInput.addEventListener('keypress', setQuery);
 
+fetchData('Manila');
+
 function setQuery(evt) {
     if(evt.keyCode == 13) {
         fetchData(searchInput.value);
@@ -43,21 +45,33 @@ function buildDate(date) {
 function viewResults(data) {
     fetchForecastData(data.coord.lat, data.coord.lon);
 
+    console.log(data);
+
     let city = document.querySelector('.city');
     let currentDate = new Date(); //gets current date
     let date = document.querySelector('.date');
+    let mainTemp = document.querySelector('.temp');
+    let mainWeather = document.querySelector('.weather');
+    let mainIcon = document.querySelector('.icon');
+    let glocation = document.querySelector('#g-location');
+    let gfl = document.querySelector('#g-feels-like');
+    let windSpeed = document.querySelector("#wind-speed");
+    let pressure = document.querySelector("#pressure");
+    let humidity = document.querySelector("#humidity");
+    let visibility = document.querySelector("#visibility"); 
 
     city.innerText = data.name +", "+data.sys.country;
     date.innerText = buildDate(currentDate);
-
-    let mainTemp = document.querySelector('.temp');
     mainTemp.innerText = `${Math.round(data.main.temp)}°`;
-
-    let mainWeather = document.querySelector('.weather');
     mainWeather.innerText = data.weather[0].main;
-
-    let mainIcon = document.querySelector('.icon');
     mainIcon.innerHTML = getWeatherIcon(data.weather[0].id);
+    glocation.innerText = data.name +", "+data.sys.country;
+    gfl.innerText = `Feels like ${Math.round(data.main.feels_like)}°C`;
+    windSpeed.innerText = `${data.wind.speed} m/s`;
+    pressure.innerText = `${data.main.pressure} pHA`;
+    humidity.innerText = data.main.humidity + ' %';
+    visibility.innerText = Math.round(data.visibility / 1000) + ' km';
+
 }
 
 function getWeatherIcon(id){
@@ -95,7 +109,7 @@ function viewMoreResults(data)
 
     let city, day, icon, temp;
     let date = new Date();
-
+    let gtemp = document.querySelector('#g-current-temp');
 
     for(var i = 0; i < 8; i++){
         city = document.querySelector(`#weather-${i+1}`);
@@ -110,4 +124,13 @@ function viewMoreResults(data)
         temp = document.querySelector(`#day-${i+1}-temp`);
         temp.innerText = `${Math.round(data.daily[i].temp.max)} / ${Math.round(data.daily[i].temp.min)}°C`;
     }
+
+    gtemp.innerText = `${Math.round(data.current.temp)}°C`;
+
+}
+
+function changeTimezone(utc, offset){
+    let timezone = new Date(Date.UTC());
+
+    return newDate.toLocaleString();
 }
