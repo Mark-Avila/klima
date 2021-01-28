@@ -30,6 +30,8 @@ function fetchForecastData(lat, lon){
     }).then(viewMoreResults);
 }
 
+
+
 function buildDate(date) {
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -127,10 +129,4 @@ function viewMoreResults(data)
 
     gtemp.innerText = `${Math.round(data.current.temp)}°C`;
 
-}
-
-function changeTimezone(utc, offset){
-    let timezone = new Date(Date.UTC());
-
-    return newDate.toLocaleString();
 }

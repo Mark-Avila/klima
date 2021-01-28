@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     background-image: url("https://hdqwalls.com/wallpapers/minimalist-mountains-landscape-scenery-n4.jpg");
     background-repeat: no-repeat;
@@ -70,7 +74,9 @@ li > a {
 .data-container{
     display: grid;
     grid-gap: 15px;
-    grid-template-columns: repeat(3, 32.5%);
+    grid-template: "forecast forecast info"
+                   "hour map map"
+                   "hour map map";
     overflow: auto;
     padding: 10px;
     margin-top: 10%;
@@ -81,14 +87,14 @@ li > a {
     .data-container{
         display: grid;
         grid-gap: 10px;
-        grid-template-columns: auto;
+        grid-template: "forecast"
+                       "info"
+                       "hour"
+                       "map";
         padding: 10px;
         margin-top: 10%;
     }
-    .more-info-container{
-        grid-column-start: 1;
-        grid-column-end: 3;
-    }
+    
     #forecast{
         padding-bottom: 14px;
     }
@@ -104,8 +110,7 @@ li > a {
     padding: 0px;
 }
 #forecast{
-    grid-column-start: 1;
-    grid-column-end: 3;
+    grid-area: forecast;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -119,6 +124,7 @@ li > a {
 }
 
 .forecast-icon-container{
+    grid-area: info;
     display: flex;
     width: 100%;
     flex-wrap: wrap;
@@ -197,4 +203,20 @@ li > a {
     font-weight: 600;
     font-size: 64px;
     font-family: 'Open Sans', sans-serif;
+}
+
+.hourly{
+    grid-area: hour;
+}
+
+/*Weather map css*/
+.map{
+    grid-area: map;
+}
+
+#weather-map {
+    height: 180px;
+    padding: 10%;
+    margin: 24px;
+    border-radius: 15px;
 }
