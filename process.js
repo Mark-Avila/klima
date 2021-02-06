@@ -44,14 +44,20 @@ function buildDate(date) {
     return `${Day} ${currentDate} ${month} ${year}`;
 }
 
+function loadingAnim(){
+    let main = document.querySelector('.main-content');
+    let loading = document.querySelector('.page-loader');
+
+    main.style.display = "block";
+    loading.style.display = "none";
+}
+
 function viewResults(data) {
     fetchForecastData(data.coord.lat, data.coord.lon);
 
     console.log(data);
 
     let city = document.querySelector('.city');
-    let currentDate = new Date(); //gets current date
-    let date = document.querySelector('.date');
     let mainTemp = document.querySelector('.temp');
     let mainWeather = document.querySelector('.weather');
     let mainIcon = document.querySelector('.icon');
@@ -60,10 +66,11 @@ function viewResults(data) {
     let windSpeed = document.querySelector("#wind-speed");
     let pressure = document.querySelector("#pressure");
     let humidity = document.querySelector("#humidity");
-    let visibility = document.querySelector("#visibility"); 
+    let visibility = document.querySelector("#visibility");
+    let time = document.querySelector("#g-time");
+
 
     city.innerText = data.name +", "+data.sys.country;
-    date.innerText = buildDate(currentDate);
     mainTemp.innerText = `${Math.round(data.main.temp)}°`;
     mainWeather.innerText = data.weather[0].main;
     mainIcon.innerHTML = getWeatherIcon(data.weather[0].id);
@@ -73,7 +80,7 @@ function viewResults(data) {
     pressure.innerText = `${data.main.pressure} pHA`;
     humidity.innerText = data.main.humidity + ' %';
     visibility.innerText = Math.round(data.visibility / 1000) + ' km';
-
+    
 }
 
 function getWeatherIcon(id){
@@ -105,11 +112,10 @@ function getWeatherIcon(id){
 
 function viewMoreResults(data)
 {
-    console.log(data);
-
+    console.log(data);  
     let week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-    let city, day, icon, temp;
+    let city, day, icon, temp, time;
     let date = new Date();
     let gtemp = document.querySelector('#g-current-temp');
 
@@ -129,4 +135,9 @@ function viewMoreResults(data)
 
     gtemp.innerText = `${Math.round(data.current.temp)}°C`;
 
+    let momentdate = document.querySelector('.date');
+    momentdate.innerText = moment().tz(`${data.timezone}`).format('dddd, MMMM DD YYYY');
+
+    time = document.querySelector("#g-time");
+    time.innerText = moment().tz(`${data.timezone}`).format("YYYY/MM/DD HH:mm");
 }

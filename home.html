@@ -2,6 +2,7 @@
 
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--Google font (Open Sans)-->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;700;800&display=swap" rel="stylesheet">
@@ -9,46 +10,64 @@
         <!--Font awesome (icons) cdn-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
         
-        <!--Leaftlet Library-->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>    
+        <!--Animate css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+        <script src="moment.js"></script>
+        <script src="moment-timezone-with-data.min.js"></script>
+
+        <!-- css-->        
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+        <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <!--CSS-->  
         <link rel="stylesheet" href="home.style.css">
-
-        <!--PureCSS-->
-        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
-
         <title>Simple Weather</title>
     </head>
 
     <body>
+        <div class="main-content">
         <nav>
             <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#forecast">Forecast</a></li>
+                <li><a href="#" id="n-about" class="item animate__animated animate__fadeInDown">About</a></li>
+                <li><a href="#" id="n-map" class="item item animate__animated animate__fadeInDown">Weather Map</a></li>
+                <li><a href="#forecast"  id="n-forecast"class="item item animate__animated animate__fadeInDown">Forecast</a></li>
+                <li id="dropdown-li"><a href="javascript:void(0)" id="burger" class="item" onclick="dropdown()">☰</a></li>
             </ul>
+            <div class="nav-dropdown">
+                <div>
+                    <a href="#" class="dd-item">About</a>
+                </div>
+                <div>
+                    <a href="#" class="dd-item">Weather Map</a>
+                </div>
+                <div>
+                    <a href="#forecast" class="dd-item">Forecast</a>
+                </div>
+            </div>
         </nav>
 
         <main>
             <div id="main-content">
                 <div class="container"> <!--Flexbox container-->
                     <div id="data-box">
-                        <span class="icon"><i class="fas fa-cloud fa-2x"></i></span>
-                        <h2 class="weather">NULL</h2>
-                        <p class="city">NULL, NULL</p>
-                        <h1 class="temp">0</h1>
-                        <p class="date">NULL</p>
+                        <span class="animate__animated animate__fadeInUp icon"><i class="fas fa-cloud fa-2x"></i></span>
+                        <h2 class="animate__animated animate__fadeInUp weather">NULL</h2>
+                        <p class="animate__animated animate__fadeInUp city">NULL, NULL</p>
+                        <h1 class="animate__animated animate__fadeInUp temp" id="temp">0</h1>
+                        <p class="animate__animated animate__fadeInUp date">NULL</p>
                     </div>
                     <div id="input-box">
-                        <input type="text" id="search" class="pure-input-1 search" name="search" placeholder="Enter City">
+                        <input type="text" id="search" class="animate__animated animate__fadeInUp pure-input-1 search" name="search" placeholder="Enter City">
                     </div>
                 </div>
             </div>
         </main>
 
-        <div class="data-container">
+        <div class="data-container" data-aos="fade-up">
             <div class="data-box" id="forecast">
                 <div id="f-title">
                     <h4>8-day Forecast</h4>
@@ -68,7 +87,7 @@
             <div class="data-box more-info-container" id="gen-info-box">
                 <div id="general-info">
                     <h1 id="g-current-temp">25°C</h1>
-                    <p id="g-time">10:10am, Jan 2021</p>
+                    <p id="g-time">11:10am, Feb 2021</p>
                     <p id="g-location">Manila, PH</p>
                     <p id="g-feels-like">Feels like 25°C</p>
                     
@@ -88,43 +107,14 @@
                             </div>  
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="data-box hourly" id="gen-info-box">
-                <div id="general-info">
-                    <h1 id="g-current-temp">25°C</h1>
-                    <p id="g-time">10:10am, Jan 2021</p>
-                    <p id="g-location">Manila, PH</p>
-                    <p id="g-feels-like">Feels like 25°C</p>
-                    
-                    <div class="additional-info">
-                        <div id="line">
-                            <div>
-                                <h5>Wind Speed</h5><p id="wind-speed">0 m/s</p>
-                            </div>
-                            <div>
-                                <h5>Pressure</h5><p id="pressure">0 pHA</p>
-                            </div>
-                            <div>
-                                <h5>Humidity</h5><p id="humidity">0%</p>
-                            </div>
-                            <div>
-                                <h5>Visibility</h5><p id="visibility">0 km</p>
-                            </div>  
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="data-box map">
-                <div id="weather-map">
-
                 </div>
             </div>
             
         </div>
+        </div>
     </body>
     <script src="process.js"></script>
-    <script src="weathermap.js"></script>
+    <script src="home.front.js"></script>
+    <script>AOS.init();</script>
+    
 </html>
