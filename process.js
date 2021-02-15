@@ -1,8 +1,3 @@
-const api = {
-    key: 'e1558fe0d8dcc08923d8122663466af2',
-    link: 'http://api.openweathermap.org/data/2.5/'
-}
-
 const searchInput = document.querySelector('.search');
 
 searchInput.addEventListener('keypress', setQuery);
@@ -30,8 +25,6 @@ function fetchForecastData(lat, lon){
     }).then(viewMoreResults);
 }
 
-
-
 function buildDate(date) {
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -55,32 +48,37 @@ function loadingAnim(){
 function viewResults(data) {
     fetchForecastData(data.coord.lat, data.coord.lon);
 
-    console.log(data);
+    element = {
+        main: {
+            city: document.querySelector('.city'),
+            temp: document.querySelector('.temp'),
+            weather: document.querySelector('.weather'),
+            icon: document.querySelector('.icon')
+        },
+        gen: {
+            feels: document.querySelector('#g-feels-like'),
+            speed: document.querySelector("#wind-speed"),
+            pres: document.querySelector("#pressure"),
+            humid: document.querySelector("#humidity"),
+            visib: document.querySelector("#visibility")
+        }
+    }
 
-    let city = document.querySelector('.city');
-    let mainTemp = document.querySelector('.temp');
-    let mainWeather = document.querySelector('.weather');
-    let mainIcon = document.querySelector('.icon');
-    let glocation = document.querySelector('#g-location');
-    let gfl = document.querySelector('#g-feels-like');
-    let windSpeed = document.querySelector("#wind-speed");
-    let pressure = document.querySelector("#pressure");
-    let humidity = document.querySelector("#humidity");
-    let visibility = document.querySelector("#visibility");
-    let time = document.querySelector("#g-time");
+    const {city, temp, weather, icon} = element.main;
+    const {feels, speed, pres, humid, visib} = element.gen;
 
+    //main
+    city.innerText = data.name +", "+data.sys.country;  //Location
+    temp.innerText = `${Math.round(data.main.temp)}°`;  //Location temperature
+    weather.innerText = data.weather[0].main;           //location weather
+    icon.innerHTML = getWeatherIcon(data.weather[0].id);//weather icon
 
-    city.innerText = data.name +", "+data.sys.country;
-    mainTemp.innerText = `${Math.round(data.main.temp)}°`;
-    mainWeather.innerText = data.weather[0].main;
-    mainIcon.innerHTML = getWeatherIcon(data.weather[0].id);
-    glocation.innerText = data.name +", "+data.sys.country;
-    gfl.innerText = `Feels like ${Math.round(data.main.feels_like)}°C`;
-    windSpeed.innerText = `${data.wind.speed} m/s`;
-    pressure.innerText = `${data.main.pressure} pHA`;
-    humidity.innerText = data.main.humidity + ' %';
-    visibility.innerText = Math.round(data.visibility / 1000) + ' km';
-    
+    //general (box below)
+    feels.innerText = `Feels like ${Math.round(data.main.feels_like)}°C`;
+    speed.innerText = `${data.wind.speed} m/s`;
+    pres.innerText = `${data.main.pressure} pHA`;
+    humid.innerText = data.main.humidity + ' %';
+    visib.innerText = Math.round(data.visibility / 1000) + ' km';
 }
 
 function getWeatherIcon(id){
@@ -112,7 +110,8 @@ function getWeatherIcon(id){
 
 function viewMoreResults(data)
 {
-    console.log(data);  
+    console.log(data);
+
     let week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     let city, day, icon, temp, time;
