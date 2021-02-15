@@ -46,7 +46,7 @@ function loadingAnim(){
 }
 
 function viewResults(data) {
-    fetchForecastData(data.coord.lat, data.coord.lon);
+    fetchForecastData(data.coord.lat, data.coord.lon); //sends longitude and latitude location to the forecast function
 
     element = {
         main: {
@@ -57,6 +57,7 @@ function viewResults(data) {
         },
         gen: {
             feels: document.querySelector('#g-feels-like'),
+            locate: document.querySelector("#g-location"),
             speed: document.querySelector("#wind-speed"),
             pres: document.querySelector("#pressure"),
             humid: document.querySelector("#humidity"),
@@ -65,7 +66,7 @@ function viewResults(data) {
     }
 
     const {city, temp, weather, icon} = element.main;
-    const {feels, speed, pres, humid, visib} = element.gen;
+    const {feels, speed, pres, humid, visib, locate} = element.gen;
 
     //main
     city.innerText = data.name +", "+data.sys.country;  //Location
@@ -75,6 +76,7 @@ function viewResults(data) {
 
     //general (box below)
     feels.innerText = `Feels like ${Math.round(data.main.feels_like)}°C`;
+    locate.innerText = data.name +", "+data.sys.country; 
     speed.innerText = `${data.wind.speed} m/s`;
     pres.innerText = `${data.main.pressure} pHA`;
     humid.innerText = data.main.humidity + ' %';
