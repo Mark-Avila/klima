@@ -19,7 +19,7 @@ function fetchData(query) {
 }
 
 function fetchForecastData(lat, lon){
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&units=metric&appid=e1558fe0d8dcc08923d8122663466af2`)
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=e1558fe0d8dcc08923d8122663466af2`)
     .then(response => {
         return response.json();
     }).then(viewMoreResults);
@@ -113,6 +113,8 @@ function getWeatherIcon(id){
 function viewMoreResults(data)
 {
     console.log(data);
+    displayChart(data);
+    displayMap(data);
 
     let week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -141,4 +143,65 @@ function viewMoreResults(data)
 
     time = document.querySelector("#g-time");
     time.innerText = moment().tz(`${data.timezone}`).format("YYYY/MM/DD HH:mm");
+}
+
+
+function displayMap(data){
+    var weatherMap = L.map('weathermap', {
+        minZoom: 2,
+        maxZoom: 12
+    })
+    const {lat, lon} = data; 
+
+    L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.openweathermap.org/">OpenWeatherMap</a>'
+    }).addTo(weatherMap);
+    L.tileLayer('https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=e1558fe0d8dcc08923d8122663466af2').addTo(weatherMap);
+    
+    weatherMap.setView([14.5, 120.9], 10);
+}
+
+function displayChart(data){
+    let context = document.querySelector('#hourly-chart').getContext('2d');
+    var hour = [];
+    var temp = [];
+
+    for(var i = 0; i < 11; i++){
+        hour.push(data.hourly[i].weather[0].main);
+        temp.push(Math.round(`${data.hourly[i].temp}`));
+    }
+
+    var chart = new Chart(context, {
+        type: 'line',
+        data: {
+            labels: [hour[0], hour[1], hour[2], hour[3], hour[4], hour[5], hour[6], hour[7], hour[8], hour[9]],
+            datasets: [{
+                label: 'Hourly Forecast',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                pointBorderColor: 'rgb(255, 99, 132)', 
+                pointBackgroundColor: 'rgb(255, 255, 255)',
+                fill: false,
+                data: [temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8], temp[9],]
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        max: 40,
+                        min: 0 
+                    }
+                }]
+            }
+        }
+    })
+}
+
+function wButton(){
+    
 }

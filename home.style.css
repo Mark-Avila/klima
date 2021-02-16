@@ -242,6 +242,11 @@ li > a:hover {
     margin: 0%;
 }
 
+#g-location{
+    font-size: 24px;
+    margin: 0%;
+}
+
 #info-bottom{
     grid-column: 1/3;
     text-align: center;
@@ -272,7 +277,7 @@ li > a:hover {
     display: grid;
     text-align: center;
     grid-template-columns: repeat(8, 12.5%);
-    margin-top: -16px;
+    margin: -16px 6px 0px 6px;
 }
 
 #f-title{
@@ -284,4 +289,62 @@ li > a:hover {
 .day-temp{
     font-size: 12px;
 }
+
+
+/*---------------------------------*/
+/*hourly forecast data css*/
+#hourly{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/*---------------------------------*/
+/*weathermap box data css*/
+
+#weather{
+    grid-column: 1/3;
+    padding: 0%;
+}
+
+#weathermap{
+    height: 250px;
+    margin: 24px;
+    border-radius: 15px;
+}
+
+#w-title{
+    text-align: center;
+    margin: 1%;
+    padding: 0%;
+}
+
+#w-buttons-container{
+    border-radius: 4px;
+    margin: 32px 24px 24px 24px;
+    border: 1px solid #d1d1d1;
+    padding: 0%;
+}
+
+.w-buttons{
+    width: 19.6%;
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+    border: none;
+    margin-right: none;
+    border-radius: 4px;
+    transition: 0.5s;
+    font-weight: 600;
+    padding: 8px;
+}
+
+.w-buttons:hover{
+    background-color: #c7c7c7;
+    transition: 0.5s;
+}
+
+
 

@@ -5,26 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--Google font (Open Sans)-->
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;700;800&display=swap" rel="stylesheet">
-        
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;700;800&display=swap" rel="stylesheet">       
         <!--Font awesome (icons) cdn-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-        
         <!--Animate css-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
         <script src="moment.js"></script>
         <script src="moment-timezone-with-data.min.js"></script>
-
         <!-- css-->        
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
         <!--jQuery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+        <!--Graph JS-->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <!--Leaflet JS-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/> <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    
         <!--CSS-->  
         <link rel="stylesheet" href="home.style.css">
+
         <title>Simple Weather</title>
     </head>
 
@@ -71,9 +75,9 @@
             <div class="data-box" id="general">
                 <div id="general-info">
                     <div id="info-left">
-                        <p id="g-time">NaN</p>
-                        <p id="g-location">NaN</p>
-                        <p id="g-feels-like">NaN°C</p>
+                        <p id="g-time" class="g-item">NaN</p>
+                        <p id="g-location" class="g-item">NaN</p>
+                        <p id="g-feels-like" class="g-item">NaN°C</p>
                     </div>
                     <div id="info-right">
                         <h1 id="g-current-temp">0°C</h1>
@@ -112,8 +116,30 @@
                     <div class="icon"><p id="day-8" class="f-days">Sun</p><br><span id="icon-8"><i class="fas fa-cloud fa-2x"></i></span><br><h5 id="weather-8">NULL</h5><p id="day-8-temp" class="day-temp">NULL</p></div>
                 </div>
             </div>
-            
-        </div>
+
+            <div class="data-box" id="weather">
+                <div id="w-title">
+                    <h4>Weather Map</h4>
+                </div>
+                    <div id="weathermap">
+                </div>
+                <div id="w-buttons-container">
+                    <button class="w-buttons">Clouds</button>
+                    <button class="w-buttons">Precipitation</button>
+                    <button class="w-buttons">Sea Level Pressure</button>
+                    <button class="w-buttons">Wind Speed</button>
+                    <button class="w-buttons">Temperature</button>
+                </div>
+            </div>
+
+            <div class="data-box" id="hourly">
+                <div id="h-title">
+                    <h4>10 Hour Forecast</h4>
+                </div>
+                <canvas id="hourly-chart"></canvas>
+            </div>
+
+            </div>
         </div>
     </body>
     <script src="process.js"></script>
