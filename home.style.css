@@ -299,6 +299,17 @@ li > a:hover {
     align-items: center;
 }
 
+#chart-container{
+    position: relative;
+    height: 45vh;
+    width: 380px;
+}
+
+#h-title{
+    padding: 0%;
+    margin-top: -24px ;
+}
+
 
 /*---------------------------------*/
 /*weathermap box data css*/

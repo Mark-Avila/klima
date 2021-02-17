@@ -124,11 +124,11 @@
                     <div id="weathermap">
                 </div>
                 <div id="w-buttons-container">
-                    <button class="w-buttons">Clouds</button>
-                    <button class="w-buttons">Precipitation</button>
-                    <button class="w-buttons">Sea Level Pressure</button>
-                    <button class="w-buttons">Wind Speed</button>
-                    <button class="w-buttons">Temperature</button>
+                    <button id="clouds" class="w-buttons" onclick="displayMap('clouds')">Clouds</button>
+                    <button id="preci" class="w-buttons" onclick="displayMap('precipitation')">Precipitation</button>
+                    <button id="pressure" class="w-buttons" onclick="displayMap('pressure_new')">Sea Level Pressure</button>
+                    <button id="speed" class="w-buttons" onclick="displayMap('wind_new')">Wind Speed</button>
+                    <button id="temp" class="w-buttons" onclick="displayMap('temp_new')">Temperature</button>
                 </div>
             </div>
 
@@ -136,7 +136,9 @@
                 <div id="h-title">
                     <h4>10 Hour Forecast</h4>
                 </div>
-                <canvas id="hourly-chart"></canvas>
+                <div id="chart-container">
+                    <canvas id="hourly-chart"></canvas>
+                </div>
             </div>
 
             </div>
