@@ -1,6 +1,6 @@
 const searchInput = document.querySelector('.search');
 searchInput.addEventListener('keypress', setQuery);
-fetchData('Manila');
+fetchData('Manila'); //display current weather data of manila
 
 //set weather map ----------------------
 var weatherMap = L.map('weathermap', {
@@ -13,7 +13,7 @@ var map = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(weatherMap);
 
 var owm = L.tileLayer(`https://tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png?appid=e1558fe0d8dcc08923d8122663466af2`).addTo(weatherMap);
-weatherMap.setView([14.5, 120.9], 10);
+weatherMap.setView([14.5, 120.9], 5);
 
 function setQuery(evt) {
     if(evt.keyCode == 13) {
@@ -167,16 +167,15 @@ function displayChart(data){
     }
 
     var chart = new Chart(context, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: [hour[0], hour[1], hour[2], hour[3], hour[4], hour[5], hour[6], hour[7], hour[8], hour[9]],
             datasets: [{
                 label: 'Hourly Forecast',
-                backgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgb(255, 99, 132, 0.2)',
                 borderColor: 'rgb(255, 99, 132)',
-                pointBorderColor: 'rgb(255, 99, 132)', 
-                pointBackgroundColor: 'rgb(255, 255, 255)',
-                fill: false,
+                fill: true,
+                opacity: 50,
                 data: [temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8], temp[9],]
             }]
         },
@@ -184,7 +183,6 @@ function displayChart(data){
             legend: {
                 display: false
             },
-            responsive: true,
             maintainAspectRatio: false,
             scales: {
                 yAxes: [{

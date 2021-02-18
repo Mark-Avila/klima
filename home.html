@@ -37,9 +37,7 @@
         <nav>
             <ul>
                 <li><a href="#" id="n-about" class="item animate__animated animate__fadeInDown">About</a></li>
-                <li><a href="#" id="n-map" class="item item animate__animated animate__fadeInDown">Weather Map</a></li>
                 <li><a href="#forecast"  id="n-forecast"class="item item animate__animated animate__fadeInDown">Forecast</a></li>
-                <li id="dropdown-li"><a href="javascript:void(0)" id="burger" class="item" onclick="dropdown()">☰</a></li>
             </ul>
             <div class="nav-dropdown">
                 <div>
@@ -121,14 +119,23 @@
                 <div id="w-title">
                     <h4>Weather Map</h4>
                 </div>
-                    <div id="weathermap">
-                </div>
+                <div id="weathermap"></div>
                 <div id="w-buttons-container">
-                    <button id="clouds" class="w-buttons" onclick="displayMap('clouds')">Clouds</button>
-                    <button id="preci" class="w-buttons" onclick="displayMap('precipitation')">Precipitation</button>
-                    <button id="pressure" class="w-buttons" onclick="displayMap('pressure_new')">Sea Level Pressure</button>
-                    <button id="speed" class="w-buttons" onclick="displayMap('wind_new')">Wind Speed</button>
-                    <button id="temp" class="w-buttons" onclick="displayMap('temp_new')">Temperature</button>
+                    <span class="w-b-span">
+                        <button id="clouds" class="w-buttons" onclick="displayMap('clouds')">Clouds</button>
+                    </span>
+                    <span class="w-b-span">
+                        <button id="preci" class="w-buttons" onclick="displayMap('precipitation')">Precipitation</button>
+                    </span>
+                    <span class="w-b-span">
+                        <button id="pressure" class="w-buttons" onclick="displayMap('pressure_new')">Pressure</button>
+                    </span>
+                    <span class="w-b-span">
+                        <button id="speed" class="w-buttons" onclick="displayMap('wind_new')">Wind Speed</button>
+                    </span>
+                    <span class="w-b-span">
+                        <button id="temp" class="w-buttons" onclick="displayMap('temp_new')">Temperature</button>
+                    </span>
                 </div>
             </div>
 
@@ -143,6 +150,10 @@
 
             </div>
         </div>
+
+        <footer>
+            Weather data from <a href="http://openweathermap.org" id="f-link">OpenWeatherMap</a>
+        </footer>
     </body>
     <script src="process.js"></script>
     <script src="home.front.js"></script>
