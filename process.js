@@ -22,7 +22,7 @@ function setQuery(evt) {
 }
 
 function fetchData(query) {
-    fetch('http://api.openweathermap.org/data/2.5/weather?q='+query+'&units=metric&appid=e1558fe0d8dcc08923d8122663466af2')
+    fetch('https://api.openweathermap.org/data/2.5/weather?q='+query+'&units=metric&appid=e1558fe0d8dcc08923d8122663466af2')
     .then(response => {
         return response.json();
     })
