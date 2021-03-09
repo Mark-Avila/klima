@@ -3,7 +3,7 @@ html{
 }
 
 body{
-    background-image: url("https://hdqwalls.com/wallpapers/minimalist-mountains-landscape-scenery-n4.jpg");
+    transition: 1s;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -37,7 +37,7 @@ footer{
 }  
 
 .main-content{
-    display: block;    
+    display: block;
 }
 
 .loader {
@@ -68,18 +68,19 @@ footer{
 nav{
     margin: 0%;
     font-family: 'Open Sans', sans-serif;
+    text-shadow: 2px 2px 2px gray;
 }
 
 ul{
     margin: 0%;
-    margin-top: 12px;
     list-style-type: none;
     overflow: hidden;
-    padding: 12px;
+    padding: 3px;
 }
 li {
     float: right;
 }
+
 .item {
     display: block;
     color: white;
@@ -104,76 +105,57 @@ li > a:hover {
     transition: 0.5s;
 }
 
-/*Dropdown css*/
-.nav-dropdown{
-    background-color: white;
-    padding: 14px;
-    position: absolute;
-    display: none;
-    width: 100vh;
-    float: right;
-    z-index: 1;
-    box-shadow: -1px 18px 38px -11px rgba(95,95,95,0.75);
-    -webkit-box-shadow: -1px 18px 38px -11px rgba(95,95,95,0.75);
-    -moz-box-shadow: -1px 18px 38px -11px rgba(95,95,95,0.75);
-}
-
-.nav-dropdown > div{
-    text-align: left;
-    padding: 14px;
-    margin: 8px;
-}
-
-.dd-item{
-    text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    color: black;
-}
-
 /*Main content css*/
-.icon{
+.main-icon{
     animation-delay: 0.8s;
+    text-shadow: 2px 2px 2px #755b38;
 }
 .weather{
     animation-delay: 1s;
+    text-shadow: 2px 2px 2px #755b38;
 }
 .city{
     animation-delay: 1.2s;
+    font-weight: 600;
+    text-shadow: 2px 2px 2px #755b38;
 }
 .temp{
     animation-delay: 1.4s;
+    text-shadow: 2px 2px 2px #755b38;
 }
 .date{
     animation-delay: 1.6s;
+    text-shadow: 2px 2px 2px #755b38;
 }
 .search{
     animation-delay: 1.8s;
 }
 
 #data-box{
-    color: White;
+    color: rgb(255, 251, 230);
     padding: 0%;
     text-align: center;
     padding: 20px;
-    margin-top: 50px;
+    margin-top: 32px;
 }
 #data-box > h2{
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     font-size: 24px;
+    text-shadow: 2px 2px 0px #898989;
 }
 #data-box > p{
     font-family: 'Open Sans', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px;
+    text-shadow: 2px 2px 0px #898989;
 }
 #data-box > h1{
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    margin: 0%;
     font-size: 72px;
     text-shadow: 2px 2px 0px #898989;
+    margin: 24px 24px 48px 24px;
 }
 
 #input-box{
@@ -220,7 +202,7 @@ li > a:hover {
 #general{
     grid-column: 1/2;
     grid-area: "general";
-    padding-top: 2%;
+    padding: 5%;
     min-width: 0;
     min-height: 0;
 }
@@ -355,7 +337,6 @@ li > a:hover {
     border: none;
     margin-right: none;
     border-radius: 4px;
-    transition: 0.5s;
     font-weight: 600;
     padding: 8px;
 }
@@ -375,6 +356,9 @@ li > a:hover {
             grid-template-columns: repeat(4, 25%);
             grid-template-rows: repeat(2, 50%);
             margin-bottom: 14px;
+        }
+        .w-buttons{
+            font-size: 2vw;
         }
     }  
 }

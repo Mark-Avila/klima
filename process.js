@@ -22,7 +22,7 @@ function setQuery(evt) {
 }
 
 function fetchData(query) {
-    fetch('https://api.openweathermap.org/data/2.5/weather?q='+query+'&units=metric&appid=e1558fe0d8dcc08923d8122663466af2')
+    fetch('http://api.openweathermap.org/data/2.5/weather?q='+query+'&units=metric&appid=e1558fe0d8dcc08923d8122663466af2')
     .then(response => {
         return response.json();
     })
@@ -64,7 +64,7 @@ function viewResults(data) {
             city: document.querySelector('.city'),
             temp: document.querySelector('.temp'),
             weather: document.querySelector('.weather'),
-            icon: document.querySelector('.icon')
+            icon: document.querySelector('.main-icon')
         },
         gen: {
             feels: document.querySelector('#g-feels-like'),
@@ -78,12 +78,13 @@ function viewResults(data) {
 
     const {city, temp, weather, icon} = element.main;
     const {feels, speed, pres, humid, visib, locate} = element.gen;
-
+    
     //main
     city.innerText = data.name +", "+data.sys.country;  //Location
-    temp.innerText = `${Math.round(data.main.temp)}°`;  //Location temperature
-    weather.innerText = data.weather[0].main;           //location weather
+    temp.innerText = `${Math.round(data.main.temp)}°`;  //Location temperaturs
+    weather.innerText = toTitleCase(data.weather[0].main); //location weather
     icon.innerHTML = getWeatherIcon(data.weather[0].id);//weather icon
+    getWeatherBg(data.weather[0].id)
 
     //general (box below)
     feels.innerText = `Feels like ${Math.round(data.main.feels_like)}°C`;
@@ -92,6 +93,47 @@ function viewResults(data) {
     pres.innerText = `${data.main.pressure} pHA`;
     humid.innerText = data.main.humidity + ' %';
     visib.innerText = Math.round(data.visibility / 1000) + ' km';
+}
+
+function toTitleCase(str) {
+    return str.replace(
+      /\w\S*/g,
+      function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
+  }
+
+function setBackground(weather){
+    let bg = document.querySelector('body');
+    bg.style.backgroundImage = `url("weather-${weather}.svg")`;
+}
+
+function getWeatherBg(id){
+    if(id >= 200 && id <= 232){ //thunder
+        setBackground('rain');
+    }
+    else if(id >= 300 && id <= 321){ //drizzle
+        setBackground('rain');
+    }
+    else if(id >= 500 && id <= 531){ //rain
+        setBackground('rain');
+    }
+    else if(id >= 600 && id <= 622){ //snow
+        setBackground('snow');
+    }
+    else if(id >= 700 && id <= 781){ //smog
+        setBackground('fog');
+    }
+    else if(id == 800){ //sunny/clear
+        setBackground('sunny');
+    }
+    else if(id >= 801 && id <= 804){ //cloud
+        setBackground('cloudy');
+    }
+    else {
+        console.log("Error: weather id not found");
+    }
 }
 
 function getWeatherIcon(id){
@@ -104,7 +146,7 @@ function getWeatherIcon(id){
     else if(id >= 500 && id <= 531){ //rain
         return '<i class="fas fa-cloud-showers-heavy fa-2x"></i>';
     }
-    else if(id >= 600 && id <= 622){ //drizzle
+    else if(id >= 600 && id <= 622){ //snow
         return '<i class="far fa-snowflake fa-2x"></i>';
     }
     else if(id >= 700 && id <= 781){ //smog
@@ -120,6 +162,7 @@ function getWeatherIcon(id){
         console.log("Error: weather id not found");
     }
 }
+
 
 function viewMoreResults(data)
 {
@@ -153,7 +196,7 @@ function viewMoreResults(data)
     momentdate.innerText = moment().tz(`${data.timezone}`).format('dddd, MMMM DD YYYY');
 
     time = document.querySelector("#g-time");
-    time.innerText = moment().tz(`${data.timezone}`).format("YYYY/MM/DD HH:mm");
+    time.innerText = moment().tz(`${data.timezone}`).format("YYYY/MM/DD hh:mm");
 }
 
 function displayChart(data){
@@ -162,16 +205,27 @@ function displayChart(data){
     var temp = [];
 
     for(var i = 0; i < 11; i++){
-        hour.push(data.hourly[i].weather[0].main);
         temp.push(Math.round(`${data.hourly[i].temp}`));
     }
 
-    var chart = new Chart(context, {
+    var time = [
+        '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12AM',
+        '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM', '12PM'
+    ]
+
+    let mnt = moment().tz(`${data.timezone}`).format('H') - 1;
+    for(var j = 1; j < 11; j++){
+       hour.push(time[(mnt + j) % 24]);
+    }
+
+    var chart;
+
+    chart = new Chart(context, {
         type: 'line',
         data: {
             labels: [hour[0], hour[1], hour[2], hour[3], hour[4], hour[5], hour[6], hour[7], hour[8], hour[9]],
             datasets: [{
-                label: 'Hourly Forecast',
+                label: 'Hourly Temperature',
                 backgroundColor: 'rgb(255, 99, 132, 0.2)',
                 borderColor: 'rgb(255, 99, 132)',
                 fill: true,
@@ -180,16 +234,18 @@ function displayChart(data){
             }]
         },
         options: {
-            legend: {
-                display: false
-            },
             maintainAspectRatio: false,
             scales: {
                 yAxes: [{
                     ticks: {
-                        max: 40,
-                        min: 0,
+                        max: 50,
+                        fontSize: 11,
                         beginAtZero: true 
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontSize: 11,
                     }
                 }]
             }
