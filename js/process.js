@@ -1,5 +1,7 @@
 const searchInput = document.querySelector('.search');
+
 searchInput.addEventListener('keypress', setQuery);
+
 fetchData('Manila'); //display current weather data of manila
 
 //set weather map ----------------------
@@ -37,6 +39,7 @@ function fetchForecastData(lat, lon){
 }
 
 function buildDate(date) {
+
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     
@@ -46,6 +49,7 @@ function buildDate(date) {
     let year = date.getFullYear();
 
     return `${Day} ${currentDate} ${month} ${year}`;
+
 }
 
 function loadingAnim(){
@@ -96,20 +100,25 @@ function viewResults(data) {
 }
 
 function toTitleCase(str) {
+    
     return str.replace(
-      /\w\S*/g,
-      function(txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      }
+        /\w\S*/g,
+        function(txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }
     );
-  }
+
+}
 
 function setBackground(weather){
+
     let bg = document.querySelector('body');
-    bg.style.backgroundImage = `url("weather-${weather}.svg")`;
+    bg.style.backgroundImage = `url("images/weather-${weather}.svg")`;
+
 }
 
 function getWeatherBg(id){
+
     if(id >= 200 && id <= 232){ //thunder
         setBackground('rain');
     }
@@ -134,9 +143,12 @@ function getWeatherBg(id){
     else {
         console.log("Error: weather id not found");
     }
+
 }
 
-function getWeatherIcon(id){
+function getWeatherIcon(id)
+{
+
     if(id >= 200 && id <= 232){ //thunder
         return '<i class="fas fa-bolt fa-2x"></i>';
     }
@@ -152,7 +164,7 @@ function getWeatherIcon(id){
     else if(id >= 700 && id <= 781){ //smog
         return '<i class="fas fa-smog fa-2x"></i>';
     }
-    else if(id == 800){ //sunny/clear
+    else if(id == 800){             //sunny/clear
         return '<i class="fas fa-sun fa-2x"></i>';
     }
     else if(id >= 801 && id <= 804){ //cloud
@@ -161,13 +173,15 @@ function getWeatherIcon(id){
     else {
         console.log("Error: weather id not found");
     }
-}
 
+}
 
 function viewMoreResults(data)
 {
     console.log(data);
+
     displayChart(data);
+
     weatherMap.setView([data.lat, data.lon], 8);
 
     let week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -185,7 +199,7 @@ function viewMoreResults(data)
 
         icon = document.querySelector(`#icon-${i+1}`);
         icon.innerHTML = getWeatherIcon(data.daily[i].weather[0].id);
-
+        
         temp = document.querySelector(`#day-${i+1}-temp`);
         temp.innerText = `${Math.round(data.daily[i].temp.max)} / ${Math.round(data.daily[i].temp.min)}°C`;
     }
