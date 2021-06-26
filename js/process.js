@@ -18,9 +18,11 @@ var owm = L.tileLayer(`https://tile.openweathermap.org/map/precipitation/{z}/{x}
 weatherMap.setView([14.5, 120.9], 5);
 
 function setQuery(evt) {
+
     if(evt.keyCode == 13) {
         fetchLocation(searchInput.value);
     }
+    
 }
 
 async function fetchLocation(query) {
@@ -258,3 +260,18 @@ function displayMap(layer){
     
     var owm = L.tileLayer(`https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=e1558fe0d8dcc08923d8122663466af2`).addTo(weatherMap);
 }
+
+async function autoComplete(search) {
+
+    let list = document.querySelector("#list").innerHTML = ''
+
+    let places = await fetch(`https://api.teleport.org/api/cities/?search=${search}`)
+
+    let data = await places.json()
+
+    for(let i = 0; i < data.count; i++) {
+
+        $("#list").append(`<option value="${data._embedded["city:search-results"][i]}">`)
+    }
+
+} 

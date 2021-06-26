@@ -52,8 +52,10 @@
                         <h1 class="animate__animated animate__fadeInUp temp" id="temp">0</h1>
                         <p class="animate__animated animate__fadeInUp date">NULL</p>
                     </div>
-                    <div id="input-box">
-                        <input type="text" id="search" class="animate__animated animate__fadeInUp pure-input-1 search" name="search" placeholder="Enter City">
+                    <div id="input-box"> 
+                        <input type="text" list="list" id="search" onkeydown="autoComplete(this.value)" class="animate__animated animate__fadeInUp pure-input-1 search" name="search" placeholder="Enter City">
+
+                        <datalist id="list"></datalist>
                     </div>
                 </div>
             </div>
