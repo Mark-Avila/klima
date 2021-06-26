@@ -186,8 +186,13 @@ function getWeatherIcon(id)
     else { console.log("Error: weather id not found") }
 }
 
-function displayChart(data){
-    let context = document.querySelector('#hourly-chart').getContext('2d');
+/*
+* Chart declared outside of function so that previous chart data can be destroyed
+*/
+var chart
+
+function displayChart(data){    
+
     var hour = [];
     var temp = [];
 
@@ -206,7 +211,10 @@ function displayChart(data){
        hour.push(time[(mnt + j) % 24]);
     }
 
-    var chart;
+    //Destroys previous data to avoid previous chart from appearing when hovering    
+    if(chart) { chart.destroy() }
+
+    let context = document.querySelector('#hourly-chart').getContext('2d');
 
     chart = new Chart(context, {
         type: 'line',

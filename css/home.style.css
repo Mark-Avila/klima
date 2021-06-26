@@ -14,7 +14,7 @@ footer{
     text-align: right;
     margin: 8px;
     padding: 12px;
-    font-size: 12px;
+    font-size: 0.7rem;
     font-family: 'Open Sans', sans-serif;
     color: white;
 }
@@ -141,19 +141,19 @@ li > a:hover {
 #data-box > h2{
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 1.5rem;
     text-shadow: 2px 2px 0px #898989;
 }
 #data-box > p{
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 1rem;
     text-shadow: 2px 2px 0px #898989;
 }
 #data-box > h1{
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    font-size: 72px;
+    font-size: 4em;
     text-shadow: 2px 2px 0px #898989;
     margin: 24px 24px 48px 24px;
 }
@@ -170,6 +170,7 @@ li > a:hover {
     border-radius: 20px;
     padding: 15px;
     width: 50vh;
+    outline: none;
     box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
@@ -179,16 +180,14 @@ li > a:hover {
 .data-container{ /*main grid container*/
     display: grid;
     grid-template-columns: repeat(3, 32.5%);
-    grid-gap: 15px;
+    grid-gap: 0.8em;
     margin-top: 10vw;
 }
-
-
 
 .data-box{ /*boxes general class*/
     font-family: 'Open Sans', sans-serif;
     background-color: white;
-    border-radius: 15px;
+    border-radius: 8px;
     padding: 14px;
     font-weight: 600;
     box-shadow: 2px 17px 24px -4px rgba(0,0,0,0.75);
@@ -250,16 +249,36 @@ li > a:hover {
     grid-area: "forecast";
     min-width: 0;
     min-height: 0;
-    padding: 0%;
+    padding-bottom: 2em;
 }
 
 #forecast-icon-container{
-    display: grid;
+    display: flex;
     text-align: center;
-    grid-template-columns: repeat(8, 12.5%);
-    margin: -16px 6px 0px 6px;
+    justify-content: space-between;
+    align-items: center;
 }
 
+#forecast-icon-container > div{
+    width: 100%;
+    transition: 0.5s ease-in-out;
+}
+
+#forecast-icon-container > div:hover{
+    background-color: hsl(0, 0%, 95%);
+    border-radius: 4px;
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 600px){
+    
+    #forecast-icon-container{
+        display: grid;
+        text-align: center;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+}
 #f-title{
     text-align: center;
     margin: 0%;
@@ -352,11 +371,7 @@ li > a:hover {
         flex-direction: column;
     }
     @media screen and (max-width: 590px){
-        #forecast-icon-container{
-            grid-template-columns: repeat(4, 25%);
-            grid-template-rows: repeat(2, 50%);
-            margin-bottom: 14px;
-        }
+        
         .w-buttons{
             font-size: 2vw;
         }
