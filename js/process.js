@@ -233,6 +233,7 @@ function displayChart(data){
         },
         options: {
             maintainAspectRatio: false,
+            responsive: true,
             scales: {
                 yAxes: [{
                     ticks: {
@@ -260,18 +261,3 @@ function displayMap(layer){
     
     var owm = L.tileLayer(`https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=e1558fe0d8dcc08923d8122663466af2`).addTo(weatherMap);
 }
-
-async function autoComplete(search) {
-
-    let list = document.querySelector("#list").innerHTML = ''
-
-    let places = await fetch(`https://api.teleport.org/api/cities/?search=${search}`)
-
-    let data = await places.json()
-
-    for(let i = 0; i < data.count; i++) {
-
-        $("#list").append(`<option value="${data._embedded["city:search-results"][i]}">`)
-    }
-
-} 

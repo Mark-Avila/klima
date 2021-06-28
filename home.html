@@ -17,6 +17,7 @@
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <!--jQuery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <!--Graph JS-->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         <!--Leaflet JS-->
@@ -36,8 +37,8 @@
         <div class="main-content">
         <nav>
             <ul>
-                <li><a href="#" id="n-about" class="item animate__animated animate__fadeInDown">About</a></li>
-                <li><a href="#forecast"  id="n-forecast"class="item item animate__animated animate__fadeInDown">Forecast</a></li>
+                <li><a href="#" id="n-about" class="item">About</a></li>
+                <li><a href="#forecast"  id="n-forecast"class="item ">Forecast</a></li>
             </ul>
         </nav>
 
@@ -46,14 +47,14 @@
             <div id="main-content">
                 <div class="container"> <!--Flexbox container-->
                     <div id="data-box">
-                        <span class="animate__animated animate__fadeInUp main-icon"><i class="fas fa-cloud fa-2x"></i></span>
-                        <h2 class="animate__animated animate__fadeInUp weather">NULL</h2>
-                        <p class="animate__animated animate__fadeInUp city">NULL, NULL</p>
-                        <h1 class="animate__animated animate__fadeInUp temp" id="temp">0</h1>
-                        <p class="animate__animated animate__fadeInUp date">NULL</p>
+                        <span class="main-icon"><i class="fas fa-cloud fa-2x"></i></span>
+                        <h2 class= "weather">NULL</h2>
+                        <p class="city">NULL, NULL</p>
+                        <h1 class="temp" id="temp">0</h1>
+                        <p class="date">NULL</p>
                     </div>
                     <div id="input-box"> 
-                        <input type="text" list="list" id="search" onkeydown="autoComplete(this.value)" class="animate__animated animate__fadeInUp pure-input-1 search" name="search" placeholder="Enter City">
+                        <input type="text" list="list" id="search" class="pure-input-1 search" name="search" placeholder="Enter City">
 
                         <datalist id="list"></datalist>
                     </div>
@@ -61,12 +62,12 @@
             </div>
         </main>
 
-        <div class="data-container" data-aos="fade-up">
+        <div class="data-container">
             <div class="data-box" id="general">
                 <div id="general-info">
                     <div id="info-left">
-                        <p id="g-time" class="g-item">NaN</p>
-                        <p id="g-location" class="g-item">NaN</p>
+                        <p id="g-time" class="g-item">NULL</p>
+                        <p id="g-location" class="g-item">NULL</p>
                         <p id="g-feels-like" class="g-item">NaN°C</p>
                     </div>
                     <div id="info-right">
@@ -177,7 +178,7 @@
                         <button id="pressure" class="w-buttons" onclick="displayMap('pressure_new')">Pressure</button>
                     </span>
                     <span class="w-b-span">
-                        <button id="speed" class="w-buttons" onclick="displayMap('wind_new')">Wind Speed</button>
+                        <button id="speed" class="w-buttons" onclick="displayMap('wind_new')">Wind</button>
                     </span>
                     <span class="w-b-span">
                         <button id="temp" class="w-buttons" onclick="displayMap('temp_new')">Temperature</button>
@@ -186,10 +187,8 @@
             </div>
 
             <div class="data-box" id="hourly">
-                <div id="h-title">
-                    <h4>10 Hour Forecast</h4>
-                </div>
-                <div id="chart-container">
+                <h4 id="h-title">10 Hour Forecast</h4>
+                <div class="chart-wrapper"">
                     <canvas id="hourly-chart"></canvas>
                 </div>
             </div>
