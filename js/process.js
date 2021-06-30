@@ -261,3 +261,42 @@ function displayMap(layer){
     
     var owm = L.tileLayer(`https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=e1558fe0d8dcc08923d8122663466af2`).addTo(weatherMap);
 }
+
+async function openModal(location, daynum){
+    $('#day-modal-container').css("display", "block");
+
+    let locale = await fetch('http://api.openweathermap.org/data/2.5/weather?q='+location+'&units=metric&appid=e1558fe0d8dcc08923d8122663466af2')
+    let locdata = await locale.json()
+
+    let weather = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${locdata.coord.lat}&lon=${locdata.coord.lon}&exclude=current,minutely,hourly&units=metric&appid=e1558fe0d8dcc08923d8122663466af2`)   
+    let data = await weather.json()
+
+    console.log(data)
+    console.log('Fetch Sucessful')
+
+    let date = new Date();
+    let week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    $("#di-icon-wrapper").html(getWeatherIcon(data.daily[daynum].weather[0].id))
+    $("#di-desc").text(data.daily[daynum].weather[0].main)
+    $("#di-day").text(week[(date.getDay() + 1 + daynum) % 7])
+    $("#di-temp").text(`${Math.round(data.daily[daynum].temp.max)} / ${Math.round(data.daily[daynum].temp.min)}°C`)
+
+    const { pressure, humidity, wind_speed, dew_point} = data.daily[daynum]
+
+    $("#di-wind").text(wind_speed + " m/s")
+    $("#di-pres").text(pressure + " pHA")
+    $("#di-humi").text(humidity + " %")
+    $("#di-dew").text(dew_point + " °C")
+
+    const { morn, day, eve, night } = data.daily[daynum].temp
+
+    $("#di-morning").text(Math.round(morn) + "°C")
+    $("#di-days").text(Math.round(day) + "°C")
+    $("#di-evening").text(Math.round(eve) + "°C")
+    $("#di-night").text(Math.round(night) + "°C")
+}
+
+function closeModal(){
+    $('#day-modal-container').css("display", "none");
+}

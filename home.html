@@ -93,11 +93,11 @@
             </div>
             <div class="data-box" id="forecast">
                 <div id="f-title">
-                    <h4>8-day Forecast</h4>
+                    <h4 style="margin-bottom: 0%;">8-day Forecast</h4>
                 </div>
                  <!-- Title -->
                 <div id="forecast-icon-container">
-                    <div class="icon">
+                    <div class="icon" onclick="openModal($('#g-location').text(), 0)">
                         <p id="day-1" class="f-days">Sun</p><br>
                         <span id="icon-1">
                             <i class="fas fa-cloud fa-2x"></i>
@@ -105,7 +105,7 @@
                         <h5 id="weather-1">NULL</h5>
                         <p id="day-1-temp" class="day-temp">NULL</p>
                     </div>
-                    <div class="icon">
+                    <div class="icon" onclick="openModal($('#g-location').text(), 1)"">
                         <p id="day-2" class="f-days">Mon</p><br>
                         <span id="icon-2">
                             <i class="fas fa-cloud fa-2x"></i>
@@ -113,7 +113,7 @@
                         <h5 id="weather-2">NULL</h5>
                         <p id="day-2-temp" class="day-temp">NULL</p>
                     </div>
-                    <div class="icon">
+                    <div class="icon" onclick="openModal($('#g-location').text(), 2)">
                         <p id="day-3" class="f-days">Tue</p><br>
                         <span id="icon-3">
                             <i class="fas fa-cloud fa-2x"></i>
@@ -121,7 +121,7 @@
                         <h5 id="weather-3">NULL</h5>
                         <p id="day-3-temp" class="day-temp">NULL</p>
                     </div>
-                    <div class="icon">
+                    <div class="icon" onclick="openModal($('#g-location').text(), 3)">
                         <p id="day-4" class="f-days">Wed</p><br>
                         <span id="icon-4">
                             <i class="fas fa-cloud fa-2x"></i>
@@ -129,20 +129,20 @@
                         <h5 id="weather-4">NULL</h5>
                         <p id="day-4-temp" class="day-temp">NULL</p>
                     </div>
-                    <div class="icon">
+                    <div class="icon" onclick="openModal($('#g-location').text(), 4)">
                         <p id="day-5" class="f-days">Thu</p><br>
                         <span id="icon-5">
                             <i class="fas fa-cloud fa-2x"></i></span><br>
                         <h5 id="weather-5">NULL</h5><p id="day-5-temp" class="day-temp">NULL</p>
                     </div>
-                    <div class="icon">
+                    <div class="icon" onclick="openModal($('#g-location').text(), 5)">
                         <p id="day-6" class="f-days">Fri</p><br>
                         <span id="icon-6">
                             <i class="fas fa-cloud fa-2x"></i>
                         </span><br><h5 id="weather-6">NULL</h5>
                         <p id="day-6-temp" class="day-temp">NULL</p>
                     </div>
-                    <div class="icon">
+                    <div class="icon" onclick="openModal($('#g-location').text(), 6)">
                         <p id="day-7" class="f-days">Sat</p>
                         <br>
                         <span id="icon-7">
@@ -151,7 +151,7 @@
                         <h5 id="weather-7">NULL</h5>
                         <p id="day-7-temp" class="day-temp">NULL</p>
                     </div>
-                    <div class="icon">
+                    <div class="icon" onclick="openModal($('#g-location').text(), 7)">
                         <p id="day-8" class="f-days">Sun</p>
                         <br><span id="icon-8">
                             <i class="fas fa-cloud fa-2x"></i>
@@ -196,6 +196,68 @@
             </div>
         </div>
 
+        <div id="day-modal-container">
+            <div id="day-content">
+                <div id="di-general">
+                    <div id="di-main-wrapper">
+                        <div id="di-align">
+                            <div id="di-main">
+                                <div id="di-icon">
+                                    <div id="di-icon-wrapper">
+                                        <i class="fas fa-cloud fa-4x"></i>
+                                    </div>
+                                    <p id="di-desc">Clouds</p>
+                                </div>
+                                <div>
+                                    <h1 id="di-day">Wednesday</h1>
+                                    <p id="di-temp">24 / 32 C</p>
+                                </div>
+                            </div>
+                            <div id="di-close">
+                                <button id="di-close-button" onclick="closeModal()"><i class="fas fa-times fa-2x"></i></button>
+                            </div>
+                        </div>
+                        <div id="di-gen-data">
+                            <div>
+                                <p class="di-type" >Wind Speed</p>
+                                <p class="di-data" id="di-wind">1.34</p>
+                            </div>
+                            <div>
+                                <p class="di-type">Pressure</p>
+                                <p class="di-data" id="di-pres">1.34</p>
+                            </div>
+                            <div>
+                                <p class="di-type">Humidity</p>
+                                <p class="di-data" id="di-humi">1.34</p>
+                            </div>
+                            <div>
+                                <p class="di-type">Dew Point</p>
+                                <p class="di-data" id="di-dew">1.34</p>
+                            </div>
+                        </div>
+                        <div id="di-daytemp">
+                            <div class="di-dt-wrapper">
+                                <p class="di-dt-title">Morning</p>
+                                <p class="di-dt-temp" id="di-morning">34</p>
+                            </div>
+                            <div class="di-dt-wrapper">
+                                <p class="di-dt-title">Day</p>
+                                <p class="di-dt-temp" id="di-days">34</p>
+                            </div>
+                            <div class="di-dt-wrapper">
+                                <p class="di-dt-title">Evening</p>
+                                <p class="di-dt-temp" id="di-evening">34</p>
+                            </div>
+                            <div class="di-dt-wrapper">
+                                <p class="di-dt-title">Night</p>
+                                <p class="di-dt-temp" id="di-night">34</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
         <footer>
             Weather data from <a href="http://openweathermap.org" id="f-link">OpenWeatherMap</a>
         </footer>

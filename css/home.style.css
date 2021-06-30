@@ -19,6 +19,11 @@ footer{
     color: white;
 }
 
+.fluid {
+    margin: 0%;
+    padding: 0%;
+}
+
 #f-link{
     text-decoration: none;
     color: white;
@@ -50,18 +55,6 @@ footer{
     animation: spin 2s linear infinite;
     transition: 1s;
   }
-  
-  /* Safari */
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-  
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 
 
 /*Navigation bar css*/
@@ -175,19 +168,22 @@ li > a:hover {
     -moz-box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
 }
 
+main {
+    height: 100vh;
+}
+
 /*data boxes CSS*/
 .data-container{ /*main grid container*/
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 0.8em;
-    margin-top: 10vw;
+    grid-gap: 0.5em;
 }
 
 .data-box{ /*boxes general class*/
     font-family: 'Open Sans', sans-serif;
     background-color: white;
     border-radius: 8px;
-    padding: 14px;
+    padding: 1em;
     font-weight: 600;
     box-shadow: 2px 17px 24px -4px rgba(0,0,0,0.75);
     -webkit-box-shadow: 2px 17px 24px -4px rgba(0,0,0,0.75);
@@ -225,15 +221,24 @@ li > a:hover {
     padding: 0%;
 }
 #info-right > h1{
-    font-size: 72px;
+    font-size: 2em;
     text-align: right;
     margin: 0%;
 }
 
+#g-time{
+    font-size: 0.9em;
+}
+
 #g-location{
-    font-size: 24px;
+    font-size: 1.2em;
     margin: 0%;
 }
+
+#g-feels-like{
+    font-size: 0.9em;
+}
+
 
 #info-bottom{
     grid-column: 1/3;
@@ -258,14 +263,16 @@ li > a:hover {
     grid-column: 2/4;
     min-width: 0;
     min-height: 0;
-    padding-bottom: 2em;
+    padding: 0%;
 }
+
 
 #forecast-icon-container{
     display: flex;
     text-align: center;
     justify-content: space-between;
     align-items: center;
+    padding: 0.5em;
 }
 
 #forecast-icon-container > div{
@@ -295,7 +302,7 @@ li > a:hover {
 }
 
 .day-temp{
-    font-size: 12px;
+    font-size: 0.8em;
 }
 
 
@@ -328,9 +335,10 @@ li > a:hover {
 }
 
 #weathermap{
-    height: 300px;
+    height: 250px;
     border-radius: 15px;
     margin: 25px;
+    z-index: 0;
 }
 
 #w-title{
@@ -361,7 +369,7 @@ li > a:hover {
     margin-right: none;
     border-radius: 4px;
     font-weight: 600;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     padding: 8px;
 }
 
@@ -374,6 +382,113 @@ li > a:hover {
     height: 80%;
     width: 100%;
 }
+
+/*---------------------------------*/
+/*day info css*/
+
+#day-modal-container {
+    display: none;
+    padding: 1em;
+    margin: 0%;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.75);
+}
+
+@keyframes pop {
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+#day-content {
+    background-color: white;
+    margin: 10% auto;
+    width: 50%;
+    padding: 1em;
+    padding-left: 2em;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 0.5em;
+    animation: pop 0.5s;
+    transition: 0.5s;
+}
+
+#di-icon{
+    margin-right: 2em;
+    text-align: center;
+}
+
+#di-icon > p{
+    font-weight: 600;
+}
+
+#di-align {
+    display: flex;
+    justify-content: space-between;
+    margin: 0%;
+}
+
+#di-main{
+    display: flex;
+    align-items: flex-start;
+    padding-top: 1em;
+}
+
+#di-close-button {
+    background: none;
+    border: none;
+}
+
+.fa-times{
+    color: hsl(0, 0%, 65%);
+}
+
+.fa-times:hover {
+    color: hsl(0, 0%, 0%);
+}
+
+#di-daytemp{
+    display: flex;
+    padding-right: 2em;
+    justify-content: space-between;
+}
+
+#di-gen-data{
+    margin-top: 2rem;
+    display: flex;
+    padding-right: 2em;
+    justify-content: space-between;
+}
+
+#di-day{
+    margin: 0%;
+    padding: 0%;
+}
+
+#di-temp{
+    font-size: 1.5em;
+    margin: 0%;
+    padding: 0%;
+}
+
+.di-type{
+    font-weight: 600;
+}
+
+.di-dt-title{
+    font-weight: 600;
+
+}
+
+/*---------------------------------*/
 
 @media screen and (max-width: 1024px){
     
@@ -399,17 +514,23 @@ li > a:hover {
 
     #f-title{
         text-align: left;
-        padding-left: 1.5em;
+        padding-left: 1em;
     }
     
     #h-title{
         text-align: left;
-        padding-left: 1.5em;
+        padding-left: 1em;
     }
 
     #w-title{
         text-align: left;
         padding-left: 1.5em;
+    }
+
+    #day-content {
+        margin: 5% auto;
+        width: 80vw;
+        display: block;
     }
 
 }
