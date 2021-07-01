@@ -27,7 +27,7 @@ function setQuery(evt) {
 
 async function fetchLocation(query) {
     
-    let res = await fetch('http://api.openweathermap.org/data/2.5/weather?q='+query+'&units=metric&appid=e1558fe0d8dcc08923d8122663466af2')
+    let res = await fetch('https://api.openweathermap.org/data/2.5/weather?q='+query+'&units=metric&appid=e1558fe0d8dcc08923d8122663466af2')
 
     let data = await res.json()
 
@@ -264,7 +264,7 @@ function displayMap(layer){
 async function openModal(location, daynum){
     $('#day-modal-container').css("display", "flex");
 
-    let locale = await fetch('http://api.openweathermap.org/data/2.5/weather?q='+location+'&units=metric&appid=e1558fe0d8dcc08923d8122663466af2')
+    let locale = await fetch('https://api.openweathermap.org/data/2.5/weather?q='+location+'&units=metric&appid=e1558fe0d8dcc08923d8122663466af2')
     let locdata = await locale.json()
 
     let weather = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${locdata.coord.lat}&lon=${locdata.coord.lon}&exclude=current,minutely,hourly&units=metric&appid=e1558fe0d8dcc08923d8122663466af2`)   
