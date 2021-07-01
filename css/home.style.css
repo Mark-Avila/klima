@@ -312,6 +312,11 @@ main {
     text-align: center;
 }
 
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
 @media screen and (max-width: 1024px){
     
     #hourly{
@@ -409,6 +414,16 @@ main {
     }
 }
 
+@keyframes popup {
+    0% {
+        transform: translate(0%, 100%);
+    }
+
+    100%{
+        transform: translate(0%, 0%);
+    }
+}
+
 #day-content {
     background-color: white;
     margin: 10% auto;
@@ -418,7 +433,6 @@ main {
     font-family: 'Open Sans', sans-serif;
     border-radius: 0.5em;
     animation: pop 0.5s;
-    transition: 0.5s;
 }
 
 #di-icon{
@@ -471,6 +485,8 @@ main {
 #di-day{
     margin: 0%;
     padding: 0%;
+    font-size: 1.5em;
+    font-weight: 700;
 }
 
 #di-temp{
@@ -493,7 +509,8 @@ main {
 @media screen and (max-width: 1024px){
     
     #input-box > input {
-        width: 50vw;
+        width: 80vw;
+        margin: auto;
     }
 
     #general{
@@ -527,11 +544,63 @@ main {
         padding-left: 1.5em;
     }
 
+    #day-modal-container{
+        display: none;
+        justify-content: center;
+        align-items: center;
+        padding: 0%;
+    }
+
     #day-content {
-        margin: 5% auto;
+        margin: 0%;
+        width: 80%;
+        position: fixed;
+    }
+
+}
+
+@media screen and (max-width: 800px)
+{
+
+    #day-content {
+        margin: 20% auto;
         width: 80vw;
+    }
+}
+
+@media screen and (max-width: 500px)
+{
+    nav{
+        display: none;
+    }
+
+    #day-modal-container{
+        display: none;
+        align-items: end;
+    }
+
+    #day-content {
+        animation: popup 0.5s;
+    }
+
+    #di-gen-data{
         display: block;
     }
 
+    #di-gen-data > div {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8em;
+    }
+
+    #di-daytemp {
+        display: block;
+    }
+
+    .di-dt-wrapper {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8em;
+    }
 }
 

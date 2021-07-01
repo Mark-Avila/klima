@@ -233,7 +233,6 @@ function displayChart(data){
         },
         options: {
             maintainAspectRatio: false,
-            responsive: true,
             scales: {
                 yAxes: [{
                     ticks: {
@@ -263,7 +262,7 @@ function displayMap(layer){
 }
 
 async function openModal(location, daynum){
-    $('#day-modal-container').css("display", "block");
+    $('#day-modal-container').css("display", "flex");
 
     let locale = await fetch('http://api.openweathermap.org/data/2.5/weather?q='+location+'&units=metric&appid=e1558fe0d8dcc08923d8122663466af2')
     let locdata = await locale.json()
