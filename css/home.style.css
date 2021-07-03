@@ -11,10 +11,9 @@ body{
 }
 
 footer{
-    text-align: right;
-    margin: 8px;
-    padding: 12px;
-    font-size: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
     font-family: 'Open Sans', sans-serif;
     color: white;
 }
@@ -27,6 +26,15 @@ footer{
 #f-link{
     text-decoration: none;
     color: white;
+}
+
+#f-prof{
+    text-decoration: none;
+    color: white;
+}
+
+#f-prof:hover{
+    color: yellow;
 }
 
 #f-link:hover{
@@ -45,17 +53,14 @@ footer{
     display: block;
 }
 
-.loader {
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid gray;
-    width: 60px;
-    height: 60px;
-    -webkit-animation: spin 2s linear infinite; /* Safari */
-    animation: spin 2s linear infinite;
-    transition: 1s;
-  }
+#main-content{
+    margin-top: 5rem;
 
+}
+
+main{
+    height: 100vh;
+}
 
 /*Navigation bar css*/
 nav{
@@ -166,10 +171,6 @@ li > a:hover {
     box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 10px 31px -10px rgba(0,0,0,0.75);
-}
-
-main {
-    height: 100vh;
 }
 
 /*data boxes CSS*/
@@ -509,8 +510,12 @@ canvas {
 @media screen and (max-width: 1024px){
     
     #input-box > input {
-        width: 80vw;
+        width: 50vw;
         margin: auto;
+    }
+
+    canvas {
+        height: 80%;
     }
 
     #general{
@@ -562,6 +567,10 @@ canvas {
 @media screen and (max-width: 800px)
 {
 
+    #input-box > input {
+        width: 70vw;
+    }
+
     #day-content {
         margin: 20% auto;
         width: 80vw;
@@ -572,6 +581,10 @@ canvas {
 {
     nav{
         display: none;
+    }
+
+    #input-box > input {
+        width: 80vw;
     }
 
     #day-modal-container{
@@ -601,6 +614,14 @@ canvas {
         display: flex;
         justify-content: space-between;
         font-size: 0.8em;
+    }
+
+    footer{
+        display: block;
+        text-align: center;
+        font-size: 0.7rem;
+        margin: 0%;
+        padding: 0%;
     }
 }
 
