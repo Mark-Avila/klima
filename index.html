@@ -4,30 +4,33 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--Google font (Open Sans)-->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;700;800&display=swap" rel="stylesheet">       
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
         <!--Font awesome (icons) cdn-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
         
+        <!--
         <script src="js/moment.js"></script>
         <script src="js/moment-timezone-with-data.min.js"></script>
-        <!-- css-->        
+        css        
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <!--jQuery-->
+        jQuery
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <!--Graph JS-->
+        Graph JS
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-        <!--Leaflet JS-->
+        Leaflet JS
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin=""/> <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
-    
+        -->
         <!--CSS-->  
-        <link rel="stylesheet" href="css/home.style.css">
+        <link rel="stylesheet" href="css/index.css">
 
         <title>Klima</title>
     </head>
@@ -36,21 +39,17 @@
         <div class="main-content">
 
         <main>
-            <div id="main-content">
-                <div class="container"> <!--Flexbox container-->
-                    <div id="data-box">
-                        <span class="main-icon"><i class="fas fa-cloud fa-2x"></i></span>
-                        <h2 class= "weather">NULL</h2>
-                        <p class="city">NULL, NULL</p>
-                        <h1 class="temp" id="temp">0</h1>
-                        <p class="date">NULL</p>
-                    </div>
-                    <div id="input-box"> 
-                        <input type="text" list="list" id="search" class="pure-input-1 search" name="search" placeholder="Enter City">
-
-                        <datalist id="list"></datalist>
-                    </div>
+            <div class="main__data">
+                <div class="main__data__icon">
+                    <i class="fas fa-cloud fa-2x"></i>
                 </div>
+                <p class= "main__data__weather text_shadow">Sunny</h2>
+                <p class="main__data__temp text_shadow">37°</h1>
+                <p class="main__data__city text_shadow">Manila, PH</p>
+                <!-- <p class="main__data__date">NULL</p> -->
+            </div>
+            <div class="main__search"> 
+                <input type="text" class="main__search__input" name="search" placeholder="Enter City">
             </div>
         </main>
 
@@ -255,7 +254,7 @@
             <p>Weather data from <a href="http://openweathermap.org" id="f-link">OpenWeatherMap</a></p>
         </footer>
     </body>
-    <script src="js/process.js"></script>
-    <script>AOS.init();</script>
+    <!-- <script src="index.js"></script> -->
+    <!-- <script>AOS.init();</script> -->
     
 </html>

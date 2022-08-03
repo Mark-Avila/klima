@@ -1,0 +1,72 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: lightblue;
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.main__data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    color: white;
+}
+
+.text_shadow {
+    text-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+}
+
+.main__data__icon {
+    font-size: 11px;
+}
+
+.main__data__weather {
+    margin: 0.5rem 0 0.5rem 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.main__data__temp {
+    margin: 0;
+    padding: 0;
+    font-size: 84px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.main__data__city {
+    margin: 0.5rem 0 0.5rem 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+}
+
+.main__search {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    width: 300px;
+}
+
+.main__search__input {
+    padding: 0.8rem;
+    text-align: center;
+    border-radius: 50px;
+    outline: none;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    color: hsl(0, 0%, 15%);
+}
+
+
