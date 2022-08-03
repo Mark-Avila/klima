@@ -93,43 +93,74 @@ main {
     gap: 1rem;
 }
 
-.info__general {
+.general {
     padding: 1.5rem;
 }
 
-.info__general__upper {
+.general__upper {
     display: flex;
     justify-content: space-between;
 }
 
-.info__general__text__time {
+.general__text__time {
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
 }
 
-.info__general__text__location {
+.general__text__location {
     margin: 1rem 0;
     font-family: "Montserrat", sans-serif;
     font-size: 1.7rem;
 }
 
-.info__general__upper__temp {
+.general__upper__temp {
     font-family: "Montserrat", sans-serif;
     font-size: 2rem;
     padding: 0;
     margin: 0;
 }
 
-.info__general__lower {
+.general__lower {
     display: flex;
     justify-content: space-between;
 }
 
-.info__general__lower__data {
+.general__lower__data {
     font-size: 0.9rem;
 }
 
-.info__forecast {
+.forecast {
     grid-column-start: 2;
     grid-column-end: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.forecast__list {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.forecast__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.forecast__item__day {
+    font-size: 0.8rem;
+}
+
+.forecast__item__weather {
+    font-weight: bold;
+    margin: 1rem 0;
+    margin-bottom: 1.5rem;
+}
+
+.forecast__item__temp {
+    font-size: 0.8rem;
 }
