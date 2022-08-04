@@ -204,3 +204,62 @@ main {
     grid-column-end: 3;
 }
 
+.modal {
+    background-color: rgb(27, 27, 27);
+    position: absolute;
+    width: 50vw;
+    font-family: "Roboto", sans-serif;
+    color: white;
+    padding: 2rem;
+}
+
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.modal__current {
+    display: flex;
+    align-items: center;
+}
+
+.modal__header__weather {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.modal__header__desc {
+    font-family: "Montserrat", sans-serif;
+}
+
+.modal__header__day {
+    font-size: 0.9rem;
+}
+
+.modal__header__temp {
+    font-size: 1.5rem;
+    font-family: "Montserrat", sans-serif;
+    margin-top: 1rem;
+}
+
+.modal__header__closebtn {
+    background: none;
+    outline: none;
+    border: none;
+    color: white;
+}
+
+.modal__info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    color: rgba(255,255,255,0.70);
+}
+
+.modal__forecast {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    color: rgba(255,255,255,0.70);
+}

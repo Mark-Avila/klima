@@ -2,22 +2,20 @@
 
 <html>
 
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--Google font (Open Sans)-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto:wght@400;700&display=swap"
-            rel="stylesheet">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Google font (Open Sans)-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
 
-        <!--Font awesome (icons) cdn-->
-        <link rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-            integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-            crossorigin="anonymous">
+    <!--Font awesome (icons) cdn-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 
-        <!--
+    <!--
         <script src="js/moment.js"></script>
         <script src="js/moment-timezone-with-data.min.js"></script>
         css        
@@ -35,176 +33,156 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
         -->
-        <!--CSS-->
-        <link rel="stylesheet" href="css/index.css">
+    <!--CSS-->
+    <link rel="stylesheet" href="css/index.css">
 
-        <title>Klima</title>
-    </head>
+    <title>Klima</title>
+</head>
 
-    <body>
-        <div class="main-content">
+<body>
+    <div class="main-content">
 
-            <main>
-                <div class="main__data">
-                    <div class="main__data__icon">
-                        <i class="fas fa-cloud fa-2x"></i>
-                    </div>
-                    <p class="main__data__weather text_shadow">Sunny</h2>
-                    <p class="main__data__temp text_shadow">37°</h1>
-                    <p class="main__data__city text_shadow">Manila, PH</p>
-                    <!-- <p class="main__data__date">NULL</p> -->
+        <main>
+            <div class="main__data">
+                <div class="main__data__icon">
+                    <i class="fas fa-cloud fa-2x"></i>
                 </div>
-                <div class="main__search">
-                    <input type="text" class="main__search__input
+                <p class="main__data__weather text_shadow">Sunny</h2>
+                <p class="main__data__temp text_shadow">37°</h1>
+                <p class="main__data__city text_shadow">Manila, PH</p>
+                <!-- <p class="main__data__date">NULL</p> -->
+            </div>
+            <div class="main__search">
+                <input type="text" class="main__search__input
                         container_shadow" name="search" placeholder="Enter
                         City">
-                </div>
-            </main>
+            </div>
+        </main>
 
-            <div class="info">
-                <div class="info__back">
-                    <button class="info__back__button">
-                        <span>
-                            <i class="fas fa-angle-left text_shadow"></i>
-                        </span>
-                        <p class="info__back__button__text text_shadow">Back</p>
-                    </button>
-                </div>
-                <div class="info__container">
-                    <div class="general box">
-                        <div class="general__upper">
-                            <div class="general__text">
-                                <p class="general__text__time fluid"
-                                    class="g-item">2022/08/03 10:10</p>
-                                <p class="general__text__location fluid"
-                                    class="g-item">Manila</p>
-                                <p class="general__text__feels fluid"
-                                    class="g-item">Feels like 36°</p>
-                            </div>
-                            <p class="general__upper__temp">37°C</p>
+        <div class="info">
+            <div class="info__back">
+                <button class="info__back__button">
+                    <span>
+                        <i class="fas fa-angle-left text_shadow"></i>
+                    </span>
+                    <p class="info__back__button__text text_shadow">Back</p>
+                </button>
+            </div>
+            <div class="info__container">
+                <div class="general box">
+                    <div class="general__upper">
+                        <div class="general__text">
+                            <p class="general__text__time fluid" class="g-item">2022/08/03 10:10</p>
+                            <p class="general__text__location fluid" class="g-item">Manila</p>
+                            <p class="general__text__feels fluid" class="g-item">Feels like 36°</p>
                         </div>
-                        <div class="general__lower">
-                            <div>
-                                <h5>Wind Speed</h5>
-                                <p id="wind-speed" class="general__lower__data">0
-                                    m/s</p>
-                            </div>
-                            <div>
-                                <h5>Pressure</h5>
-                                <p id="pressure" class="general__lower__data">0
-                                    pHA</p>
-                            </div>
-                            <div>
-                                <h5>Humidity</h5>
-                                <p id="humidity" class="general__lower__data">0%</p>
-                            </div>
-                            <div>
-                                <h5>Visibility</h5>
-                                <p id="visibility" class="general__lower__data">0
-                                    km</p>
-                            </div>
+                        <p class="general__upper__temp">37°C</p>
+                    </div>
+                    <div class="general__lower">
+                        <div>
+                            <h5>Wind Speed</h5>
+                            <p id="wind-speed" class="general__lower__data">0
+                                m/s</p>
+                        </div>
+                        <div>
+                            <h5>Pressure</h5>
+                            <p id="pressure" class="general__lower__data">0
+                                pHA</p>
+                        </div>
+                        <div>
+                            <h5>Humidity</h5>
+                            <p id="humidity" class="general__lower__data">0%</p>
+                        </div>
+                        <div>
+                            <h5>Visibility</h5>
+                            <p id="visibility" class="general__lower__data">0
+                                km</p>
                         </div>
                     </div>
-                    <div class="forecast box" id="forecast">
-                        <p class="forecast__title" style="margin-bottom: 0%;">8-day
-                            Forecast</h4>
+                </div>
+                <div class="forecast box" id="forecast">
+                    <p class="forecast__title" style="margin-bottom: 0%;">8-day
+                        Forecast</h4>
                         <!-- Title -->
-                        <div class="forecast__list">
-                            <div class="forecast__item"
-                                onclick="openModal($('#g-location').text(), 0)">
-                                <p id="day-1" class="forecast__item__day fluid">Sun</p><br>
-                                <span id="icon-1" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-1"
-                                    class="forecast__item__weather fluid">Cloudy</h5>
-                                <p id="day-1-temp" class="forecast__item__temp
+                    <div class="forecast__list">
+                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 0)">
+                            <p id="day-1" class="forecast__item__day fluid">Sun</p><br>
+                            <span id="icon-1" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i>
+                            </span><br>
+                            <h5 id="weather-1" class="forecast__item__weather fluid">Cloudy</h5>
+                            <p id="day-1-temp" class="forecast__item__temp
                                     fluid">32 / 26 °C</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal($('#g-location').text(), 1)">
-                                <p id="day-2" class="forecast__item__day fluid">Mon</p><br>
-                                <span id="icon-2" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-2"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-2-temp" class="forecast__item__temp
+                        </div>
+                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 1)">
+                            <p id="day-2" class="forecast__item__day fluid">Mon</p><br>
+                            <span id="icon-2" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i>
+                            </span><br>
+                            <h5 id="weather-2" class="forecast__item__weather fluid">NULL</h5>
+                            <p id="day-2-temp" class="forecast__item__temp
                                     fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal($('#g-location').text(), 2)">
-                                <p id="day-3" class="forecast__item__day fluid">Tue</p><br>
-                                <span id="icon-3" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-3"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-3-temp" class="forecast__item__temp
+                        </div>
+                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 2)">
+                            <p id="day-3" class="forecast__item__day fluid">Tue</p><br>
+                            <span id="icon-3" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i>
+                            </span><br>
+                            <h5 id="weather-3" class="forecast__item__weather fluid">NULL</h5>
+                            <p id="day-3-temp" class="forecast__item__temp
                                     fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal($('#g-location').text(), 3)">
-                                <p id="day-4" class="forecast__item__day fluid">Wed</p><br>
-                                <span id="icon-4" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-4"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-4-temp" class="forecast__item__temp
+                        </div>
+                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 3)">
+                            <p id="day-4" class="forecast__item__day fluid">Wed</p><br>
+                            <span id="icon-4" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i>
+                            </span><br>
+                            <h5 id="weather-4" class="forecast__item__weather fluid">NULL</h5>
+                            <p id="day-4-temp" class="forecast__item__temp
                                     fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal($('#g-location').text(), 4)">
-                                <p id="day-5" class="forecast__item__day fluid">Thu</p><br>
-                                <span id="icon-5" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i></span><br>
-                                <h5 id="weather-5"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-5-temp" class="forecast__item__temp
+                        </div>
+                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 4)">
+                            <p id="day-5" class="forecast__item__day fluid">Thu</p><br>
+                            <span id="icon-5" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i></span><br>
+                            <h5 id="weather-5" class="forecast__item__weather fluid">NULL</h5>
+                            <p id="day-5-temp" class="forecast__item__temp
                                     fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal($('#g-location').text(), 5)">
-                                <p id="day-6" class="forecast__item__day fluid">Fri</p><br>
-                                <span id="icon-6" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-6"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-6-temp" class="forecast__item__temp
+                        </div>
+                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 5)">
+                            <p id="day-6" class="forecast__item__day fluid">Fri</p><br>
+                            <span id="icon-6" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i>
+                            </span><br>
+                            <h5 id="weather-6" class="forecast__item__weather fluid">NULL</h5>
+                            <p id="day-6-temp" class="forecast__item__temp
                                     fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal($('#g-location').text(), 6)">
-                                <p id="day-7" class="forecast__item__day fluid">Sat</p>
-                                <br>
-                                <span id="icon-7" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-7"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-7-temp" class="forecast__item__temp
+                        </div>
+                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 6)">
+                            <p id="day-7" class="forecast__item__day fluid">Sat</p>
+                            <br>
+                            <span id="icon-7" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i>
+                            </span><br>
+                            <h5 id="weather-7" class="forecast__item__weather fluid">NULL</h5>
+                            <p id="day-7-temp" class="forecast__item__temp
                                     fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal($('#g-location').text(), 7)">
-                                <p id="day-8" class="forecast__item__day fluid">Sun</p>
-                                <br><span id="icon-8"
-                                    class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-8"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-8-temp" class="forecast__item__temp
+                        </div>
+                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 7)">
+                            <p id="day-8" class="forecast__item__day fluid">Sun</p>
+                            <br><span id="icon-8" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i>
+                            </span><br>
+                            <h5 id="weather-8" class="forecast__item__weather fluid">NULL</h5>
+                            <p id="day-8-temp" class="forecast__item__temp
                                     fluid">NULL</p>
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="weathermap box" id="weather">
-                        <div id="weathermap__leaflet"></div>
-                        <!-- <div id="w-buttons-container">
+                <div class="weathermap box" id="weather">
+                    <div id="weathermap__leaflet"></div>
+                    <!-- <div id="w-buttons-container">
                     <span class="w-b-span">
                         <button id="clouds" class="w-buttons" onclick="displayMap('clouds')">Clouds</button>
                     </span>
@@ -222,92 +200,82 @@
                         <button id="temp" class="w-buttons" onclick="displayMap('temp_new')">Temperature</button>
                     </span>
                 </div> -->
-                    </div>
-
-                    <div class="data-box box" id="hourly">
-                        <h4 id="h-title">10 Hour Forecast</h4>
-                        <div class="chart-wrapper">
-                            <canvas id="hourly-chart"></canvas>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
 
-            <div id="day-modal-container">
-                <div id="day-content">
-                    <div id="di-general">
-                        <div id="di-main-wrapper">
-                            <div id="di-align">
-                                <div id="di-main">
-                                    <div id="di-icon">
-                                        <div id="di-icon-wrapper">
-                                            <i class="fas fa-cloud fa-4x"></i>
-                                        </div>
-                                        <p id="di-desc">Clouds</p>
-                                    </div>
-                                    <div>
-                                        <p id="di-day">Wednesday</p>
-                                        <p id="di-temp">24 / 32 C</p>
-                                    </div>
-                                </div>
-                                <div id="di-close">
-                                    <button id="di-close-button"
-                                        onclick="closeModal()"><i
-                                            class="fas fa-times fa-2x"></i></button>
-                                </div>
-                            </div>
-                            <div id="di-gen-data">
-                                <div>
-                                    <p class="di-type">Wind Speed</p>
-                                    <p class="di-data" id="di-wind">1.34</p>
-                                </div>
-                                <div>
-                                    <p class="di-type">Pressure</p>
-                                    <p class="di-data" id="di-pres">1.34</p>
-                                </div>
-                                <div>
-                                    <p class="di-type">Humidity</p>
-                                    <p class="di-data" id="di-humi">1.34</p>
-                                </div>
-                                <div>
-                                    <p class="di-type">Dew Point</p>
-                                    <p class="di-data" id="di-dew">1.34</p>
-                                </div>
-                            </div>
-                            <div id="di-daytemp">
-                                <div class="di-dt-wrapper">
-                                    <p class="di-dt-title">Morning</p>
-                                    <p class="di-dt-temp" id="di-morning">34</p>
-                                </div>
-                                <div class="di-dt-wrapper">
-                                    <p class="di-dt-title">Day</p>
-                                    <p class="di-dt-temp" id="di-days">34</p>
-                                </div>
-                                <div class="di-dt-wrapper">
-                                    <p class="di-dt-title">Evening</p>
-                                    <p class="di-dt-temp" id="di-evening">34</p>
-                                </div>
-                                <div class="di-dt-wrapper">
-                                    <p class="di-dt-title">Night</p>
-                                    <p class="di-dt-temp" id="di-night">34</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="data-box box" id="hourly">
+                    <h4 id="h-title">10 Hour Forecast</h4>
+                    <div class="chart-wrapper">
+                        <canvas id="hourly-chart"></canvas>
                     </div>
                 </div>
+
             </div>
         </div>
 
+        <div class="modal">
+            <div class="modal__header">
+                <div class="modal__current">
+                    <div class="modal__header__weather">
+                        <div class="modal__header__icon">
+                            <i class="fas fa-cloud fa-4x"></i>
+                        </div>
+                        <p class="modal__header__desc">Clouds</p>
+                    </div>
+                    <div class="modal__header__data">
+                        <p class="modal__header__day fluid">Wednesday</p>
+                        <p class="modal__header__temp fluid">24 / 32 C</p>
+                    </div>
+                </div>
+                <div class="modal__header__close">
+                    <button id="di-close-button" class="modal__header__closebtn" onclick="closeModal()"><i class="fas fa-times fa-2x"></i></button>
+                </div>
+            </div>
+            <div class="modal__info">
+                <div>
+                    <p class="modal__info__type">Wind Speed</p>
+                    <p class="modal__info__data" id="modal-wind">1.34</p>
+                </div>
+                <div>
+                    <p class="modal__info__type">Pressure</p>
+                    <p class="modal__info__data" id="modal-pres">1.34</p>
+                </div>
+                <div>
+                    <p class="modal__info__type">Humidity</p>
+                    <p class="modal__info__data" id="modal-humi">1.34</p>
+                </div>
+                <div>
+                    <p class="modal__info__type">Dew Point</p>
+                    <p class="modal__info__data" id="modal-dew">1.34</p>
+                </div>
+            </div>
+            <div class="modal__forecast">
+                <div class="modal__forecast__item">
+                    <p class="modal__forecast__type">Morning</p>
+                    <p class="modal__forecast__data" id="modal-morning">34</p>
+                </div>
+                <div class="modal__forecast__item">
+                    <p class="modal__forecast__type">Day</p>
+                    <p class="modal__forecast__data" id="modal-days">34</p>
+                </div>
+                <div class="modal__forecast__item">
+                    <p class="modal__forecast__type">Evening</p>
+                    <p class="modal__forecast__data" id="modal-evening">34</p>
+                </div>
+                <div class="modal__forecast__item">
+                    <p class="modal__forecast__type">Night</p>
+                    <p class="modal__forecast__data" id="modal-night">34</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <footer>
-            <p>Klima, a personal project by <a
-                    href="https://github.com/Mark-Avila" id="f-prof">Mark Avila</a></p>
-            <p>Weather data from <a href="http://openweathermap.org"
-                    id="f-link">OpenWeatherMap</a></p>
-        </footer>
-    </body>
-    <!-- <script src="index.js"></script> -->
-    <!-- <script>AOS.init();</script> -->
+
+    <footer>
+        <p>Klima, a personal project by <a href="https://github.com/Mark-Avila" id="f-prof">Mark Avila</a></p>
+        <p>Weather data from <a href="http://openweathermap.org" id="f-link">OpenWeatherMap</a></p>
+    </footer>
+</body>
+<!-- <script src="index.js"></script> -->
+<!-- <script>AOS.init();</script> -->
 
 </html>
