@@ -113,13 +113,14 @@ main {
 }
 
 .info {
-    margin: 3rem 2rem;
+    margin: 2rem;
+    height: 100%;
 }
 
 .info__container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 250px 250px;
     gap: 1rem;
 }
 
@@ -150,6 +151,9 @@ main {
 
 .general {
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .general__upper {
@@ -160,12 +164,25 @@ main {
 .general__text__time {
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
+    color: rgba(255,255,255,0.80);
+
 }
 
 .general__text__location {
     margin: 1rem 0;
     font-family: "Montserrat", sans-serif;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
+}
+
+.general__text__feels {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.80);
+}
+
+.general__lower__title {
+    color: rgba(255,255,255,0.80);
+    font-size: 0.8rem;
+    font-family: "Roboto", sans-serif;
 }
 
 .general__upper__temp {
@@ -180,6 +197,10 @@ main {
     justify-content: space-between;
 }
 
+.general__lower__item {
+    text-align: center;
+}
+
 .general__lower__data {
     font-size: 0.9rem;
 }
@@ -190,6 +211,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 0 1rem;
 }
 
