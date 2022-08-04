@@ -31,7 +31,7 @@ html, body {
 
 main {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -129,6 +129,8 @@ main {
     background-color: rgba(0,0,0,0.75);
     color: white;
     font-family: "Roboto", sans-serif;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .info__back {
@@ -262,7 +264,7 @@ main {
     width: 100%;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (min-width: 200px) and (max-width: 767px) {
     .box {
         background: none;
     }
@@ -308,6 +310,62 @@ main {
     .forecast__list {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 1fr 1fr;
+    }
+}
+
+/*Tablet*/
+@media only screen and (min-width: 768px) and (max-width: 978px) {
+    .box {
+        background-color: rgba(0,0,0,0.75);
+    }
+
+    .info {
+        margin: 0 1rem;
+    }
+
+    .info__container {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto auto auto;
+        background: none;
+        row-gap: 1rem;
+        width: 100%;
+    }
+
+    .general {
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+    .general__lower {
+        justify-content: start;
+    }
+
+    .general__lower__item {
+        margin-right: 2rem;
+    }
+
+    .forecast {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        padding: 0.5rem;
+    }
+
+    .weathermap {
+        height: 350px;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+    .hourforecast {
+        height: 350px;
+        width: 100%;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+    .hourforecast__container {
+        width: 100%;
     }
 }
 
