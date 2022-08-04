@@ -53,9 +53,13 @@
                 <!-- <p class="main__data__date">NULL</p> -->
             </div>
             <div class="main__search">
-                <input type="text" class="main__search__input
-                        container_shadow" name="search" placeholder="Enter
-                        City">
+                <input type="text" class="main__search__input container_shadow" name="search" placeholder="Enter City">
+            </div>
+            <div class="main__scrolldown">
+                <span class="main__scrolldown__icon">
+                    <i class="fas fa-angle-down text_shadow"></i>
+                </span>
+                <p class="text_shadow">Scroll down for more information</p>
             </div>
         </main>
 
@@ -111,8 +115,7 @@
                                 <i class="fas fa-cloud fa-2x"></i>
                             </span><br>
                             <h5 id="weather-1" class="forecast__item__weather fluid">Cloudy</h5>
-                            <p id="day-1-temp" class="forecast__item__temp
-                                    fluid">32 / 26 °C</p>
+                            <p id="day-1-temp" class="forecast__item__temp fluid">32 °C</p>
                         </div>
                         <div class="forecast__item" onclick="openModal($('#g-location').text(), 1)">
                             <p id="day-2" class="forecast__item__day fluid">Mon</p><br>
@@ -181,7 +184,7 @@
                 </div>
 
                 <div class="weathermap box" id="weather">
-                    <div id="weathermap__leaflet"></div>
+                    <div class="weathermap__leaflet"></div>
                     <!-- <div id="w-buttons-container">
                     <span class="w-b-span">
                         <button id="clouds" class="w-buttons" onclick="displayMap('clouds')">Clouds</button>
@@ -202,10 +205,10 @@
                 </div> -->
                 </div>
 
-                <div class="data-box box" id="hourly">
-                    <h4 id="h-title">10 Hour Forecast</h4>
-                    <div class="chart-wrapper">
-                        <canvas id="hourly-chart"></canvas>
+                <div class="hourforecast box" id="hourly">
+                    <!-- <p class="hourforecast__title">10 Hour Forecast</p> -->
+                    <div class="hourforecast__container">
+                        <canvas id="hourforecast__graph"></canvas>
                     </div>
                 </div>
 
