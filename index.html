@@ -11,23 +11,28 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto:wght@400;700&display=swap"
         rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!--Font awesome (icons) cdn-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
         integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
     <!--
         <script src="js/moment.js"></script>
         <script src="js/moment-timezone-with-data.min.js"></script>
         css        
+        Leaflet JS
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         jQuery
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         Graph JS
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-        Leaflet JS
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin=""/> <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
@@ -40,9 +45,14 @@
 </head>
 
 <body>
-    <div class="main-content">
 
-        <main>
+    <!-- 
+    Extra container becuase for some reason
+    adding background-attachment: fixed to body
+    has lag
+    -->
+    <div class="main__content">
+        <main class="">
             <div class="main__data">
                 <div class="main__data__icon">
                     <i class="fas fa-cloud fa-2x"></i>
@@ -59,13 +69,15 @@
                 <span class="main__scrolldown__icon">
                     <i class="fas fa-angle-down text_shadow"></i>
                 </span>
-                <p class="text_shadow">Scroll down for more information</p>
+                <button onclick="openInfo()" class="main__scrolldown__btn text_shadow">
+                    Scroll down for more information
+                </button>
             </div>
         </main>
 
-        <div class="info">
+        <div class="info info-close" id="info-page">
             <div class="info__back">
-                <button class="info__back__button">
+                <button onclick="closeInfo()" class="info__back__button">
                     <span>
                         <i class="fas fa-angle-left text_shadow"></i>
                     </span>
@@ -105,7 +117,7 @@
                     <!-- <p class="forecast__title" style="margin-bottom: 0%;">8-day
                         Forecast</h4> -->
                     <div class="forecast__list">
-                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 0)">
+                        <div class="forecast__item" onclick="openModal('asdasd')">
                             <p id="day-1" class="forecast__item__day fluid">Sun</p><br>
                             <span id="icon-1" class="forecast__item__icon">
                                 <i class="fas fa-cloud fa-2x"></i>
@@ -113,7 +125,7 @@
                             <h5 id="weather-1" class="forecast__item__weather fluid">Cloudy</h5>
                             <p id="day-1-temp" class="forecast__item__temp fluid">32 °C</p>
                         </div>
-                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 1)">
+                        <div class="forecast__item" onclick="openModal('test')">
                             <p id="day-2" class="forecast__item__day fluid">Mon</p><br>
                             <span id="icon-2" class="forecast__item__icon">
                                 <i class="fas fa-cloud fa-2x"></i>
@@ -122,7 +134,7 @@
                             <p id="day-2-temp" class="forecast__item__temp
                                     fluid">NULL</p>
                         </div>
-                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 2)">
+                        <div class="forecast__item" onclick="openModal('test')">
                             <p id="day-3" class="forecast__item__day fluid">Tue</p><br>
                             <span id="icon-3" class="forecast__item__icon">
                                 <i class="fas fa-cloud fa-2x"></i>
@@ -131,7 +143,7 @@
                             <p id="day-3-temp" class="forecast__item__temp
                                     fluid">NULL</p>
                         </div>
-                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 3)">
+                        <div class="forecast__item" onclick="openModal('test')">
                             <p id="day-4" class="forecast__item__day fluid">Wed</p><br>
                             <span id="icon-4" class="forecast__item__icon">
                                 <i class="fas fa-cloud fa-2x"></i>
@@ -140,7 +152,7 @@
                             <p id="day-4-temp" class="forecast__item__temp
                                     fluid">NULL</p>
                         </div>
-                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 4)">
+                        <div class="forecast__item" onclick="openModal('test')">
                             <p id="day-5" class="forecast__item__day fluid">Thu</p><br>
                             <span id="icon-5" class="forecast__item__icon">
                                 <i class="fas fa-cloud fa-2x"></i></span><br>
@@ -148,7 +160,7 @@
                             <p id="day-5-temp" class="forecast__item__temp
                                     fluid">NULL</p>
                         </div>
-                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 5)">
+                        <div class="forecast__item" onclick="openModal('test')">
                             <p id="day-6" class="forecast__item__day fluid">Fri</p><br>
                             <span id="icon-6" class="forecast__item__icon">
                                 <i class="fas fa-cloud fa-2x"></i>
@@ -157,7 +169,7 @@
                             <p id="day-6-temp" class="forecast__item__temp
                                     fluid">NULL</p>
                         </div>
-                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 6)">
+                        <div class="forecast__item" onclick="openModal('test')">
                             <p id="day-7" class="forecast__item__day fluid">Sat</p>
                             <br>
                             <span id="icon-7" class="forecast__item__icon">
@@ -167,7 +179,7 @@
                             <p id="day-7-temp" class="forecast__item__temp
                                     fluid">NULL</p>
                         </div>
-                        <div class="forecast__item" onclick="openModal($('#g-location').text(), 7)">
+                        <div class="forecast__item" onclick="openModal('test')">
                             <p id="day-8" class="forecast__item__day fluid">Sun</p>
                             <br><span id="icon-8" class="forecast__item__icon">
                                 <i class="fas fa-cloud fa-2x"></i>
@@ -180,7 +192,7 @@
                 </div>
 
                 <div class="weathermap box" id="weather">
-                    <div class="weathermap__leaflet"></div>
+                    <div class="weathermap__leaflet" id="weathermap-leaflet"></div>
                     <!-- <div id="w-buttons-container">
                     <span class="w-b-span">
                         <button id="clouds" class="w-buttons" onclick="displayMap('clouds')">Clouds</button>
@@ -204,14 +216,17 @@
                 <div class="hourforecast box" id="hourly">
                     <!-- <p class="hourforecast__title">10 Hour Forecast</p> -->
                     <div class="hourforecast__container">
-                        <canvas id="hourforecast__graph"></canvas>
+                        <canvas id="hourforecast-graph"></canvas>
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <div class="modal">
+        <div class="darkbg darkbg--close">
+        </div>
+
+        <div class="modal modal--close">
             <div class="modal__header">
                 <div class="modal__current">
                     <div class="modal__header__weather">
@@ -266,15 +281,14 @@
                 </div>
             </div>
         </div>
+
+        <footer>
+            <p class="fluid">Klima, a personal project by <a class="footer__link" href="https://github.com/Mark-Avila" id="f-prof">Mark Avila</a></p>
+            <p class="fluid">Weather data from <a class="footer__link" href="http://openweathermap.org" id="f-link">OpenWeatherMap</a></p>
+        </footer>
     </div>
-
-
-    <footer>
-        <p>Klima, a personal project by <a href="https://github.com/Mark-Avila" id="f-prof">Mark Avila</a></p>
-        <p>Weather data from <a href="http://openweathermap.org" id="f-link">OpenWeatherMap</a></p>
-    </footer>
 </body>
-<!-- <script src="index.js"></script> -->
+<script src="index.js"></script>
 <!-- <script>AOS.init();</script> -->
 
 </html>

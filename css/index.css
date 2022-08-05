@@ -11,6 +11,8 @@ html, body {
     padding: 0;
     box-sizing: border-box;
     background-color: lightblue;
+    scroll-behavior: smooth;
+    position: relative;
 }
 
 .text_shadow {
@@ -32,11 +34,30 @@ html, body {
 main {
     position: relative;
     min-height: 100vh;
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    padding-bottom: 10rem;
+}
+
+.main--close {
+    display: none;
+}
+
+.main__content {
+    background-image: url('../images/background.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 4rem;
+    min-height: 100vh;
 }
 
 .main__data {
@@ -95,14 +116,24 @@ main {
     bottom: 0;
     display: flex;
     align-items: center;
-    font-family: "Roboto", sans-serif;
-    margin-bottom: 1rem;
-    color: white;
+    margin-bottom: 2rem;
     /* margin-top: auto; */
+}
+
+.main__scrolldown__btn {
+    display: block;
+    background: none;
+    outline: none;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    color: white;
+    font-size: 0.9rem;
+    text-decoration: none;
 }
 
 .main__scrolldown__icon {
     margin-right: 1rem;
+    color: white;
 }
 
 /* SM */
@@ -112,9 +143,23 @@ main {
     } */
 }
 
+.box {
+    background-color: rgba(0,0,0,0.75);
+    color: white;
+    font-family: "Roboto", sans-serif;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
 .info {
-    margin: 2rem;
-    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info--close {
+    display: none;
 }
 
 .info__container {
@@ -125,13 +170,6 @@ main {
 }
 
 
-.box {
-    background-color: rgba(0,0,0,0.75);
-    color: white;
-    font-family: "Roboto", sans-serif;
-    border-radius: 12px;
-    overflow: hidden;
-}
 
 .info__back {
     margin-bottom: 1rem;
@@ -262,6 +300,7 @@ main {
     background-color: rgba(0,0,0);
     height: 100%;
     width: 100%;
+    z-index: 90;
 }
 
 @media only screen and (min-width: 200px) and (max-width: 767px) {
@@ -380,19 +419,46 @@ main {
 }
 
 .hourforecast__container {
-    background-color: black;
-    height: 100%;
+    height: 90%;
+    width: 90%;
+    position: relative;
+    padding: 1em;
+}
+
+#hourforecast-graph {
     width: 100%;
+    height: 100%;
+}
+
+.darkbg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0,0,0,0.75);
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.darkbg--close {
+    display: none;
+}
+
+.modal--close {
+    display: none;
 }
 
 .modal {
     background-color: rgb(27, 27, 27);
-    position: absolute;
+    position: fixed;
     width: 50vw;
     font-family: "Roboto", sans-serif;
     color: white;
     padding: 2rem;
-    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
 }
 
 .modal__header {
@@ -444,4 +510,21 @@ main {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     color: rgba(255,255,255,0.70);
+}
+
+footer {
+    font-family: "Roboto", sans-serif;
+    color: rgba(255,255,255,0.50);
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer__link {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
 }
