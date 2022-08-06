@@ -48,16 +48,16 @@ function closeModal() {
 }
 
 function openInfo() {
-    $('.info').removeClass('info--close');
+    $('.info').addClass('info--open');
     $('main').addClass('main--close');
 }
 
 function closeInfo() {
-    $('.info').addClass('info--close');
+    $('.info').removeClass('info--open');
     $('main').removeClass('main--close');
 }
 
-if ($('main').hasClass('main-close')) {
+if ($('main').hasClass('main--close')) {
     print("Opened")
 }
 
