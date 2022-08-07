@@ -1,70 +1,9 @@
-let map = L.map('weathermap-leaflet').setView([14.60, 121], 9);
+const express = require('express');
+const app = express();
+const port = 3000;
 
-function initMap() {
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
+app.use(express.static('public'));
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-}
-
-function initChart() {
-    const ctx = document.getElementById('hourforecast-graph').getContext('2d');
-    const chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: 'white',
-                borderColor: 'white',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    })
-}
-
-function openModal(text) {
-    $('.darkbg').removeClass('darkbg--close');
-    $('.modal').removeClass('modal--close');
-}
-
-function closeModal() {
-    $('.darkbg').addClass('darkbg--close');
-    $('.modal').addClass('modal--close');
-}
-
-function openInfo() {
-    $('.info').addClass('info--open');
-    $('main').addClass('main--close');
-    
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 500)
-
-}
-
-function closeInfo() {
-    $('.info').removeClass('info--open');
-    $('main').removeClass('main--close');
-}
-
-if ($('main').hasClass('main--close')) {
-    print("Opened")
-}
-
-initMap();
-initChart();
+app.listen(port, () => {
+  console.log(`Klima listening at http://localhost:${port}`)
+});

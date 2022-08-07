@@ -677,3 +677,39 @@ footer {
         display: none;
     }
 }
+
+/* Background modifiers */
+
+.frontmountain, .backmountain, .fronttrees, .backtrees {
+    transition: 200ms ease;
+} 
+
+.frontmountain--cloudy {
+    fill: #355964;
+}
+.backmountain--cloudy {
+    fill: #668086;
+}
+
+.fronttrees--cloudy {
+    fill: #01343F;
+}
+
+.backtrees--cloudy {
+    fill: #03444D;
+}
+
+.frontmountain--cloudy {
+    fill: #355964;
+}
+.backmountain--cloudy {
+    fill: #668086;
+}
+
+.fronttrees--cloudy {
+    fill: #01343F;
+}
+
+.backtrees--cloudy {
+    fill: #03444D;
+}
