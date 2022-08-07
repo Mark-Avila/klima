@@ -337,6 +337,7 @@ main {
 .weathermap {
     grid-column-start: 1;
     grid-column-end: 3;
+    position: relative;
 }
 
 .weathermap__leaflet {
@@ -344,6 +345,41 @@ main {
     height: 100%;
     width: 100%;
     z-index: 90;
+}
+
+.weathermap__buttoncontainer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    z-index: 91;
+    width: fit-content;
+    padding: 1rem;
+}
+
+.weathermap__button {
+    width: 40px;
+    height: 40px;
+    margin-right: 0.5rem;
+    background: white;
+    outline: none;
+    border: none;
+    color: hsl(0, 0%, 30%);
+    border-radius: 50px;
+}
+
+.weathermap__button:hover {
+    background-color: hsl(221, 74%, 63%);
+    color: white;
+    cursor: pointer;
+}
+
+.weathermap__button:active {
+    background-color: hsl(221, 78%, 58%);
+}
+
+.weathermap__button--active {
+    background-color: hsl(221, 78%, 58%);
 }
 
 .hourforecast {

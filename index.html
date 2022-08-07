@@ -14,8 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!--Font awesome (icons) cdn-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/11bf3f6b7d.js" crossorigin="anonymous"></script>
         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
@@ -215,6 +214,25 @@
 
                 <div class="weathermap box" id="weather">
                     <div class="weathermap__leaflet" id="weathermap-leaflet"></div>
+
+                    <div class="weathermap__buttoncontainer">
+                        <button class="weathermap__button" id="weathermap-btn-clouds">
+                            <i class="fa-solid fa-cloud"></i>
+                        </button>
+                        <button class="weathermap__button" id="weathermap-btn-pressure">
+                            <i class="fa-solid fa-temperature-arrow-down"></i>
+                        </button>
+                        <button class="weathermap__button" id="weathermap-btn-precipitation">
+                            <i class="fa-solid fa-cloud-rain"></i>
+                        </button>
+                        <button class="weathermap__button" id="weathermap-btn-wind">
+                            <i class="fa-solid fa-wind"></i>
+                        </button>
+                        <button class="weathermap__button" id="weathermap-btn-wind">
+                            <i class="fa-solid fa-temperature-half"></i>
+                        </button>
+                    </div>
+
                     <!-- <div id="w-buttons-container">
                     <span class="w-b-span">
                         <button id="clouds" class="w-buttons" onclick="displayMap('clouds')">Clouds</button>
@@ -253,7 +271,7 @@
                 <div class="modal__current">
                     <div class="modal__header__weather">
                         <div class="modal__header__icon">
-                            <i class="fas fa-cloud fa-4x"></i>
+                            <i class="fa-solid fa-cloud fa-4x"></i>
                         </div>
                         <p class="modal__header__desc">Clouds</p>
                     </div>
