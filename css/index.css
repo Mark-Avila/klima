@@ -67,6 +67,7 @@ main {
     align-items: center;
     box-sizing: border-box;
     z-index: 10;
+    padding-bottom: 5rem;
 }
 
 .main--close {
@@ -110,6 +111,7 @@ main {
     padding: 0;
     margin: 0;
     width: 300px;
+    position: relative;
 }
 
 .main__search__input {
@@ -128,6 +130,7 @@ main {
     display: flex;
     align-items: center;
     margin-top: 1rem;
+    position: relative;
     /* margin-top: auto; */
 }
 
@@ -140,6 +143,46 @@ main {
     color: white;
     font-size: 0.9rem;
     text-decoration: none;
+}
+
+.main__suggestions {
+    background-color: white;
+    max-height: 300px;
+    position: absolute;
+    top: 0;
+    margin-top: 17%;
+    width: 100%;
+    z-index: 5;
+    border-radius:12px;
+}
+
+.main__suggestions--close {
+    display: none;
+}
+
+.main__suggestions__list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+}
+
+.main__suggestions__item {
+    margin: 0;
+}
+
+.main__suggestions__btn {
+    background: none;
+    border: none;
+    outline: none;
+    color: rgb(54, 54, 54);
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem;
+}
+
+.main__suggestions__btn:hover {
+    background-color: hsl(0, 0%, 90%);
 }
 
 .main__scrolldown__icon {

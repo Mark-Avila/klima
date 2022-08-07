@@ -1,6 +1,6 @@
-function initMap() {
-    let map = L.map('weathermap-leaflet').setView([14.60, 121], 9);
+let map = L.map('weathermap-leaflet').setView([14.60, 121], 9);
 
+function initMap() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap'
@@ -50,6 +50,11 @@ function closeModal() {
 function openInfo() {
     $('.info').addClass('info--open');
     $('main').addClass('main--close');
+    
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 500)
+
 }
 
 function closeInfo() {
