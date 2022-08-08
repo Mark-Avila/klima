@@ -60,23 +60,59 @@ function openInfo() {
 function closeInfo() {
     $('.info').removeClass('info--open');
     $('main').removeClass('main--close');
-    updateBackground('cloudy')
 }
 
+function backgroundCloudy() {
+    $('.frontmountain').addClass('frontmountain--cloudy')
+    $('.backmountain').addClass('backmountain--cloudy')
+    $('.backtrees').addClass('backtrees--cloudy')
+    $('.fronttrees').addClass('fronttrees--cloudy')
+    $('.skytop').addClass('skytop--cloudy')
+    $('.skybottom').addClass('skybottom--cloudy')
+    $('.cloud').addClass('cloud--disable')
+}
+
+function backgroundSnow() {
+    $('.frontmountain').addClass('frontmountain--snow')
+    $('.backmountain').addClass('backmountain--snow')
+    $('.backtrees').addClass('backtrees--snow')
+    $('.fronttrees').addClass('fronttrees--snow')
+    $('.skytop').addClass('skytop--snow')
+    $('.skybottom').addClass('skybottom--snow')
+    $('.cloud').addClass('cloud--disable')
+    $('.laketop').addClass('laketop--snow')
+    $('.lakebottom').addClass('lakebottom--snow')
+    $('footer').addClass('footer--snow')
+    $('.footer__link').addClass('footer--snow')
+}
+
+function backgroundClear() {
+    $('.frontmountain').removeClass('frontmountain--snow').removeClass('frontmountain--cloudy')
+    $('.backmountain').removeClass('backmountain--snow').removeClass('backmountain--cloudy')
+    $('.backtrees').removeClass('backtrees--snow').removeClass('backtrees--cloudy')
+    $('.fronttrees').removeClass('fronttrees--snow').removeClass('fronttrees--cloudy')
+    $('.skytop').removeClass('skytop--snow').removeClass('skytop--cloudy')
+    $('.skybottom').removeClass('skybottom--snow').removeClass('skybottom--cloudy')
+    $('.cloud').removeClass('cloud--disable').removeClass('cloud--disable')
+    $('.laketop').removeClass('laketop--snow').removeClass('laketop--cloudy')
+    $('.lakebottom').removeClass('lakebottom--snow').removeClass('lakebottom--cloudy')
+    $('footer').removeClass('footer--snow').removeClass('footer--cloudy')
+    $('.footer__link').removeClass('footer--snow').removeClass('footer--cloudy')
+}
+ 
 function updateBackground(weather) {
-    if (weather == 'cloudy') {
-        $('.frontmountain').addClass('frontmountain--cloudy')
-        $('.backmountain').addClass('backmountain--cloudy')
-        $('.backtrees').addClass('backtrees--cloudy')
-        $('.fronttrees').addClass('fronttrees--cloudy')
+    if (weather === 'clear') {
+        backgroundClear();
+    }
+
+    if (weather === 'cloudy') {
+       backgroundCloudy();
+    }
+
+    if (weather === 'snow') {
+       backgroundSnow();
     }
 }
-
-if ($('main').hasClass('main--close')) {
-    print("Opened")
-}
-
-
 
 initMap();
 initChart();

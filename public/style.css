@@ -504,6 +504,10 @@ footer {
     text-decoration: none;
 }
 
+.footer--snow {
+    color: rgb(42, 94, 172);
+}
+
 @media only screen and (min-width: 1500px) {
     .page {
         padding: 0 10rem;
@@ -680,9 +684,20 @@ footer {
 
 /* Background modifiers */
 
-.frontmountain, .backmountain, .fronttrees, .backtrees {
-    transition: 200ms ease;
-} 
+.frontmountain, 
+.backmountain, 
+.fronttrees,
+.backtrees,
+.skytop,
+.skybottom 
+.cloud
+{
+    transition: 800ms ease;
+}
+
+.cloud--disable {
+    fill-opacity: 0;
+}
 
 .frontmountain--cloudy {
     fill: #355964;
@@ -699,17 +714,42 @@ footer {
     fill: #03444D;
 }
 
-.frontmountain--cloudy {
-    fill: #355964;
-}
-.backmountain--cloudy {
-    fill: #668086;
+.skytop--cloudy {
+    stop-color: #558FA1;
 }
 
-.fronttrees--cloudy {
-    fill: #01343F;
+.skybottom--cloudy {
+    stop-color: white;
 }
 
-.backtrees--cloudy {
-    fill: #03444D;
+/*-----snow-------*/
+.frontmountain--snow {
+    fill: #1E8AA1;
+}
+.backmountain--snow {
+    fill: #41A4BA;
+}
+
+.fronttrees--snow {
+    fill: #8BE3FF;
+}
+
+.backtrees--snow {
+    fill: #4DC9FF;
+}
+
+.skytop--snow {
+    stop-color: #A1CDFF;
+}
+
+.skybottom--snow {
+    stop-color: #D9EDFF;
+}
+
+.laketop--snow {
+    fill: #3AC2DF;
+}
+
+.lakebottom--snow {
+    fill: #32A9FF;
 }
