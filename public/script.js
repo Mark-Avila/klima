@@ -1,3 +1,11 @@
+tsParticles
+.loadJSON("tsparticles", "particles/rain.json")
+.then((container) => {
+    console.log("callback - tsparticles config loaded");
+})
+.catch((error) => {
+    console.error(error);
+});
 
 
 let map = L.map('weathermap-leaflet').setView([14.60, 121], 10);
@@ -118,4 +126,4 @@ function updateBackground(weather) {
 
 initMap();
 initChart();
-backgroundSnow();
+backgroundCloudy();
