@@ -1,3 +1,5 @@
+
+
 let map = L.map('weathermap-leaflet').setView([14.60, 121], 10);
 
 function initMap() {
@@ -116,3 +118,4 @@ function updateBackground(weather) {
 
 initMap();
 initChart();
+backgroundSnow();

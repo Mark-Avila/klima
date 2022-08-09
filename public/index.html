@@ -7,17 +7,16 @@
     <!--Google font (Open Sans)-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!--Font awesome (icons) cdn-->
     <script src="https://kit.fontawesome.com/11bf3f6b7d.js" crossorigin="anonymous"></script>
-        
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
+    <!-- Leaflet JS CDN -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
 
@@ -34,7 +33,9 @@
     adding background-attachment: fixed to body
     has lag
     -->
-    <div class="page">
+    <div id="tsparticles"></div>
+
+    <div class="page" id="page">
         <main class="">
             <div class="main__data">
                 <div class="main__data__icon">
@@ -350,8 +351,23 @@
             </defs>
         </svg>                
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.1.4/tsparticles.bundle.js" integrity="sha512-+y90nJdQPEuM0WiaPrhrLIXr5JFAO6iFMsnhVIMxMzf4A+GKiH+1PLSeHneNKgdVVRC93CkpOQmBWhM9e4o9Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        tsParticles
+        .loadJSON("tsparticles", "particles.json")
+        .then((container) => {
+            console.log("callback - tsparticles config loaded");
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    </script>
+
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
+
 <!-- <script>AOS.init();</script> -->
 
 </html>
