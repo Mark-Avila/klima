@@ -135,17 +135,37 @@ function loadParticles(weather) {
     });
 }
 
-async function getCurrentWeather(query) {
-    const locationRes = await fetch(`/api/search/${query}`);
-    const location = await locationRes.json();
-    
-    if (!location || location.length == 0) {
-        console.log('City not found')
-    } else {
-        const weatherRes = await fetch(`/api/current/${location[0].lat}/${location[0].lon}`)
-        const weather = await weatherRes.json();
-        console.log(weather);
+function debounce(func, wait, immediate) {
+    let timeout;
+
+    return function () {
+        const context = this, args = arguments
+        const later = function() {
+            timeout = null
+            if (!immediate) {
+                func.apply(context, args)
+            }
+        }
+
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout)
+        timeout = setTimeout(later, wait)
+        if (callNow) {
+            func.apply(context, args);
+        }
     }
+}
+
+/**
+ * Fetch locations based on search
+ * @param {string} query Search query 
+ * @returns Array of objects (empty if none found)
+ */
+async function getLocations(query) {
+    const response = await fetch(`/api/search/${query}`);
+    const data = await response.json();
+    
+    return data
 }
 
 function searchQuery(event) {
@@ -155,12 +175,11 @@ function searchQuery(event) {
         getCurrentWeather(query)
         console.log('test')
     }
-
-    console.log(event.key)
-
-
 }
+
+$('input[name=search]').keyup(debounce(() => {
+    getLocations($('input[name=search]').val()).then((data) => console.log(data))
+}, 500))
 
 initMap();
 initChart();
-backgroundCloudy();
