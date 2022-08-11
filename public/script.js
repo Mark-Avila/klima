@@ -135,6 +135,32 @@ function loadParticles(weather) {
     });
 }
 
+async function getCurrentWeather(query) {
+    const locationRes = await fetch(`/api/search/${query}`);
+    const location = await locationRes.json();
+    
+    if (!location || location.length == 0) {
+        console.log('City not found')
+    } else {
+        const weatherRes = await fetch(`/api/current/${location[0].lat}/${location[0].lon}`)
+        const weather = await weatherRes.json();
+        console.log(weather);
+    }
+}
+
+function searchQuery(event) {
+
+    if (event.key == "Enter") {
+        const query = $('input[name=search]').val();
+        getCurrentWeather(query)
+        console.log('test')
+    }
+
+    console.log(event.key)
+
+
+}
+
 initMap();
 initChart();
 backgroundCloudy();

@@ -10,7 +10,7 @@ app.listen(port, () => {
   console.log(`Klima listening at http://localhost:${port}`);
 });
 
-app.get("/api/weather/:lat/:lon", (req, res, next) => {
+app.get("/api/current/:lat/:lon", (req, res, next) => {
   axios
     .get("https://api.openweathermap.org/data/2.5/weather", {
       params: {
