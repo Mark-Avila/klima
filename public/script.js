@@ -1,13 +1,3 @@
-tsParticles
-.loadJSON("tsparticles", "particles/rain.json")
-.then((container) => {
-    console.log("callback - tsparticles config loaded");
-})
-.catch((error) => {
-    console.error(error);
-});
-
-
 let map = L.map('weathermap-leaflet').setView([14.60, 121], 10);
 
 function initMap() {
@@ -70,6 +60,16 @@ function openInfo() {
 function closeInfo() {
     $('.info').removeClass('info--open');
     $('main').removeClass('main--close');
+
+    updateBackground('snow');
+    tsParticles
+    .loadJSON("tsparticles", "particles/snow.json")
+    .then((container) => {
+        console.log("callback - tsparticles config loaded");
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 }
 
 function backgroundCloudy() {
@@ -122,6 +122,17 @@ function updateBackground(weather) {
     if (weather === 'snow') {
        backgroundSnow();
     }
+}
+
+function loadParticles(weather) {
+
+    tsParticles.loadJSON("tsparticles", "particles/rain.json")
+    .then((container) => {
+        console.log("callback - tsparticles config loaded");
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 }
 
 initMap();

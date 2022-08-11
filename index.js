@@ -1,9 +1,32 @@
-const express = require('express');
+require("dotenv").config();
+const axios = require('axios').default;
+const express = require("express");
 const app = express();
 const port = 3000;
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 app.listen(port, () => {
-  console.log(`Klima listening at http://localhost:${port}`)
+  console.log(`Klima listening at http://localhost:${port}`);
 });
+
+app.get("/weather/:city", async (req, res) => {
+  const weatherResponse = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}`
+  );
+});
+
+app.get("/api/search/:location", (req, res, next) => {
+  axios.get(`http://api.openweathermap.org/geo/1.0/direct`, {
+    params: {
+      q: req.params.location,
+      limit: 5,
+      appid: process.env.OWMKEY
+    }
+  })
+  .then((results) => {
+    res.status(200).json(results.data)
+  })
+  .catch((error) => next(error))
+});
+
