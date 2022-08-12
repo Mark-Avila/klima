@@ -45,10 +45,14 @@
         <div id="tsparticles"></div>
 
         <div class="page" id="page">
-            <main class="">
+            <div class="initialload">
+                <i class="initialload__icon fa-solid fa-hurricane fa-2x"></i>
+            </div>
+
+            <main class="main--close">
                 <div class="main__data">
                     <div class="main__data__icon">
-                        <i class="fas fa-cloud fa-2x"></i>
+                        <i class="fa-solid fa-cloud fa-2x"></i>
                     </div>
                     <p class="main__data__weather text_shadow">Sunny</h2>
                     <p class="main__data__temp text_shadow">37°</h1>
@@ -58,7 +62,7 @@
 
                 <div class="main__search">
                         
-                    <input type="text" class="main__search__input container_shadow" name="search" placeholder="Enter City" onkeydown="closeSuggestions()" onblur="closeSuggestions()" onfocus="openSuggestions()">
+                    <input type="text" class="main__search__input container_shadow" name="search" placeholder="Enter City" onkeydown="closeSuggestions()" onfocus="openSuggestions()">
 
                     <div class="main__suggestions main__suggestions--close">
                         <ul class="main__suggestions__list">

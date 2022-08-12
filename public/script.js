@@ -1,4 +1,5 @@
 let suggestions = [];
+let current = {};
 let map = L.map("weathermap-leaflet").setView([14.6, 121], 10);
 
 function initMap() {
@@ -155,42 +156,39 @@ function closeSuggestions() {
 }
 
 function openSuggestions() {
-
-    if (suggestions.length !== 0) {
-        $(".main__suggestions").removeClass("main__suggestions--close");
-    }
-
+  if (suggestions.length !== 0) {
+    $(".main__suggestions").removeClass("main__suggestions--close");
+  }
 }
 
 /**
- * 
- * @param {*} func 
- * @param {*} wait 
- * @param {*} immediate 
- * @returns 
+ *
+ * @param {*} func
+ * @param {*} wait
+ * @param {*} immediate
+ * @returns
  */
 function debounce(func, wait, immediate) {
-    let timeout;
-  
-    return function () {
-      const context = this,
-        args = arguments;
-      const later = function () {
-        timeout = null;
-        if (!immediate) {
-          func.apply(context, args);
-        }
-      };
-  
-      const callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if (callNow) {
+  let timeout;
+
+  return function () {
+    const context = this,
+      args = arguments;
+    const later = function () {
+      timeout = null;
+      if (!immediate) {
         func.apply(context, args);
       }
     };
-  }
-  
+
+    const callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) {
+      func.apply(context, args);
+    }
+  };
+}
 
 /**
  * Handles the search suggestions display
@@ -201,10 +199,13 @@ function handleSuggestions(data) {
     return closeSuggestions();
   }
 
-  suggestions = data.map((item) => {
+  suggestions = data.map((item, index) => {
     return {
+      id: index,
       country: item.country,
       name: item.name,
+      lat: item.lat,
+      lon: item.lon,
     };
   });
 
@@ -212,16 +213,12 @@ function handleSuggestions(data) {
 
   suggestions.forEach((item) => {
     $(".main__suggestions__list").append(
-      `<li class='main__suggestions__item'><button class='main__suggestions__btn fluid'>${item.name}, ${item.country}</button></li>`
+      `<li class='main__suggestions__item'><button onClick='handleSuggSelect(${item.id})' class='main__suggestions__btn fluid'>${item.name}, ${item.country}</button></li>`
     );
   });
 
   openSuggestions();
-} 
-
-$(document).ready(() => {
-
-})
+}
 
 /**
  * Fetch locations based on search
@@ -235,6 +232,9 @@ async function getLocations(query) {
   return data;
 }
 
+/**
+ * Search for locations based on search input
+ */
 function searchQuery(event) {
   if (event.key == "Enter") {
     const query = $("input[name=search]").val();
@@ -243,6 +243,32 @@ function searchQuery(event) {
   }
 }
 
+async function getCurrentWeather(lat, lon) {
+  const response = await fetch(`/api/current/${lat}/${lon}`);
+  const data = await response.json();
+
+  return data;
+}
+
+function handleSuggSelect(index) {
+  const lat = suggestions[index].lat;
+  const lon = suggestions[index].lon;
+
+  getCurrentWeather(lat, lon)
+    .then(closeSuggestions())
+    .then((current = {}))
+    .then((data) => {
+      current = data;
+    })
+    .catch((err) => console.log(err));
+}
+
+function initMain(data) {
+}
+
+/**
+ * Search Suggestions keyup handler
+ */
 $("input[name=search]").keyup(
   debounce(() => {
     getLocations($("input[name=search]").val())
@@ -254,5 +280,20 @@ $("input[name=search]").keyup(
   }, 500)
 );
 
+$("");
+
 initMap();
 initChart();
+
+var loading = true;
+
+getCurrentWeather(14, 120)
+  .then((data) => {
+    current = data;
+  })
+  .then(() => {
+    loading = false;
+    $('.initialload').addClass('initialload--close');
+    $('main').removeClass('main--close')
+  })
+  .catch((err) => console.err(err));
