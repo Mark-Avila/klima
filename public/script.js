@@ -1,4 +1,4 @@
-let suggestion = [];
+let suggestions = [];
 let map = L.map("weathermap-leaflet").setView([14.6, 121], 10);
 
 function initMap() {
@@ -155,38 +155,73 @@ function closeSuggestions() {
 }
 
 function openSuggestions() {
-  $(".main__suggestions").removeClass("main__suggestions--close");
+
+    if (suggestions.length !== 0) {
+        $(".main__suggestions").removeClass("main__suggestions--close");
+    }
+
 }
 
+/**
+ * 
+ * @param {*} func 
+ * @param {*} wait 
+ * @param {*} immediate 
+ * @returns 
+ */
+function debounce(func, wait, immediate) {
+    let timeout;
+  
+    return function () {
+      const context = this,
+        args = arguments;
+      const later = function () {
+        timeout = null;
+        if (!immediate) {
+          func.apply(context, args);
+        }
+      };
+  
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) {
+        func.apply(context, args);
+      }
+    };
+  }
+  
+
+/**
+ * Handles the search suggestions display
+ * @param {Object} data OWM Geocoding API data/results
+ */
 function handleSuggestions(data) {
   if (data.length === 0) {
     return closeSuggestions();
   }
 
-  openSuggestions();
-}
-
-function debounce(func, wait, immediate) {
-  let timeout;
-
-  return function () {
-    const context = this,
-      args = arguments;
-    const later = function () {
-      timeout = null;
-      if (!immediate) {
-        func.apply(context, args);
-      }
+  suggestions = data.map((item) => {
+    return {
+      country: item.country,
+      name: item.name,
     };
+  });
 
-    const callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) {
-      func.apply(context, args);
-    }
-  };
-}
+  $(".main__suggestions__list").empty();
+
+  suggestions.forEach((item) => {
+    $(".main__suggestions__list").append(
+      `<li class='main__suggestions__item'><button class='main__suggestions__btn fluid'>${item.name}, ${item.country}</button></li>`
+    );
+  });
+
+  openSuggestions();
+} 
+
+$(document).ready(() => {
+
+})
 
 /**
  * Fetch locations based on search
@@ -207,8 +242,6 @@ function searchQuery(event) {
     console.log("test");
   }
 }
-
-
 
 $("input[name=search]").keyup(
   debounce(() => {

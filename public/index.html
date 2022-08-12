@@ -58,24 +58,12 @@
 
                 <div class="main__search">
                         
-                    <input type="text" class="main__search__input container_shadow" name="search" placeholder="Enter City" onkeydown="closeSuggestions()">
+                    <input type="text" class="main__search__input container_shadow" name="search" placeholder="Enter City" onkeydown="closeSuggestions()" onblur="closeSuggestions()" onfocus="openSuggestions()">
 
                     <div class="main__suggestions main__suggestions--close">
                         <ul class="main__suggestions__list">
                             <li class="main__suggestions__item">
-                                <button class="main__suggestions__btn fluid">manila</button>
-                            </li>
-                            <li class="main__suggestions__item">
-                                <button class="main__suggestions__btn fluid">manila</button>
-                            </li>
-                            <li class="main__suggestions__item">
-                                <button class="main__suggestions__btn fluid">manila</button>
-                            </li>
-                            <li class="main__suggestions__item">
-                                <button class="main__suggestions__btn fluid">manila</button>
-                            </li>
-                            <li class="main__suggestions__item">
-                                <button class="main__suggestions__btn fluid">manila</button>
+                                <button class="main__suggestions__btn fluid">NULL</button>
                             </li>
                         </ul>
                     </div>
