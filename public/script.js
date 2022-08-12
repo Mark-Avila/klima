@@ -159,10 +159,7 @@ function openSuggestions() {
 }
 
 function handleSuggestions(data) {
-  console.log(data);
-
   if (data.length === 0) {
-    console.log("Reached here");
     return closeSuggestions();
   }
 
@@ -211,9 +208,12 @@ function searchQuery(event) {
   }
 }
 
+
+
 $("input[name=search]").keyup(
   debounce(() => {
     getLocations($("input[name=search]").val())
+      .then(closeSuggestions())
       .then((data) => handleSuggestions(data))
       .catch((error) => {
         console.error(error);
