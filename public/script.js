@@ -1,5 +1,6 @@
 let suggestions = [];
 let current = {};
+let currentLocation = "";
 let map = L.map("weathermap-leaflet").setView([14.6, 121], 10);
 
 function initMap() {
@@ -162,6 +163,21 @@ function openSuggestions() {
 }
 
 /**
+ * Get local time and date based on timezone offset in seconds
+ * @param {number} offset UTC timezone offset in seconds 
+ * @returns Date object of current date
+ */
+function getCurrentDate(offset) {
+  let date = new Date();
+  let localTime = date.getTime();
+  let localOffset = date.getTimezoneOffset() * 60000;
+  let utc = localTime + localOffset;
+  let locationTIme = utc + (1000 * offset)
+  let newDate = new Date(locationTIme)
+  return newDate
+}
+
+/**
  *
  * @param {*} func
  * @param {*} wait
@@ -213,7 +229,7 @@ function handleSuggestions(data) {
 
   suggestions.forEach((item) => {
     $(".main__suggestions__list").append(
-      `<li class='main__suggestions__item'><button onClick='handleSuggSelect(${item.id})' class='main__suggestions__btn fluid'>${item.name}, ${item.country}</button></li>`
+      `<li class='main__suggestions__item'><button onClick='handleSuggSelect(${item.id}, "${item.name}, ${item.country}")' class='main__suggestions__btn fluid'>${item.name}, ${item.country}</button></li>`
     );
   });
 
@@ -250,7 +266,7 @@ async function getCurrentWeather(lat, lon) {
   return data;
 }
 
-function handleSuggSelect(index) {
+function handleSuggSelect(index, location) {
   const lat = suggestions[index].lat;
   const lon = suggestions[index].lon;
 
@@ -259,11 +275,26 @@ function handleSuggSelect(index) {
     .then((current = {}))
     .then((data) => {
       current = data;
+      initMain(current, location)
     })
     .catch((err) => console.log(err));
+
 }
 
-function initMain(data) {
+function initMain(data, location) {
+  const mainWeather = $('.main__data__weather');
+  const mainTemp = $('.main__data__temp');
+  const mainCity = $('.main__data__city');
+
+  mainWeather.text(data.weather[0].main);
+  mainTemp.text(Math.floor(data.main.temp)+'°');
+  mainCity.text(location)
+
+  const generalTime = $('.general__text__time');
+  const generalLocation = $('.general__text__location');
+  const generalFeels = $('.general__text__feels');
+  
+  generalTime.text(`${getCurrentDate(data.timezone).toLocaleString()}`)
 }
 
 /**

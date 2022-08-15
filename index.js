@@ -16,6 +16,7 @@ app.get("/api/current/:lat/:lon", (req, res, next) => {
       params: {
         lat: req.params.lat,
         lon: req.params.lon,
+        units: "metric",
         appid: process.env.OWMKEY,
       },
     })
