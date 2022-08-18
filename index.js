@@ -24,6 +24,20 @@ app.get("/api/current/:lat/:lon", (req, res, next) => {
     .catch((error) => next(error));
 });
 
+app.get("/api/forecast/:lat/:lon", (req, res, next) => {
+  axios.get("https://api.openweathermap.org/data/2.5/forecast", {
+    params: {
+      lat: req.params.lat,
+      lon: req.params.lon,
+      units: "metric",
+      cnt: 8,
+      appid: process.env.OWMKEY
+    }
+  })
+  .then((forecast) => res.status(200).json(forecast.data))
+  .catch((error) => next(error))
+})
+
 app.get("/api/search/:location", (req, res, next) => {
   axios
     .get(`http://api.openweathermap.org/geo/1.0/direct`, {

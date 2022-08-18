@@ -266,22 +266,28 @@ async function getCurrentWeather(lat, lon) {
   return data;
 }
 
-function handleSuggSelect(index, location) {
+async function handleSuggSelect(index, location) {
   const lat = suggestions[index].lat;
   const lon = suggestions[index].lon;
 
-  getCurrentWeather(lat, lon)
-    .then(closeSuggestions())
-    .then((current = {}))
-    .then((data) => {
-      current = data;
-      initMain(current, location)
-    })
-    .catch((err) => console.log(err));
+  try {
+    let currentWeather = await getCurrentWeather(lat, lon);
+    let currentForecast = await getForecastWeather(lat, lon);
+    initMain(currentWeather, currentForecast, location);
+    closeSuggestions();
+  } catch(error) {
+    console.error(error)
+  }
 
 }
 
-function initMain(data, location) {
+async function getForecastWeather(lat, lon) {
+  const response = await fetch(`/api/forecast/${lat}/${lon}`);
+  const data = await response.json();
+  return data;
+}
+
+function initMain(data, forecast, location) {
   const mainWeather = $('.main__data__weather');
   const mainTemp = $('.main__data__temp');
   const mainCity = $('.main__data__city');
@@ -309,6 +315,23 @@ function initMain(data, location) {
   pres.text(`${data.main.pressure} pHA`);
   hum.text(`${data.main.humidity} %`);
   vis.text(`${data.visibility / 1000} km`);
+
+  const forecastDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]  
+
+  $('.forecast__item__weather').each((i, obj) => {
+    $(obj).text(forecast.list[i].weather[0].main);
+  })
+
+  $('.forecast__item__temp').each((i, obj) => {
+    $(obj).text(Math.floor(forecast.list[i].main.temp) + ' °C');
+  })
+
+  let index = new Date().getDay()
+
+  $('.forecast__item__day').each((i, obj) => {
+    $(obj).text(forecastDay[index])
+    index = index < 6 ? index + 1 : 0;
+  })
 }
 
 /**
@@ -330,14 +353,11 @@ $("");
 initMap();
 initChart();
 
-var loading = true;
-
 getCurrentWeather(14, 120)
   .then((data) => {
     current = data;
   })
   .then(() => {
-    loading = false;
     $('.initialload').addClass('initialload--close');
     $('main').removeClass('main--close')
   })
