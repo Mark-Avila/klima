@@ -290,11 +290,25 @@ function initMain(data, location) {
   mainTemp.text(Math.floor(data.main.temp)+'°');
   mainCity.text(location)
 
-  const generalTime = $('.general__text__time');
-  const generalLocation = $('.general__text__location');
-  const generalFeels = $('.general__text__feels');
+  const gTime = $('.general__text__time');
+  const gLoc = $('.general__text__location');
+  const gFeels = $('.general__text__feels');
+  const gTemp = $('.general__upper__temp')
   
-  generalTime.text(`${getCurrentDate(data.timezone).toLocaleString()}`)
+  gTime.text(`${getCurrentDate(data.timezone).toLocaleString()}`)
+  gLoc.text(location);
+  gFeels.text(`Feels like ${Math.floor(data.main.feels_like)}°`);
+  gTemp.text(Math.floor(data.main.temp) + '°');
+
+  const wind = $('#general-speed');
+  const pres = $('#general-pressure');
+  const hum = $('#general-humidity');
+  const vis = $('#general-visibility');
+
+  wind.text(`${data.wind.speed} m/s`);
+  pres.text(`${data.main.pressure} pHA`);
+  hum.text(`${data.main.humidity} %`);
+  vis.text(`${data.visibility / 1000} km`);
 }
 
 /**
