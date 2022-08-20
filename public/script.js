@@ -1,6 +1,5 @@
 let suggestions = [];
-let current = {};
-let currentLocation = "";
+let weather = {};
 let map = L.map("weathermap-leaflet").setView([14.6, 121], 10);
 
 function initMap() {
@@ -162,11 +161,16 @@ function openSuggestions() {
   }
 }
 
-/**
- * Get local time and date based on timezone offset in seconds
- * @param {number} offset UTC timezone offset in seconds 
- * @returns Date object of current date
- */
+function startLoad() {
+  $('main').addClass('main--close')
+  $('.initialload').removeClass('initialload--close');
+}
+
+function endLoad() {
+  $('.initialload').addClass('initialload--close');
+  $('main').removeClass('main--close')
+}
+
 function getCurrentDate(offset) {
   let date = new Date();
   let localTime = date.getTime();
@@ -177,13 +181,6 @@ function getCurrentDate(offset) {
   return newDate
 }
 
-/**
- *
- * @param {*} func
- * @param {*} wait
- * @param {*} immediate
- * @returns
- */
 function debounce(func, wait, immediate) {
   let timeout;
 
@@ -206,10 +203,6 @@ function debounce(func, wait, immediate) {
   };
 }
 
-/**
- * Handles the search suggestions display
- * @param {Object} data OWM Geocoding API data/results
- */
 function handleSuggestions(data) {
   if (data.length === 0) {
     return closeSuggestions();
@@ -229,18 +222,13 @@ function handleSuggestions(data) {
 
   suggestions.forEach((item) => {
     $(".main__suggestions__list").append(
-      `<li class='main__suggestions__item'><button onClick='handleSuggSelect(${item.id}, "${item.name}, ${item.country}")' class='main__suggestions__btn fluid'>${item.name}, ${item.country}</button></li>`
+      `<li class='main__suggestions__item'><button onClick="handleSuggSelect(${item.id}, '${item.name}, ${item.country}')" class='main__suggestions__btn fluid'>${item.name}, ${item.country}</button></li>`
     );
   });
 
   openSuggestions();
 }
 
-/**
- * Fetch locations based on search
- * @param {string} query Search query
- * @returns Array of objects (empty if none found)
- */
 async function getLocations(query) {
   const response = await fetch(`/api/search/${query}`);
   const data = await response.json();
@@ -248,9 +236,6 @@ async function getLocations(query) {
   return data;
 }
 
-/**
- * Search for locations based on search input
- */
 function searchQuery(event) {
   if (event.key == "Enter") {
     const query = $("input[name=search]").val();
@@ -266,19 +251,23 @@ async function getCurrentWeather(lat, lon) {
   return data;
 }
 
-async function handleSuggSelect(index, location) {
-  const lat = suggestions[index].lat;
-  const lon = suggestions[index].lon;
-
+async function initData(lat, lon, loc) {
   try {
     let currentWeather = await getCurrentWeather(lat, lon);
     let currentForecast = await getForecastWeather(lat, lon);
-    initMain(currentWeather, currentForecast, location);
-    closeSuggestions();
+    let currentLocation = loc ? loc : currentForecast.city.name + ', ' + currentForecast.city.country; 
+    initMain(currentWeather, currentForecast, currentLocation);
   } catch(error) {
     console.error(error)
   }
+}
 
+async function handleSuggSelect(index, loc) {
+  const lat = suggestions[index].lat;
+  const lon = suggestions[index].lon;
+  initData(lat, lon, loc).then(() => {
+    closeSuggestions();
+  });
 }
 
 async function getForecastWeather(lat, lon) {
@@ -287,14 +276,14 @@ async function getForecastWeather(lat, lon) {
   return data;
 }
 
-function initMain(data, forecast, location) {
+function initMain(data, forecast, loc) {
   const mainWeather = $('.main__data__weather');
   const mainTemp = $('.main__data__temp');
   const mainCity = $('.main__data__city');
 
   mainWeather.text(data.weather[0].main);
   mainTemp.text(Math.floor(data.main.temp)+'°');
-  mainCity.text(location)
+  mainCity.text(loc)
 
   const gTime = $('.general__text__time');
   const gLoc = $('.general__text__location');
@@ -302,7 +291,7 @@ function initMain(data, forecast, location) {
   const gTemp = $('.general__upper__temp')
   
   gTime.text(`${getCurrentDate(data.timezone).toLocaleString()}`)
-  gLoc.text(location);
+  gLoc.text(loc);
   gFeels.text(`Feels like ${Math.floor(data.main.feels_like)}°`);
   gTemp.text(Math.floor(data.main.temp) + '°');
 
@@ -332,11 +321,10 @@ function initMain(data, forecast, location) {
     $(obj).text(forecastDay[index])
     index = index < 6 ? index + 1 : 0;
   })
+
+  map.setView([data.coord.lat, data.coord.lon], 10);
 }
 
-/**
- * Search Suggestions keyup handler
- */
 $("input[name=search]").keyup(
   debounce(() => {
     getLocations($("input[name=search]").val())
@@ -349,16 +337,9 @@ $("input[name=search]").keyup(
 );
 
 $("");
-
+startLoad();
+initData(14, 120).then(() => {
+  endLoad();
+});
 initMap();
 initChart();
-
-getCurrentWeather(14, 120)
-  .then((data) => {
-    current = data;
-  })
-  .then(() => {
-    $('.initialload').addClass('initialload--close');
-    $('main').removeClass('main--close')
-  })
-  .catch((err) => console.err(err));
