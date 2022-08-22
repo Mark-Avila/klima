@@ -2,371 +2,278 @@
 
 <html>
 
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--Google font (Open Sans)-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto:wght@400;700&display=swap"
-            rel="stylesheet">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Google font (Open Sans)-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
 
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
-            integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="crossorigin="anonymous"
-            referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+        integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <!--Font awesome (icons) cdn-->
-        <script src="https://kit.fontawesome.com/11bf3f6b7d.js"
-            crossorigin="anonymous"></script>
+    <!--Font awesome (icons) cdn-->
+    <script src="https://kit.fontawesome.com/11bf3f6b7d.js" crossorigin="anonymous"></script>
 
-        <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <!-- Leaflet JS CDN -->
-        <link rel="stylesheet"
-            href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-            integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="crossorigin=""
-            />
-        <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-            integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="crossorigin=""></script>
-        <!--CSS-->
-        <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Leaflet JS CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+    <!--CSS-->
+    <link rel="stylesheet" href="style.temp.css">
 
-        <title>Klima</title>
-    </head>
+    <title>Klima</title>
+</head>
 
-    <body>
+<body>
 
-        <!-- 
+    <!-- 
     Extra container becuase for some reason
     adding background-attachment: fixed to body
     has lag
     -->
-        <div id="tsparticles"></div>
+    <div id="tsparticles"></div>
 
-        <div class="page" id="page">
-            <div class="initialload">
-                <i class="initialload__icon fa-solid fa-hurricane fa-2x"></i>
+    <div class="page" id="page">
+        <div class="initialload">
+            <i class="initialload__icon fa-solid fa-hurricane fa-2x"></i>
+        </div>
+
+        <main class="main--close">
+            <div class="main__data">
+                <div class="main__data__icon">
+                    <i class="fa-solid fa-cloud fa-2x"></i>
+                </div>
+                <p class="main__data__weather text_shadow">Sunny</h2>
+                <p class="main__data__temp text_shadow">37°</h1>
+                <p class="main__data__city text_shadow">Manila, PH</p>
+                <!-- <p class="main__data__date">NULL</p> -->
             </div>
 
-            <main class="main--close">
-                <div class="main__data">
-                    <div class="main__data__icon">
-                        <i class="fa-solid fa-cloud fa-2x"></i>
-                    </div>
-                    <p class="main__data__weather text_shadow">Sunny</h2>
-                    <p class="main__data__temp text_shadow">37°</h1>
-                    <p class="main__data__city text_shadow">Manila, PH</p>
-                    <!-- <p class="main__data__date">NULL</p> -->
+            <div class="main__search">
+
+                <input type="text" class="main__search__input container_shadow" name="search" placeholder="Enter City"
+                    onkeydown="closeSuggestions()" onfocus="openSuggestions()">
+
+                <div class="main__suggestions main__suggestions--close">
+                    <ul class="main__suggestions__list">
+                        <li class="main__suggestions__item">
+                            <button class="main__suggestions__btn fluid">NULL</button>
+                        </li>
+                    </ul>
                 </div>
+            </div>
 
-                <div class="main__search">
-                        
-                    <input type="text" class="main__search__input container_shadow" name="search" placeholder="Enter City" onkeydown="closeSuggestions()" onfocus="openSuggestions()">
-
-                    <div class="main__suggestions main__suggestions--close">
-                        <ul class="main__suggestions__list">
-                            <li class="main__suggestions__item">
-                                <button class="main__suggestions__btn fluid">NULL</button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="main__scrolldown">
-                    <span class="main__scrolldown__icon">
-                        <i class="fas fa-angle-down text_shadow"></i>
-                    </span>
-                    <button onclick="openInfo()" class="main__scrolldown__btn
+            <div class="main__scrolldown">
+                <span class="main__scrolldown__icon">
+                    <i class="fas fa-angle-down text_shadow"></i>
+                </span>
+                <button onclick="openInfo()" class="main__scrolldown__btn
                         text_shadow">
-                        View more information
-                    </button>
-                </div>
-            </main>
+                    View more information
+                </button>
+            </div>
+        </main>
 
-            <div class="info" id="info-page">
-                <div class="info__back">
-                    <button onclick="closeInfo()" class="info__back__button">
-                        <span>
-                            <i class="fas fa-angle-left text_shadow"></i>
-                        </span>
-                        <p class="info__back__button__text text_shadow">Back</p>
-                    </button>
-                </div>
-                <div class="info__container">
-                    <div class="general box">
-                        <div class="general__upper">
-                            <div class="general__text">
-                                <p class="general__text__time fluid"
-                                    class="g-item">2022/08/03 10:10</p>
-                                <p class="general__text__location fluid"
-                                    class="g-item">Manila</p>
-                                <p class="general__text__feels fluid"
-                                    class="g-item">Feels like 36°</p>
-                            </div>
-                            <p class="general__upper__temp">37°C</p>
+        <div class="info" id="info-page">
+            <div class="info__back">
+                <button onclick="closeInfo()" class="info__back__button">
+                    <span>
+                        <i class="fas fa-angle-left text_shadow"></i>
+                    </span>
+                    <p class="info__back__button__text text_shadow">Back</p>
+                </button>
+            </div>
+            <div class="info__container">
+                <div class="general box">
+                    <div class="general__upper">
+                        <div class="general__text">
+                            <p class="general__text__time fluid" class="g-item">2022/08/03 10:10</p>
+                            <p class="general__text__location fluid" class="g-item">Manila</p>
+                            <p class="general__text__feels fluid" class="g-item">Feels like 36°</p>
                         </div>
-                        <div class="general__lower">
-                            <div class="general__lower__item">
-                                <p class="general__lower__title">Wind Speed</p>
-                                <p id="general-speed"
-                                    class="general__lower__data">0 m/s</p>
-                            </div>
-                            <div class="general__lower__item">
-                                <p class="general__lower__title">Pressure</p>
-                                <p id="general-pressure"
-                                    class="general__lower__data">0 pHA</p>
-                            </div>
-                            <div class="general__lower__item">
-                                <p class="general__lower__title">Humidity</p>
-                                <p id="general-humidity"
-                                    class="general__lower__data">0 %</p>
-                            </div>
-                            <div class="general__lower__item">
-                                <p class="general__lower__title">Visibility</p>
-                                <p id="general-visibility"
-                                    class="general__lower__data">0 km</p>
-                            </div>
+                        <p class="general__upper__temp">37°C</p>
+                    </div>
+                    <div class="general__lower">
+                        <div class="general__lower__item">
+                            <p class="general__lower__title">Wind Speed</p>
+                            <p id="general-speed" class="general__lower__data">0 m/s</p>
+                        </div>
+                        <div class="general__lower__item">
+                            <p class="general__lower__title">Pressure</p>
+                            <p id="general-pressure" class="general__lower__data">0 pHA</p>
+                        </div>
+                        <div class="general__lower__item">
+                            <p class="general__lower__title">Humidity</p>
+                            <p id="general-humidity" class="general__lower__data">0 %</p>
+                        </div>
+                        <div class="general__lower__item">
+                            <p class="general__lower__title">Visibility</p>
+                            <p id="general-visibility" class="general__lower__data">0 km</p>
                         </div>
                     </div>
-                    <div class="forecast box" id="forecast">
-                        <!-- <p class="forecast__title" style="margin-bottom: 0%;">8-day
+                </div>
+
+                <div class="weathermap box" id="weather">
+                    <div class="weathermap__leaflet" id="weathermap-leaflet"></div>
+
+                    <div class="weathermap__buttoncontainer">
+                        <button class="weathermap__button" id="weathermap-btn-clouds">
+                            <i class="fa-solid fa-cloud"></i>
+                        </button>
+                        <button class="weathermap__button" id="weathermap-btn-pressure">
+                            <i class="fa-solid fa-temperature-arrow-down"></i>
+                        </button>
+                        <button class="weathermap__button" id="weathermap-btn-precipitation">
+                            <i class="fa-solid fa-cloud-rain"></i>
+                        </button>
+                        <button class="weathermap__button" id="weathermap-btn-wind">
+                            <i class="fa-solid fa-wind"></i>
+                        </button>
+                        <button class="weathermap__button" id="weathermap-btn-wind">
+                            <i class="fa-solid fa-temperature-half"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="forecast box" id="forecast">
+                    <!-- <p class="forecast__title" style="margin-bottom: 0%;">8-day
                         Forecast</h4> -->
-                        <div class="forecast__list">
-                            <div class="forecast__item"
-                                onclick="openModal('asdasd')">
-                                <p id="day-1" class="forecast__item__day fluid">Sun</p><br>
-                                <span id="icon-1" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-1"
-                                    class="forecast__item__weather fluid">Cloudy</h5>
-                                <p id="day-1-temp" class="forecast__item__temp
+                    <div class="forecast__list">
+                        <div class="forecast__item" onclick="openModal('asdasd')">
+                            <p id="day-1" class="forecast__item__day fluid">Sun</p><br>
+                            <span id="icon-1" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i>
+                            </span><br>
+                            <h5 id="weather-1" class="forecast__item__weather fluid">Cloudy</h5>
+                            <p id="day-1-temp" class="forecast__item__temp
                                     fluid">32 °C</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal('test')">
-                                <p id="day-2" class="forecast__item__day fluid">Mon</p><br>
-                                <span id="icon-2" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-2"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-2-temp" class="forecast__item__temp
+                        </div>
+                        <div class="forecast__item" onclick="openModal('test')">
+                            <p id="day-2" class="forecast__item__day fluid">Mon</p><br>
+                            <span id="icon-2" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i>
+                            </span><br>
+                            <h5 id="weather-2" class="forecast__item__weather fluid">NULL</h5>
+                            <p id="day-2-temp" class="forecast__item__temp
                                     fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal('test')">
-                                <p id="day-3" class="forecast__item__day fluid">Tue</p><br>
-                                <span id="icon-3" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-3"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-3-temp" class="forecast__item__temp
+                        </div>
+                        <div class="forecast__item" onclick="openModal('test')">
+                            <p id="day-3" class="forecast__item__day fluid">Tue</p><br>
+                            <span id="icon-3" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i>
+                            </span><br>
+                            <h5 id="weather-3" class="forecast__item__weather fluid">NULL</h5>
+                            <p id="day-3-temp" class="forecast__item__temp
                                     fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal('test')">
-                                <p id="day-4" class="forecast__item__day fluid">Wed</p><br>
-                                <span id="icon-4" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-4"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-4-temp" class="forecast__item__temp
+                        </div>
+                        <div class="forecast__item" onclick="openModal('test')">
+                            <p id="day-4" class="forecast__item__day fluid">Wed</p><br>
+                            <span id="icon-4" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i>
+                            </span><br>
+                            <h5 id="weather-4" class="forecast__item__weather fluid">NULL</h5>
+                            <p id="day-4-temp" class="forecast__item__temp
                                     fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal('test')">
-                                <p id="day-5" class="forecast__item__day fluid">Thu</p><br>
-                                <span id="icon-5" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i></span><br>
-                                <h5 id="weather-5"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-5-temp" class="forecast__item__temp
+                        </div>
+                        <div class="forecast__item" onclick="openModal('test')">
+                            <p id="day-5" class="forecast__item__day fluid">Thu</p><br>
+                            <span id="icon-5" class="forecast__item__icon">
+                                <i class="fas fa-cloud fa-2x"></i></span><br>
+                            <h5 id="weather-5" class="forecast__item__weather fluid">NULL</h5>
+                            <p id="day-5-temp" class="forecast__item__temp
                                     fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal('test')">
-                                <p id="day-6" class="forecast__item__day fluid">Fri</p><br>
-                                <span id="icon-6" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-6"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-6-temp" class="forecast__item__temp
-                                    fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal('test')">
-                                <p id="day-7" class="forecast__item__day fluid">Sat</p>
-                                <br>
-                                <span id="icon-7" class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-7"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-7-temp" class="forecast__item__temp
-                                    fluid">NULL</p>
-                            </div>
-                            <div class="forecast__item"
-                                onclick="openModal('test')">
-                                <p id="day-8" class="forecast__item__day fluid">Sun</p>
-                                <br><span id="icon-8"
-                                    class="forecast__item__icon">
-                                    <i class="fas fa-cloud fa-2x"></i>
-                                </span><br>
-                                <h5 id="weather-8"
-                                    class="forecast__item__weather fluid">NULL</h5>
-                                <p id="day-8-temp" class="forecast__item__temp
-                                    fluid">NULL</p>
-                            </div>
                         </div>
                     </div>
-
-                    <div class="weathermap box" id="weather">
-                        <div class="weathermap__leaflet"
-                            id="weathermap-leaflet"></div>
-
-                        <div class="weathermap__buttoncontainer">
-                            <button class="weathermap__button"
-                                id="weathermap-btn-clouds">
-                                <i class="fa-solid fa-cloud"></i>
-                            </button>
-                            <button class="weathermap__button"
-                                id="weathermap-btn-pressure">
-                                <i class="fa-solid fa-temperature-arrow-down"></i>
-                            </button>
-                            <button class="weathermap__button"
-                                id="weathermap-btn-precipitation">
-                                <i class="fa-solid fa-cloud-rain"></i>
-                            </button>
-                            <button class="weathermap__button"
-                                id="weathermap-btn-wind">
-                                <i class="fa-solid fa-wind"></i>
-                            </button>
-                            <button class="weathermap__button"
-                                id="weathermap-btn-wind">
-                                <i class="fa-solid fa-temperature-half"></i>
-                            </button>
-                        </div>
-
-                        <!-- <div id="w-buttons-container">
-                    <span class="w-b-span">
-                        <button id="clouds" class="w-buttons" onclick="displayMap('clouds')">Clouds</button>
-                    </span>
-                    <span class="w-b-span">
-                        <button id="preci" class="w-buttons"
-                            onclick="displayMap('precipitation')">Precipitation</button>
-                    </span>
-                    <span class="w-b-span">
-                        <button id="pressure" class="w-buttons" onclick="displayMap('pressure_new')">Pressure</button>
-                    </span>
-                    <span class="w-b-span">
-                        <button id="speed" class="w-buttons" onclick="displayMap('wind_new')">Wind</button>
-                    </span>
-                    <span class="w-b-span">
-                        <button id="temp" class="w-buttons" onclick="displayMap('temp_new')">Temperature</button>
-                    </span>
-                </div> -->
-                    </div>
-
-                    <div class="hourforecast box" id="hourly">
-                        <!-- <p class="hourforecast__title">10 Hour Forecast</p> -->
-                        <div class="hourforecast__container">
-                            <canvas id="hourforecast-graph"></canvas>
-                        </div>
-                    </div>
-
                 </div>
             </div>
+        </div>
 
-            <div class="darkbg darkbg--close">
-            </div>
+        <div class="darkbg darkbg--close">
+        </div>
 
-            <div class="modal modal--close">
-                <div class="modal__header">
-                    <div class="modal__current">
-                        <div class="modal__header__weather">
-                            <div class="modal__header__icon">
-                                <i class="fa-solid fa-cloud fa-4x"></i>
-                            </div>
-                            <p class="modal__header__desc">Clouds</p>
+        <div class="modal modal--close">
+            <div class="modal__header">
+                <div class="modal__current">
+                    <div class="modal__header__weather">
+                        <div class="modal__header__icon">
+                            <i class="fa-solid fa-cloud fa-4x"></i>
                         </div>
-                        <div class="modal__header__data">
-                            <p class="modal__header__day fluid">Wednesday</p>
-                            <p class="modal__header__temp fluid">24 / 32 C</p>
-                        </div>
+                        <p class="modal__header__desc">Clouds</p>
                     </div>
-                    <div class="modal__header__close">
-                        <button id="di-close-button"
-                            class="modal__header__closebtn"
-                            onclick="closeModal()"><i class="fas fa-times
+                    <div class="modal__header__data">
+                        <p class="modal__header__day fluid">Wednesday</p>
+                        <p class="modal__header__temp fluid">24 / 32 C</p>
+                    </div>
+                </div>
+                <div class="modal__header__close">
+                    <button id="di-close-button" class="modal__header__closebtn" onclick="closeModal()"><i class="fas fa-times
                                 fa-2x"></i></button>
-                    </div>
-                </div>
-                <div class="modal__info">
-                    <div>
-                        <p class="modal__info__type">Wind Speed</p>
-                        <p class="modal__info__data" id="modal-wind">1.34</p>
-                    </div>
-                    <div>
-                        <p class="modal__info__type">Pressure</p>
-                        <p class="modal__info__data" id="modal-pres">1.34</p>
-                    </div>
-                    <div>
-                        <p class="modal__info__type">Humidity</p>
-                        <p class="modal__info__data" id="modal-humi">1.34</p>
-                    </div>
-                    <div>
-                        <p class="modal__info__type">Dew Point</p>
-                        <p class="modal__info__data" id="modal-dew">1.34</p>
-                    </div>
-                </div>
-                <div class="modal__forecast">
-                    <div class="modal__forecast__item">
-                        <p class="modal__forecast__type">Morning</p>
-                        <p class="modal__forecast__data" id="modal-morning">34</p>
-                    </div>
-                    <div class="modal__forecast__item">
-                        <p class="modal__forecast__type">Day</p>
-                        <p class="modal__forecast__data" id="modal-days">34</p>
-                    </div>
-                    <div class="modal__forecast__item">
-                        <p class="modal__forecast__type">Evening</p>
-                        <p class="modal__forecast__data" id="modal-evening">34</p>
-                    </div>
-                    <div class="modal__forecast__item">
-                        <p class="modal__forecast__type">Night</p>
-                        <p class="modal__forecast__data" id="modal-night">34</p>
-                    </div>
                 </div>
             </div>
+            <div class="modal__info">
+                <div>
+                    <p class="modal__info__type">Wind Speed</p>
+                    <p class="modal__info__data" id="modal-wind">1.34</p>
+                </div>
+                <div>
+                    <p class="modal__info__type">Pressure</p>
+                    <p class="modal__info__data" id="modal-pres">1.34</p>
+                </div>
+                <div>
+                    <p class="modal__info__type">Humidity</p>
+                    <p class="modal__info__data" id="modal-humi">1.34</p>
+                </div>
+                <div>
+                    <p class="modal__info__type">Dew Point</p>
+                    <p class="modal__info__data" id="modal-dew">1.34</p>
+                </div>
+            </div>
+            <div class="modal__forecast">
+                <div class="modal__forecast__item">
+                    <p class="modal__forecast__type">Morning</p>
+                    <p class="modal__forecast__data" id="modal-morning">34</p>
+                </div>
+                <div class="modal__forecast__item">
+                    <p class="modal__forecast__type">Day</p>
+                    <p class="modal__forecast__data" id="modal-days">34</p>
+                </div>
+                <div class="modal__forecast__item">
+                    <p class="modal__forecast__type">Evening</p>
+                    <p class="modal__forecast__data" id="modal-evening">34</p>
+                </div>
+                <div class="modal__forecast__item">
+                    <p class="modal__forecast__type">Night</p>
+                    <p class="modal__forecast__data" id="modal-night">34</p>
+                </div>
+            </div>
+        </div>
 
-            <footer>
-                <p class="footer__dev fluid">Klima, a personal project by <a
-                        class="footer__link"
-                        href="https://github.com/Mark-Avila" id="f-prof">Mark
-                        Avila</a></p>
-                <p class="footer__source fluid">Weather data from <a
-                        class="footer__link" href="http://openweathermap.org"
-                        id="f-link">OpenWeatherMap</a></p>
-            </footer>
+        <footer>
+            <p class="footer__dev fluid">A personal project by <a class="footer__link"
+                    href="https://github.com/Mark-Avila" id="f-prof">Mark
+                    Avila</a></p>
+            <p class="footer__source fluid">Weather data from <a class="footer__link" href="http://openweathermap.org"
+                    id="f-link">OpenWeatherMap</a></p>
+        </footer>
 
-            <svg class="page__background__svg" preserveAspectRatio="none"
-                viewBox="0 0 1512 982" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_7_199)">
+        <svg class="page__background__svg" preserveAspectRatio="none" viewBox="0 0 1512 982" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_7_199)">
+                <path opacity="0.999" d="M1514.5
+                        -0.00354004H3.84467V980.764H1514.5V-0.00354004Z" fill="#F9F9F9" />
+                <g filter="url(#filter0_f_7_199)">
                     <path opacity="0.999" d="M1514.5
-                        -0.00354004H3.84467V980.764H1514.5V-0.00354004Z"
-                        fill="#F9F9F9" />
-                        <g filter="url(#filter0_f_7_199)">
-                            <path opacity="0.999" d="M1514.5
-                                -0.00354004H3.84467V980.764H1514.5V-0.00354004Z"
-                                fill="url(#paint0_linear_7_199)" />
-                            </g>
-                            <path d="M-111.573 287.455C-4.28329 254.295 105.606
+                                -0.00354004H3.84467V980.764H1514.5V-0.00354004Z" fill="url(#paint0_linear_7_199)" />
+                </g>
+                <path d="M-111.573 287.455C-4.28329 254.295 105.606
                                 244.722 228.29 244.722C261.886 244.722 295.482
                                 244.722 329.077 244.722C380.643 244.722 432.208
                                 244.722 483.774 244.722C493.931 244.722 504.088
@@ -385,9 +292,8 @@
                                 283.487 43.1235 283.684C23.6753 284.379 3.98521
                                 283.07 -15.4737 283.684C-22.5364 283.907 -29.501
                                 284.769 -36.5686 284.941C-59.4762 285.499
-                                -90.0684 281.689 -111.573 287.455Z"
-                                class="cloud" fill="white" />
-                                <path opacity="0.800654" d="M46.2618
+                                -90.0684 281.689 -111.573 287.455Z" class="cloud" fill="white" />
+                <path opacity="0.800654" d="M46.2618
                                     381.431C122.183 367.558 199.943 363.553
                                     286.758 363.553C310.532 363.553 334.305
                                     363.553 358.078 363.553C394.567 363.553
@@ -411,9 +317,8 @@
                                     379.853C141.967 380.144 128.034 379.597
                                     114.264 379.853C109.267 379.947 104.338
                                     380.307 99.3369 380.379C83.1269 380.613
-                                    61.479 379.019 46.2618 381.431Z"
-                                    class="cloud" fill="white" />
-                                    <path opacity="0.588235" d="M1532
+                                    61.479 379.019 46.2618 381.431Z" class="cloud" fill="white" />
+                <path opacity="0.588235" d="M1532
                                         489C1453.32 468.938 1372.72 463.147
                                         1282.75 463.147C1258.11 463.147 1233.47
                                         463.147 1208.83 463.147C1171.01 463.147
@@ -437,9 +342,8 @@
                                         487.139 1447.25 486.348 1461.52
                                         486.719C1466.7 486.853 1471.81 487.375
                                         1476.99 487.479C1493.79 487.817 1516.23
-                                        485.512 1532 489Z" class="cloud"
-                                        fill="white" />
-                                        <path opacity="0.588235" d="M1679
+                                        485.512 1532 489Z" class="cloud" fill="white" />
+                <path opacity="0.588235" d="M1679
                                             440C1567.4 420.71 1453.1 415.141
                                             1325.5 415.141C1290.55 415.141
                                             1255.61 415.141 1220.66
@@ -468,9 +372,8 @@
                                             437.45 1579.04 437.806C1586.39
                                             437.936 1593.63 438.437 1600.99
                                             438.538C1624.81 438.863 1656.63
-                                            436.646 1679 440Z" class="cloud"
-                                            fill="white" />
-                                            <path d="M1497.26 457.629C1487.47
+                                            436.646 1679 440Z" class="cloud" fill="white" />
+                <path d="M1497.26 457.629C1487.47
                                                 463.56 1486.01 446.686 1480.93
                                                 445.131C1479.21 444.604 1477.21
                                                 445.658 1475.49 445.131C1475.15
@@ -575,10 +478,8 @@
                                                 580.943 1510.86 537.616C1510.86
                                                 536.651 1511.31 468.038 1510.86
                                                 467.627C1508.18 465.16 1502.62
-                                                461.327 1497.26 457.629Z"
-                                                class="backmountain"
-                                                fill="#97B7BE" />
-                                                <path d="M-68.0323
+                                                461.327 1497.26 457.629Z" class="backmountain" fill="#97B7BE" />
+                <path d="M-68.0323
                                                     365.445C-22.0808 353.902
                                                     18.7911 332.106 65.3109
                                                     320.452C72.0489 318.764
@@ -765,14 +666,11 @@
                                                     -80.6424 374.528 -78.9174
                                                     372.944C-75.7104 369.998
                                                     -71.6607 367.944 -68.0323
-                                                    365.445Z" fill="#44797D"
-                                                    class="frontmountain" />
-                                                    <path opacity="0.999"
-                                                        d="M1638.57
-                                                        675.623H-130.27V1035.57H1638.57V675.623Z"
-                                                        class="lakebottom"
-                                                        fill="#5EA1AA" />
-                                                        <path d="M-64.9593
+                                                    365.445Z" fill="#44797D" class="frontmountain" />
+                <path opacity="0.999" d="M1638.57
+                                                        675.623H-130.27V1035.57H1638.57V675.623Z" class="lakebottom"
+                    fill="#5EA1AA" />
+                <path d="M-64.9593
                                                             861.045C-19.0078
                                                             866.716 21.8641
                                                             877.424 68.3839
@@ -1019,10 +917,8 @@
                                                             857.36C-72.6374
                                                             858.808 -68.5877
                                                             859.816 -64.9593
-                                                            861.045Z"
-                                                            class="laketop"
-                                                            fill="#588588" />
-                                                            <path d="M1203.25
+                                                            861.045Z" class="laketop" fill="#588588" />
+                <path d="M1203.25
                                                                 746.456C1203.3
                                                                 745.225 1203.54
                                                                 744.974 1203.87
@@ -1776,12 +1672,8 @@
                                                                 679.355C1231.53
                                                                 679.388 1233.15
                                                                 678.952 1234
-                                                                678.389V678.389Z"
-                                                                class="backtrees"
-                                                                fill="#005250"
-                                                                />
-                                                                <path
-                                                                    d="M1282.52
+                                                                678.389V678.389Z" class="backtrees" fill="#005250" />
+                <path d="M1282.52
                                                                     686.225C1283.67
                                                                     685.973
                                                                     1288.45
@@ -3301,12 +3193,8 @@
                                                                     1322.32
                                                                     647.984
                                                                     1324.25
-                                                                    646.581Z"
-                                                                    class="backtrees"
-                                                                    fill="#005250"
-                                                                    />
-                                                                    <path
-                                                                        d="M1570.4
+                                                                    646.581Z" class="backtrees" fill="#005250" />
+                <path d="M1570.4
                                                                         666.918L1491.49
                                                                         651.92C1477.27
                                                                         649.219
@@ -3503,12 +3391,8 @@
                                                                         1574.03
                                                                         666.085
                                                                         1570.4
-                                                                        666.918Z"
-                                                                        class="backtrees"
-                                                                        fill="#005250"
-                                                                        />
-                                                                        <path
-                                                                            d="M-84.442
+                                                                        666.918Z" class="backtrees" fill="#005250" />
+                <path d="M-84.442
                                                                             789.148C-42.885
                                                                             767.708
                                                                             -21.3094
@@ -3634,12 +3518,9 @@
                                                                             -87.6702
                                                                             801.008
                                                                             -84.442
-                                                                            789.148Z"
-                                                                            class="fronttrees"
-                                                                            fill="#013F3A"
-                                                                            />
-                                                                            <path
-                                                                                d="M261.966
+                                                                            789.148Z" class="fronttrees"
+                    fill="#013F3A" />
+                <path d="M261.966
                                                                                 839.752C262.061
                                                                                 836.959
                                                                                 262.532
@@ -4860,12 +4741,9 @@
                                                                                 319.756
                                                                                 686.567
                                                                                 321.395
-                                                                                685.289V685.289Z"
-                                                                                class="fronttrees"
-                                                                                fill="#013F3A"
-                                                                                />
-                                                                                <path
-                                                                                    d="M438.329
+                                                                                685.289V685.289Z" class="fronttrees"
+                    fill="#013F3A" />
+                <path d="M438.329
                                                                                     862.874C440.464
                                                                                     862.437
                                                                                     449.328
@@ -6389,12 +6267,9 @@
                                                                                     512.114
                                                                                     796.504
                                                                                     515.699
-                                                                                    794.071Z"
-                                                                                    class="fronttrees"
-                                                                                    fill="#013F3A"
-                                                                                    />
-                                                                                    <path
-                                                                                        d="M1073.31
+                                                                                    794.071Z" class="fronttrees"
+                    fill="#013F3A" />
+                <path d="M1073.31
                                                                                         996.524C1073.37
                                                                                         994.478
                                                                                         1073.68
@@ -7616,11 +7491,8 @@
                                                                                         884.37
                                                                                         1112.97
                                                                                         883.434V883.433Z"
-                                                                                        class="fronttrees"
-                                                                                        fill="#013F3A"
-                                                                                        />
-                                                                                        <path
-                                                                                            d="M1227
+                    class="fronttrees" fill="#013F3A" />
+                <path d="M1227
                                                                                             1055.62C1229.13
                                                                                             1055.18
                                                                                             1238
@@ -9145,71 +9017,34 @@
                                                                                             989.249
                                                                                             1304.37
                                                                                             986.815Z"
-                                                                                            class="fronttrees"
-                                                                                            fill="#013F3A"
-                                                                                            />
-                                                                                        </g>
-                                                                                        <defs>
-                                                                                            <filter
-                                                                                                id="filter0_f_7_199"
-                                                                                                x="3.84084"
-                                                                                                y="-0.0073685"
-                                                                                                width="1510.67"
-                                                                                                height="980.776"
-                                                                                                filterUnits="userSpaceOnUse"
-                                                                                                color-interpolation-filters="sRGB">
-                                                                                                <feFlood
-                                                                                                    flood-opacity="0"
-                                                                                                    result="BackgroundImageFix"
-                                                                                                    />
-                                                                                                    <feBlend
-                                                                                                        mode="normal"
-                                                                                                        in="SourceGraphic"
-                                                                                                        in2="BackgroundImageFix"
-                                                                                                        result="shape"
-                                                                                                        />
-                                                                                                        <feGaussianBlur
-                                                                                                            stdDeviation="0.00191423"
-                                                                                                            result="effect1_foregroundBlur_7_199"
-                                                                                                            />
-                                                                                                        </filter>
-                                                                                                        <linearGradient
-                                                                                                            id="paint0_linear_7_199"
-                                                                                                            x1="759.174"
-                                                                                                            y1="-0.00354004"
-                                                                                                            x2="759.174"
-                                                                                                            y2="980.764"
-                                                                                                            gradientUnits="userSpaceOnUse">
-                                                                                                            <stop
-                                                                                                                class="skytop"
-                                                                                                                stop-color="#22CAFF"
-                                                                                                                />
-                                                                                                                <stop
-                                                                                                                    class="skybottom"
-                                                                                                                    offset="1"
-                                                                                                                    stop-color="white"
-                                                                                                                    />
-                                                                                                                </linearGradient>
-                                                                                                                <clipPath
-                                                                                                                    id="clip0_7_199">
-                                                                                                                    <rect
-                                                                                                                        width="1512"
-                                                                                                                        height="982"
-                                                                                                                        fill="white"
-                                                                                                                        />
-                                                                                                                    </clipPath>
-                                                                                                                </defs>
-                                                                                                            </svg>
-                                                                                                        </div>
-                                                                                                        <script
-                                                                                                            src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.1.4/tsparticles.bundle.js"
-                                                                                                            integrity="sha512-+y90nJdQPEuM0WiaPrhrLIXr5JFAO6iFMsnhVIMxMzf4A+GKiH+1PLSeHneNKgdVVRC93CkpOQmBWhM9e4o9Fw=="crossorigin="anonymous"
-                                                                                                            referrerpolicy="no-referrer"></script>
-                                                                                                        <script>
-        
+                    class="fronttrees" fill="#013F3A" />
+            </g>
+            <defs>
+                <filter id="filter0_f_7_199" x="3.84084" y="-0.0073685" width="1510.67" height="980.776"
+                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                    <feGaussianBlur stdDeviation="0.00191423" result="effect1_foregroundBlur_7_199" />
+                </filter>
+                <linearGradient id="paint0_linear_7_199" x1="759.174" y1="-0.00354004" x2="759.174" y2="980.764"
+                    gradientUnits="userSpaceOnUse">
+                    <stop class="skytop" stop-color="#22CAFF" />
+                    <stop class="skybottom" offset="1" stop-color="white" />
+                </linearGradient>
+                <clipPath id="clip0_7_199">
+                    <rect width="1512" height="982" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.1.4/tsparticles.bundle.js"
+        integrity="sha512-+y90nJdQPEuM0WiaPrhrLIXr5JFAO6iFMsnhVIMxMzf4A+GKiH+1PLSeHneNKgdVVRC93CkpOQmBWhM9e4o9Fw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
     </script>
-                                                                                                        <script
-                                                                                                            src="script.js"></script>
-                                                                                                    </body>
-                                                                                                    <!-- <script>AOS.init();</script> -->
-                                                                                                </html>
+    <script src="script.js"></script>
+</body>
+<!-- <script>AOS.init();</script> -->
+
+</html>

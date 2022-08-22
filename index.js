@@ -25,18 +25,18 @@ app.get("/api/current/:lat/:lon", (req, res, next) => {
 });
 
 app.get("/api/forecast/:lat/:lon", (req, res, next) => {
-  axios.get("https://api.openweathermap.org/data/2.5/forecast", {
-    params: {
-      lat: req.params.lat,
-      lon: req.params.lon,
-      units: "metric",
-      cnt: 8,
-      appid: process.env.OWMKEY
-    }
-  })
-  .then((forecast) => res.status(200).json(forecast.data))
-  .catch((error) => next(error))
-})
+  axios
+    .get("https://api.openweathermap.org/data/2.5/forecast", {
+      params: {
+        lat: req.params.lat,
+        lon: req.params.lon,
+        units: "metric",
+        appid: process.env.OWMKEY,
+      },
+    })
+    .then((forecast) => res.status(200).json(forecast.data))
+    .catch((error) => next(error));
+});
 
 app.get("/api/search/:location", (req, res, next) => {
   axios
@@ -50,5 +50,18 @@ app.get("/api/search/:location", (req, res, next) => {
     .then((results) => {
       res.status(200).json(results.data);
     })
+    .catch((error) => next(error));
+});
+
+app.get("/api/hourly/:lat/:lon", (req, res, next) => {
+  axios
+    .get("https://pro.openweathermap.org/data/2.5/forecast/hourly", {
+      params: {
+        lat: req.params.lat,
+        lon: req.params.lon,
+        appid: process.env.OWMKEY,
+      },
+    })
+    .then((hourly) => res.status(200).json(hourly.data))
     .catch((error) => next(error));
 });

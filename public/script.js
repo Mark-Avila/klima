@@ -1,5 +1,6 @@
 let suggestions = [];
 let weather = {};
+let chart;
 let map = L.map("weathermap-leaflet").setView([14.6, 121], 10);
 
 function initMap() {
@@ -12,34 +13,6 @@ function initMap() {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
-}
-
-function initChart() {
-  const ctx = document.getElementById("hourforecast-graph").getContext("2d");
-  const chart = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [
-        {
-          label: "# of Votes",
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: "white",
-          borderColor: "white",
-          borderWidth: 1,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
 }
 
 function openModal(text) {
@@ -323,6 +296,12 @@ function initMain(data, forecast, loc) {
   })
 
   map.setView([data.coord.lat, data.coord.lon], 10);
+
+  // label: "# of Votes",
+  // data: [12, 19, 3, 5, 2, 3],
+  // backgroundColor: "white",
+  // borderColor: "white",
+  // borderWidth: 1,
 }
 
 $("input[name=search]").keyup(
@@ -338,8 +317,7 @@ $("input[name=search]").keyup(
 
 $("");
 startLoad();
-initData(14, 120).then(() => {
+initData(14.5995, 120.9842).then(() => {
   endLoad();
 });
 initMap();
-initChart();
