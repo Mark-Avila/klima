@@ -23,8 +23,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100vh;
+  min-height: 100%;
+  min-width: 100%;
 }
 
 .fluid {
@@ -54,6 +54,10 @@ body {
 
 .text_shadow {
   text-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+}
+
+.box {
+  background-color: none;
 }
 
 main {
@@ -182,6 +186,11 @@ main {
 .main__scrolldown__icon {
   margin-right: 1rem;
   color: white;
+}
+
+.general {
+  box-sizing: border-box;
+  margin-top: 1rem;
 }
 
 .general__upper {
@@ -321,6 +330,7 @@ footer {
   font-family: "Roboto", sans-serif;
   color: rgba(255,255,255,0.50);
   width: 100%;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   font-size: 0.8rem;
@@ -469,6 +479,106 @@ footer {
 
 .info__back__button__text {
   margin-left: 0.3rem;
+}
+
+@media only screen and (min-width: 768px)  {
+  .info {
+    width: 75%;
+    height: fit-content;
+    padding: 2rem 1rem;
+    padding-bottom: 3rem;
+    border-radius: 12px;
+  }
+
+  .general__lower {
+    width: 500px;
+  }
+
+  .general__lower__title {
+    font-size: 1rem;
+  }
+
+  .general__lower__data {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .info {
+    width: 85%;
+    overflow: hidden;
+    background: none;
+  }
+
+  .info__container {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    overflow: hidden;
+  }
+
+  .box {
+    background-color: rgba(0,0,0,0.75);
+    border-radius: 12px;
+  }
+
+  .general {
+    padding: 1rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
+  .forecast {
+    margin: 0;
+  }
+
+  .weathermap {
+    margin: 0;
+    grid-column: 2/4;
+    grid-row: 1/3;
+    height: auto;
+  }
+
+  .forecast {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+
+  .forecast__list {
+    height: 100%;
+  }
+
+  .forecast__item {
+    justify-content: center;
+  }
+
+  .general__lower__title, .general__lower__data,  .forecast__item__temp {
+    font-size: 0.8rem;
+  }
+
+  .general__upper {
+    width: 100%;
+  }
+
+  .general__lower {
+    width: 85%;
+  }
+
+  .general__text__location {
+    font-size: 1.3rem;
+  }
+
+  .general__text__time, .general__text__feels {
+    font-size: 0.9rem;
+  }
+
+  .general__upper__temp {
+    font-size: 3rem;
+  }
 }
 
 .frontmountain, 
