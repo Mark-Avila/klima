@@ -8,12 +8,13 @@ body {
 }
 
 .page {
-  min-height: 100%;
+  height: 100%;
+  max-height: 100%;
   min-width: 100%;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
   justify-content: center;
   align-items: center;
 }
@@ -40,6 +41,7 @@ body {
   align-items: center;
   color: white;
   z-index: 1;
+  flex: 1 0 auto;
 }
 
 .initialload--close {
@@ -55,14 +57,17 @@ body {
 }
 
 main {
-  min-height: 100%;
+  height: 100%;
   min-width: 100%;
   z-index: 10;
   display: flex;
-  flex: 1 0 auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.main--close {
+  display: none;
 }
 
 .main__data {
@@ -179,17 +184,55 @@ main {
   color: white;
 }
 
-.info {
-  position: relative;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  z-index: 10;
+.general__upper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.info--open {
-  display: flex;
+.general__text {
+  color: white;
+  font-family: "Roboto", sans-serif;
+  flex-grow: 1;
+  width: 60%;
+}
+
+.general__upper__temp {
+  flex-grow: 1;
+  text-align: right;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.general__text__time {
+  color: rgba(255,255,255,0.70);
+}
+
+.general__text__location {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.7rem;
+}
+
+.general__text__feels {
+  color: rgba(255,255,255,0.70);
+}
+
+.general__lower {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.general__lower__title {
+  color: rgba(255,255,255,0.50);
 }
 
 .darkbg--close {
@@ -273,7 +316,10 @@ footer {
   font-size: 0.8rem;
   z-index: 10;
   flex-shrink: 0;
-  padding: 1rem;
+}
+
+.footer--close {
+  display: none;
 }
 
 .footer__link {
@@ -294,6 +340,121 @@ footer {
 
 .footer--snow {
   color: rgb(42, 94, 172);
+}
+
+.info {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.info__container {
+  margin: 0 1rem;
+  overflow: scroll;
+}
+
+.info--open {
+  display: flex;
+}
+
+.info__back__button {
+  border: none;
+  color: white;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  padding: 0.5rem;
+}
+
+.weathermap {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.weathermap__leaflet {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  z-index: 90;
+}
+
+.weathermap__buttoncontainer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  z-index: 91;
+  width: fit-content;
+  padding: 1rem;
+}
+
+.weathermap__button {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.5rem;
+  background: white;
+  outline: none;
+  border: none;
+  color: hsl(0, 0%, 30%);
+  border-radius: 50px;
+}
+
+.weathermap__button:hover {
+  background-color: hsl(221, 74%, 63%);
+  color: white;
+  cursor: pointer;
+}
+
+.weathermap__button:active {
+  background-color: hsl(221, 78%, 58%);
+}
+
+.weathermap__button--active {
+  background-color: hsl(221, 78%, 58%);
+}
+
+.forecast {
+  margin-top: 1.5rem;
+}
+
+.forecast__list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.forecast__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(255,255,255,0.80);
+  font-family: "Roboto", sans-serif;
+}
+
+.forecast__item__icon {
+  color: white;
+}
+
+.forecast__item__day {
+  font-size: 0.8rem;
+}
+
+.forecast__item__temp {
+  margin-top: 0.8rem;
+}
+
+.info__back__button__text {
+  margin-left: 0.3rem;
 }
 
 .frontmountain, 

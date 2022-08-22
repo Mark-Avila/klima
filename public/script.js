@@ -28,6 +28,7 @@ function closeModal() {
 function openInfo() {
   $(".info").addClass("info--open");
   $("main").addClass("main--close");
+  $("footer").addClass("footer--close");
 
   setTimeout(() => {
     map.invalidateSize();
@@ -37,16 +38,17 @@ function openInfo() {
 function closeInfo() {
   $(".info").removeClass("info--open");
   $("main").removeClass("main--close");
+  $("footer").removeClass("footer--close");
 
-  updateBackground("snow");
-  tsParticles
-    .loadJSON("tsparticles", "particles/snow.json")
-    .then((container) => {
-      console.log("callback - tsparticles config loaded");
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  // updateBackground("snow");
+  // tsParticles
+  //   .loadJSON("tsparticles", "particles/snow.json")
+  //   .then((container) => {
+  //     console.log("callback - tsparticles config loaded");
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
 }
 
 function backgroundCloudy() {
