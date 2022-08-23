@@ -9,10 +9,13 @@ function initMap() {
     attribution: "© OpenStreetMap",
   }).addTo(map);
 
+  L.tileLayer('https://tile.openweathermap.org/map/{layer}/{z}/{x}/{y}.png?appid={API key}').addTo(map);
+
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
+
 }
 
 function openModal(text) {
@@ -39,16 +42,6 @@ function closeInfo() {
   $(".info").removeClass("info--open");
   $("main").removeClass("main--close");
   $("footer").removeClass("footer--close");
-
-  // updateBackground("snow");
-  // tsParticles
-  //   .loadJSON("tsparticles", "particles/snow.json")
-  //   .then((container) => {
-  //     console.log("callback - tsparticles config loaded");
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
 }
 
 function backgroundCloudy() {
@@ -320,6 +313,6 @@ $("input[name=search]").keyup(
 $("");
 startLoad();
 initData(14.5995, 120.9842).then(() => {
+  initMap();
   endLoad();
 });
-initMap();
