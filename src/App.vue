@@ -2,12 +2,21 @@
 import PageHome from "./components/PageHome.vue";
 import PageFooter from "./components/PageFooter.vue";
 import PageBackground from "./components/PageBackground.vue";
+import { reactive } from "vue";
+import PageInfo from "./components/PageInfo.vue";
+
+const state = reactive({
+  infoIsOpen: false,
+});
 </script>
 
 <template>
   <main>
     <PageBackground />
-    <div class="page">
+
+    <PageInfo v-if="!state.infoIsOpen" />
+
+    <div class="home" v-else>
       <PageHome />
     </div>
     <PageFooter />
@@ -24,18 +33,21 @@ body,
 }
 
 main {
-  position: relative;
+  box-sizing: border-box;
+  margin: 0;
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  justify-content: space-between;
 }
 
-.page {
+.home {
+  position: relative;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .shadow {

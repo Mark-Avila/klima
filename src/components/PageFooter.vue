@@ -18,7 +18,8 @@ footer {
   justify-content: space-evenly;
   font-family: "Roboto", sans-serif;
   font-size: 0.8em;
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem 1rem;
   z-index: 2;
 }
 
@@ -28,7 +29,7 @@ footer {
 
 a {
   text-decoration: none;
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
   font-weight: bold;
 }
 
@@ -40,6 +41,22 @@ a {
   footer {
     justify-content: space-between;
     margin: 0 2rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .weatherdata {
+    display: block;
+  }
+
+  p {
+    font-size: 0.7rem;
+  }
+
+  footer {
+    justify-content: space-between;
+    margin: 0 2rem;
+    flex-shrink: 0;
   }
 }
 </style>

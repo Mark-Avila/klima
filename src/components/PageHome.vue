@@ -30,7 +30,7 @@ button {
 }
 
 .search {
-  padding: 0.7rem 1rem;
+  padding: 0.7rem 1.5rem;
   margin-top: 1rem;
   width: 250px;
   outline: none;
@@ -60,5 +60,11 @@ button {
   padding: 0;
   margin: 0;
   font-family: "Montserrat", sans-serif;
+}
+
+@media only screen and (min-width: 1024px) {
+  .search {
+    font-size: 0.8rem;
+  }
 }
 </style>

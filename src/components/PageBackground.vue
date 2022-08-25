@@ -237,7 +237,7 @@
 @media only screen and (min-width: 1024px) {
   .laptopsvg {
     width: 100%;
-    height: fit-content;
+    height: 100%;
     position: absolute;
     bottom: 0;
   }
@@ -256,7 +256,7 @@
 }
 
 /** MD/LG Laptops / Desktop Monitors */
-@media only screen and (min-width: 1366px) {
+@media only screen and (min-width: 1240px) {
   .laptopsvg {
     width: 100%;
     height: fit-content;
