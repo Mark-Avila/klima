@@ -211,16 +211,18 @@
   height: 100%;
   width: 100%;
 }
-
+/** Tablets */
 @media only screen and (min-width: 768px) {
   .laptopsvg {
     height: 100%;
+    width: 100%;
   }
   .laptop {
     display: block;
     position: absolute;
     overflow: hidden;
     height: 100%;
+    width: 100%;
     top: 0;
     left: 0;
     z-index: 1;
@@ -231,16 +233,41 @@
   }
 }
 
+/** SM Laptops / Horizontal Tablets */
 @media only screen and (min-width: 1024px) {
   .laptopsvg {
-    height: 100%;
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    bottom: 0;
   }
   .laptop {
     display: block;
     position: absolute;
     overflow: hidden;
     width: 100%;
-    height: auto;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .mobile {
+    display: none;
+  }
+}
+
+/** MD/LG Laptops / Desktop Monitors */
+@media only screen and (min-width: 1366px) {
+  .laptopsvg {
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    bottom: -15%;
+  }
+  .laptop {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
     top: 0;
     left: 0;
     z-index: 1;
