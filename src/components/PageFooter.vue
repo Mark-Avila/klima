@@ -18,6 +18,8 @@ footer {
   justify-content: space-evenly;
   font-family: "Roboto", sans-serif;
   font-size: 0.8em;
+  color: white;
+  z-index: 2;
 }
 
 .weatherdata {
@@ -26,6 +28,18 @@ footer {
 
 a {
   text-decoration: none;
-  color: black;
+  color: white;
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 768px) {
+  .weatherdata {
+    display: block;
+  }
+
+  footer {
+    justify-content: space-between;
+    margin: 0 2rem;
+  }
 }
 </style>
