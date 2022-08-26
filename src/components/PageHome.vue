@@ -1,10 +1,16 @@
+<script setup lang="ts">
+const emit = defineEmits<{
+  (e: "moreInfoClicked", pageToOpen: "home" | "info" | "map"): void;
+}>();
+</script>
+
 <template>
   <div>
     <p class="weather shadow">Sunny</p>
     <p class="temp shadow">34</p>
     <p class="location shadow">Manila</p>
     <input class="search" type="text" />
-    <button>View more information</button>
+    <button @click="$emit('moreInfoClicked')">View more information</button>
   </div>
 </template>
 

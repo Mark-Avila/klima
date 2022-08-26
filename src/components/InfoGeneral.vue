@@ -2,9 +2,9 @@
   <div class="wrapper">
     <div class="upper">
       <div>
-        <p id="current-time">00:00:00AM</p>
+        <p id="current-time" class="text__less">00:00:00AM</p>
         <p id="current-loc">Manila, PH</p>
-        <p id="current-feels">Feels like 34</p>
+        <p id="current-feels" class="text__less">Feels like 34</p>
       </div>
       <div>
         <p id="current-temp">37</p>
@@ -12,19 +12,19 @@
     </div>
     <div class="lower">
       <div class="lower__item">
-        <p class="lower__title">Wind Speed</p>
+        <p class="lower__title text__less">Wind Speed</p>
         <p class="lower__data" id="wind-data">0 m/s</p>
       </div>
       <div class="lower__item">
-        <p class="lower__title">Pressure</p>
+        <p class="lower__title text__less">Pressure</p>
         <p class="lower__data" id="pressure-data">0 pHA</p>
       </div>
       <div class="lower__item">
-        <p class="lower__title">Humidity</p>
+        <p class="lower__title text__less">Humidity</p>
         <p class="lower__data" id="humid-data">0%</p>
       </div>
       <div class="lower__item">
-        <p class="lower__title">Visibility</p>
+        <p class="lower__title text__less">Visibility</p>
         <p class="lower__data" id="vis-data">0 km</p>
       </div>
     </div>
@@ -63,6 +63,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.lower__title {
+  margin-bottom: 1rem;
 }
 
 p {

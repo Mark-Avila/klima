@@ -2,23 +2,40 @@
 import PageHome from "./components/PageHome.vue";
 import PageFooter from "./components/PageFooter.vue";
 import PageBackground from "./components/PageBackground.vue";
-import { reactive } from "vue";
+import { ref } from "vue";
 import PageInfo from "./components/PageInfo.vue";
 
-const state = reactive({
-  infoIsOpen: false,
+const isOpen = ref({
+  home: true,
+  info: false,
+  map: false,
 });
+
+const handleIsOpen = (pageToOpen: "home" | "info" | "map") => {
+  const initialState = {
+    home: false,
+    info: false,
+    map: false,
+  };
+
+  isOpen.value = { ...initialState, [pageToOpen]: true };
+};
 </script>
 
 <template>
   <main>
     <PageBackground />
 
-    <PageInfo v-if="!state.infoIsOpen" />
+    <div class="content">
+      <PageHome v-if="isOpen.home" @more-info-clicked="handleIsOpen('info')" />
 
-    <div class="home" v-else>
-      <PageHome />
+      <PageInfo
+        v-if="isOpen.info"
+        @back-clicked="handleIsOpen('home')"
+        @map-clicked="handleIsOpen('map')"
+      />
     </div>
+
     <PageFooter />
   </main>
 </template>
@@ -41,7 +58,7 @@ main {
   justify-content: space-between;
 }
 
-.home {
+.content {
   position: relative;
   height: 100%;
   display: flex;

@@ -1,31 +1,31 @@
 <template>
   <div class="wrapper">
     <div class="item">
-      <p class="item__day">Thur</p>
+      <p class="item__day text__less">Thur</p>
       <p class="item__icon">Icon</p>
       <p class="item__weather">Rain</p>
       <p class="item__temp">32/ 34 C</p>
     </div>
     <div class="item">
-      <p class="item__day">Thur</p>
+      <p class="item__day text__less">Thur</p>
       <p class="item__icon">Icon</p>
       <p class="item__weather">Rain</p>
       <p class="item__temp">32/ 34 C</p>
     </div>
     <div class="item">
-      <p class="item__day">Thur</p>
+      <p class="item__day text__less">Thur</p>
       <p class="item__icon">Icon</p>
       <p class="item__weather">Rain</p>
       <p class="item__temp">32/ 34 C</p>
     </div>
     <div class="item">
-      <p class="item__day">Thur</p>
+      <p class="item__day text__less">Thur</p>
       <p class="item__icon">Icon</p>
       <p class="item__weather">Rain</p>
       <p class="item__temp">32/ 34 C</p>
     </div>
     <div class="item">
-      <p class="item__day">Thur</p>
+      <p class="item__day text__less">Thur</p>
       <p class="item__icon">Icon</p>
       <p class="item__weather">Rain</p>
       <p class="item__temp">32/ 34 C</p>

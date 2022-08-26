@@ -2,12 +2,19 @@
 import InfoBox from "./InfoBox.vue";
 import InfoGeneral from "./InfoGeneral.vue";
 import InfoForecast from "./InfoForecast.vue";
+
+const emit = defineEmits<{
+  (e: "backClicked", pageToOpen: "home" | "info" | "map"): void;
+  (e: "mapClicked", pageToOpen: "home" | "info" | "map"): void;
+}>();
 </script>
 
 <template>
   <div class="info">
     <div class="info__back__wrapper">
-      <button class="info__back__button">Back</button>
+      <button @click="$emit('backClicked')" class="info__back__button">
+        Back
+      </button>
     </div>
     <div class="info__list">
       <InfoBox id="general">
@@ -17,17 +24,23 @@ import InfoForecast from "./InfoForecast.vue";
         <InfoForecast />
       </InfoBox>
     </div>
-    <button id="weathermap-btn">View weather map</button>
+    <button @click="$emit('mapClicked')" id="weathermap-btn">
+      View weather map
+    </button>
   </div>
 </template>
 
-<style scoped>
+<style>
 .info {
   height: 100%;
   z-index: 2;
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
+}
+
+.text__less {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .info__back__wrapper {
