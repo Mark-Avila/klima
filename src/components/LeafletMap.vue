@@ -24,6 +24,7 @@ onMounted(() => {
 #weathermap {
   height: 100%;
   width: 100%;
+  z-index: 9;
   box-sizing: border-box;
 }
 </style>

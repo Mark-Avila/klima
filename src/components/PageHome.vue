@@ -6,7 +6,9 @@ const emit = defineEmits<{
 
 <template>
   <div>
-    <font-awesome-icon icon="fa-solid fa-user-secret" />
+    <span class="icon">
+      <font-awesome-icon icon="fa-solid fa-cloud-rain" />
+    </span>
     <p class="weather shadow">Sunny</p>
     <p class="temp shadow">34</p>
     <p class="location shadow">Manila</p>
@@ -25,6 +27,11 @@ div {
   align-items: center;
   color: white;
   padding-bottom: 3rem;
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 button {
