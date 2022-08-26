@@ -259,9 +259,7 @@
 @media only screen and (min-width: 1240px) {
   .laptopsvg {
     width: 100%;
-    height: fit-content;
     position: absolute;
-    bottom: -15%;
   }
   .laptop {
     display: block;

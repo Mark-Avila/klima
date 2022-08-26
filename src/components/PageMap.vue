@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import LeafletMap from "./LeafletMap.vue";
-import MapButton from "./MapButton.vue";
 import Weathermap from "./Weathermap.vue";
 const emit = defineEmits<{
   (e: "backClicked", pageToOpen: "home" | "info" | "map"): void;

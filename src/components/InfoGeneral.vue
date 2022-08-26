@@ -78,4 +78,25 @@ p {
   font-family: "Roboto", sans-serif;
   font-size: 0.8rem;
 }
+
+@media only screen and (min-width: 1180px) {
+  .lower {
+    margin-bottom: 1rem;
+  }
+
+  .lower__item {
+    justify-content: center;
+    align-items: center;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (min-width: 1240px) {
+  p {
+    font-size: 0.7rem;
+  }
+}
 </style>

@@ -2,6 +2,7 @@
 import InfoBox from "./InfoBox.vue";
 import InfoGeneral from "./InfoGeneral.vue";
 import InfoForecast from "./InfoForecast.vue";
+import Weathermap from "./Weathermap.vue";
 
 const emit = defineEmits<{
   (e: "backClicked", pageToOpen: "home" | "info" | "map"): void;
@@ -23,6 +24,9 @@ const emit = defineEmits<{
       <InfoBox id="forecast">
         <InfoForecast />
       </InfoBox>
+      <span class="weathermap">
+        <Weathermap />
+      </span>
     </div>
     <button @click="$emit('mapClicked')" id="weathermap-btn">
       View weather map
@@ -76,5 +80,67 @@ const emit = defineEmits<{
 
 #weathermap-btn:active {
   background-color: rgb(236, 236, 236);
+}
+
+.weathermap {
+  display: none;
+}
+
+/** Vertical Tablets */
+@media only screen and (min-width: 820px) {
+  .info__list {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px auto;
+    height: 100%;
+  }
+
+  #weathermap-btn {
+    display: none;
+  }
+
+  .weathermap {
+    display: block;
+    grid-column: 1 / 3;
+  }
+}
+
+/** Horizontal Large Tablets or Small Laptops */
+@media only screen and (min-width: 1180px) {
+  .info__list {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50% 50%;
+  }
+
+  .info {
+    padding: 5rem 2rem;
+  }
+
+  #general {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  #forecast {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+
+  .weathermap {
+    display: block;
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
+  }
+}
+
+@media only screen and (min-width: 1240px) {
+  .info {
+    padding: 3rem 7rem;
+  }
+}
+
+@media only screen and (min-width: 1366px) {
+  .info {
+    padding: 5rem 2rem;
+  }
 }
 </style>

@@ -31,18 +31,6 @@
   padding: 1.2rem 0;
 }
 
-/* .item__day {
-  margin-bottom: 1rem;
-}
-
-.icon {
-  margin-bottom: 1rem;
-}
-
-.item__weather {
-  margin-bottom: 1rem;
-} */
-
 .icon {
   font-size: 1.5rem;
 }
@@ -55,5 +43,21 @@ p {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+@media only screen and (min-width: 1180px) {
+  .item {
+    justify-content: space-evenly;
+  }
+}
+
+@media only screen and (min-width: 1240px) {
+  p {
+    font-size: 0.7rem;
+  }
+
+  .item {
+    padding: 0;
+  }
 }
 </style>

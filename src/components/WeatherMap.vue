@@ -42,4 +42,10 @@ import LeafletMap from "./LeafletMap.vue";
   grid-template-rows: repeat(4, 1fr);
   gap: 0.5rem;
 }
+
+@media only screen and (min-width: 1240px) {
+  .map__buttons {
+    left: 2%;
+  }
+}
 </style>
