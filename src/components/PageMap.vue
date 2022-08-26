@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import LeafletMap from "./LeafletMap.vue";
 import MapButton from "./MapButton.vue";
+import Weathermap from "./Weathermap.vue";
 const emit = defineEmits<{
   (e: "backClicked", pageToOpen: "home" | "info" | "map"): void;
 }>();
@@ -13,25 +14,7 @@ const emit = defineEmits<{
         Back
       </button>
     </div>
-    <div class="map__body">
-      <span class="map__wrapper">
-        <LeafletMap />
-      </span>
-      <div class="map__buttons">
-        <MapButton>
-          <font-awesome-icon icon="fa-solid fa-cloud-rain" />
-        </MapButton>
-        <MapButton>
-          <font-awesome-icon icon="fa-solid fa-cloud-rain" />
-        </MapButton>
-        <MapButton>
-          <font-awesome-icon icon="fa-solid fa-cloud-rain" />
-        </MapButton>
-        <MapButton>
-          <font-awesome-icon icon="fa-solid fa-cloud-rain" />
-        </MapButton>
-      </div>
-    </div>
+    <Weathermap />
   </div>
 </template>
 
@@ -57,24 +40,5 @@ const emit = defineEmits<{
   border: none;
   color: white;
   font-size: 1rem;
-}
-
-.map__body {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.map__buttons {
-  z-index: 10;
-  position: absolute;
-  left: 5%;
-  bottom: 5%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, 1fr);
-  gap: 0.5rem;
 }
 </style>
