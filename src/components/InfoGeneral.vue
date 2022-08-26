@@ -53,6 +53,9 @@
   font-family: "Montserrat", sans-serif;
 }
 
+.text__less {
+  color: rgba(255, 255, 255, 0.7);
+}
 .lower {
   margin-top: auto;
   display: grid;

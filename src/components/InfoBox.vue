@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .box {
   background: rgba(0, 0, 0, 0.5);
   color: white;

@@ -2,8 +2,9 @@
 import PageHome from "./components/PageHome.vue";
 import PageFooter from "./components/PageFooter.vue";
 import PageBackground from "./components/PageBackground.vue";
-import { ref } from "vue";
 import PageInfo from "./components/PageInfo.vue";
+import PageMap from "./components/PageMap.vue";
+import { ref } from "vue";
 
 const isOpen = ref({
   home: true,
@@ -34,6 +35,8 @@ const handleIsOpen = (pageToOpen: "home" | "info" | "map") => {
         @back-clicked="handleIsOpen('home')"
         @map-clicked="handleIsOpen('map')"
       />
+
+      <PageMap v-if="isOpen.map" @back-clicked="handleIsOpen('info')" />
     </div>
 
     <PageFooter />
@@ -61,10 +64,12 @@ main {
 .content {
   position: relative;
   height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .shadow {

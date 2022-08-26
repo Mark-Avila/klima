@@ -33,7 +33,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .wrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -47,6 +47,10 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
+}
+
+.text__less {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 p {

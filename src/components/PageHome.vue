@@ -6,6 +6,7 @@ const emit = defineEmits<{
 
 <template>
   <div>
+    <font-awesome-icon icon="fa-solid fa-user-secret" />
     <p class="weather shadow">Sunny</p>
     <p class="temp shadow">34</p>
     <p class="location shadow">Manila</p>

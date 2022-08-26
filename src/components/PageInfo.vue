@@ -30,17 +30,15 @@ const emit = defineEmits<{
   </div>
 </template>
 
-<style>
+<style scoped>
 .info {
   height: 100%;
+  width: 100%;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  margin: 0.5rem;
-}
-
-.text__less {
-  color: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem;
+  box-sizing: border-box;
 }
 
 .info__back__wrapper {
