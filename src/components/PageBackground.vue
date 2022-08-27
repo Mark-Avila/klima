@@ -142,7 +142,7 @@
 
   <div class="mobile">
     <div class="mobile-particles-wrapper">
-      <BackgroundParticles />
+      <BackgroundParticles :weather="currentParticles" />
     </div>
     <svg
       class="mobilesvg"
@@ -196,8 +196,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import BackgroundParticles from "./BackgroundParticles.vue";
+
+const currentParticles = ref<"rain" | "snow" | "">("snow");
+
 const FrontMntMobile = ref("#44797D");
 const backMntMobile = ref("#97B7BE");
 const cloudsMobile = ref("white");
@@ -220,6 +223,14 @@ const updateMobileToCloudy = () => {
   skyBotMobile.value = "#D9EDFF";
 };
 
+const updateMobileToRainy = () => {
+  FrontMntMobile.value = "#1D313C";
+  backMntMobile.value = "#394547";
+  cloudsMobile.value = "rgba(0, 0, 0, 0.0)";
+  skyTopMobile.value = "#1B2F3A";
+  skyBotMobile.value = "#4E6669";
+};
+
 const updateMobileToSnowy = () => {
   FrontMntMobile.value = "#1E8AA1";
   backMntMobile.value = "#41A4BA";
@@ -229,7 +240,9 @@ const updateMobileToSnowy = () => {
 };
 
 setTimeout(() => {
-  updateMobileToCloudy();
+  // updateMobileToRainy();
+  currentParticles.value = "rain";
+  console.log("Particles value now: " + currentParticles.value);
 }, 5000);
 </script>
 

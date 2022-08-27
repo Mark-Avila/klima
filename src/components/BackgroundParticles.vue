@@ -1,8 +1,13 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { loadFull } from "tsparticles";
 import type { Container, Engine } from "tsparticles-engine";
 import rainConfig from "../particles/rain.json";
 import snowConfig from "../particles/snow.json";
+
+const props = defineProps<{
+  weather: "rain" | "snow" | "";
+}>();
 
 const particlesInit = async (engine: Engine) => {
   await loadFull(engine);
@@ -18,7 +23,9 @@ const particlesLoaded = async (container: Container) => {
     id="tsparticles"
     :particlesInit="particlesInit"
     :particlesLoaded="particlesLoaded"
-    :options="rainConfig"
+    :options="weather === 'rain' ? rainConfig : snowConfig"
+    v-if="weather !== ''"
+    :key="weather"
   />
 </template>
 
