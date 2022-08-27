@@ -2,7 +2,7 @@
 import InfoBox from "./InfoBox.vue";
 import InfoGeneral from "./InfoGeneral.vue";
 import InfoForecast from "./InfoForecast.vue";
-import Weathermap from "./Weathermap.vue";
+import Weathermap from "./WeatherMap.vue";
 
 const emit = defineEmits<{
   (e: "backClicked", pageToOpen: "home" | "info" | "map"): void;
@@ -56,6 +56,7 @@ const emit = defineEmits<{
   border: none;
   color: white;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .info__list {

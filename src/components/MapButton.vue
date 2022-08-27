@@ -19,6 +19,7 @@ button {
   transition: 100ms ease-in-out;
   outline: none;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 button:active {

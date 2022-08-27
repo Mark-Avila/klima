@@ -12,7 +12,7 @@ const emit = defineEmits<{
     <p class="weather shadow">Sunny</p>
     <p class="temp shadow">34</p>
     <p class="location shadow">Manila</p>
-    <input class="search" type="text" />
+    <input placeholder="Search city" class="search" type="text" />
     <button @click="$emit('moreInfoClicked')">View more information</button>
   </div>
 </template>
@@ -41,6 +41,7 @@ button {
   color: white;
   margin-top: 1rem;
   font-family: "Montserrat", sans-serif;
+  cursor: pointer;
 }
 
 .search {
@@ -79,6 +80,28 @@ button {
 @media only screen and (min-width: 1024px) {
   .search {
     font-size: 0.8rem;
+    padding: 0.7rem 1rem;
+    width: 200px;
+  }
+
+  .weather {
+    font-size: 0.8rem;
+  }
+
+  .location {
+    font-size: 1rem;
+  }
+
+  .temp {
+    font-size: 4rem;
+  }
+
+  button {
+    font-size: 0.7rem;
+  }
+
+  .icon {
+    font-size: 1.2rem;
   }
 }
 </style>

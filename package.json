@@ -15,7 +15,9 @@
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "@types/leaflet": "^1.7.11",
     "leaflet": "^1.8.0",
-    "vue": "^3.2.37"
+    "tsparticles": "^2.2.4",
+    "vue": "^3.2.37",
+    "vue3-particles": "^2.2.4"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
