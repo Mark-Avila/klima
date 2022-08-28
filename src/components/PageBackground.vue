@@ -1,4 +1,7 @@
 <template>
+  <div class="mobile-particles-wrapper">
+    <BackgroundParticles :weather="currentParticles" />
+  </div>
   <div class="laptop">
     <svg
       class="laptopsvg"
@@ -141,9 +144,6 @@
   </div>
 
   <div class="mobile">
-    <div class="mobile-particles-wrapper">
-      <BackgroundParticles :weather="currentParticles" />
-    </div>
     <svg
       class="mobilesvg"
       viewBox="0 0 414 896"
@@ -207,7 +207,7 @@ const cloudsMobile = ref("white");
 const skyTopMobile = ref("#049CCC");
 const skyBotMobile = ref("#B0ECFF");
 
-const updateMobileToDefault = () => {
+const changeMobileToDefault = () => {
   FrontMntMobile.value = "#44797D";
   backMntMobile.value = "#97B7BE";
   cloudsMobile.value = "white";
@@ -215,7 +215,7 @@ const updateMobileToDefault = () => {
   skyBotMobile.value = "#B0ECFF";
 };
 
-const updateMobileToCloudy = () => {
+const changeMobileToCloudy = () => {
   FrontMntMobile.value = "#355964";
   backMntMobile.value = "#668086";
   cloudsMobile.value = "rgba(0, 0, 0, 0.0)";
@@ -223,7 +223,7 @@ const updateMobileToCloudy = () => {
   skyBotMobile.value = "#D9EDFF";
 };
 
-const updateMobileToRainy = () => {
+const changeMobileToRainy = () => {
   FrontMntMobile.value = "#1D313C";
   backMntMobile.value = "#394547";
   cloudsMobile.value = "rgba(0, 0, 0, 0.0)";
@@ -231,7 +231,7 @@ const updateMobileToRainy = () => {
   skyBotMobile.value = "#4E6669";
 };
 
-const updateMobileToSnowy = () => {
+const changeMobileToSnowy = () => {
   FrontMntMobile.value = "#1E8AA1";
   backMntMobile.value = "#41A4BA";
   cloudsMobile.value = "rgba(0, 0, 0, 0.0)";
@@ -239,11 +239,11 @@ const updateMobileToSnowy = () => {
   skyBotMobile.value = "#D9EDFF";
 };
 
-setTimeout(() => {
-  // updateMobileToRainy();
-  currentParticles.value = "rain";
-  console.log("Particles value now: " + currentParticles.value);
-}, 5000);
+// setTimeout(() => {
+//   // updateMobileToRainy();
+//   currentParticles.value = "rain";
+//   console.log("Particles value now: " + currentParticles.value);
+// }, 5000);
 </script>
 
 <style scoped>
@@ -276,6 +276,7 @@ setTimeout(() => {
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 2;
 }
 
 /** SVG Fills */
