@@ -9,9 +9,9 @@ const emit = defineEmits<{
     <span class="icon">
       <font-awesome-icon icon="fa-solid fa-cloud-rain" />
     </span>
-    <p class="weather shadow">Sunny</p>
-    <p class="temp shadow">34</p>
-    <p class="location shadow">Manila</p>
+    <p class="weather shadow">Rain</p>
+    <p class="temp shadow">23</p>
+    <p class="location shadow">Tokyo</p>
     <input placeholder="Search city" class="search" type="text" />
     <button @click="$emit('moreInfoClicked')">View more information</button>
   </div>

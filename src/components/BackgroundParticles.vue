@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { loadFull } from "tsparticles";
 import type { Container, Engine } from "tsparticles-engine";
 import rainConfig from "../particles/rain.json";
@@ -28,5 +27,3 @@ const particlesLoaded = async (container: Container) => {
     :key="weather"
   />
 </template>
-
-<style scoped></style>
