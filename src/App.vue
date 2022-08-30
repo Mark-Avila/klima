@@ -4,7 +4,9 @@ import PageFooter from "./components/PageFooter.vue";
 import PageBackground from "./components/PageBackground.vue";
 import PageInfo from "./components/PageInfo.vue";
 import PageMap from "./components/PageMap.vue";
-import { ref } from "vue";
+import axios from "axios";
+import { onMounted, provide, ref } from "vue";
+import type { Current, Forecast } from "./types";
 
 const isOpen = ref({
   home: true,
@@ -21,6 +23,46 @@ const handleIsOpen = (pageToOpen: "home" | "info" | "map") => {
 
   isOpen.value = { ...initialState, [pageToOpen]: true };
 };
+
+const current = ref<Current | []>([]);
+const forecast = ref<Forecast | []>([]);
+const loading = ref<boolean>(true);
+
+provide("current", current);
+provide("forecast", forecast);
+provide("loading", loading);
+
+onMounted(() => {
+  axios
+    .get<Current>("https://api.openweathermap.org/data/2.5/weather", {
+      params: {
+        lat: 14,
+        lon: 120,
+        appid: import.meta.env.VITE_OWMKEY,
+        units: "metric",
+      },
+    })
+    .then((response) => {
+      current.value = response.data;
+      return axios.get<Forecast>(
+        "https://api.openweathermap.org/data/2.5/forecast",
+        {
+          params: {
+            lat: 14,
+            lon: 120,
+            appid: import.meta.env.VITE_OWMKEY,
+            units: "metric",
+            cnt: 5,
+          },
+        }
+      );
+    })
+    .then((response) => {
+      forecast.value = response.data;
+    })
+    .then(() => (loading.value = false))
+    .catch((error) => console.error("Failed to fetch weather data\n" + error));
+});
 </script>
 
 <template>
@@ -28,15 +70,25 @@ const handleIsOpen = (pageToOpen: "home" | "info" | "map") => {
     <PageBackground />
 
     <div class="content">
-      <PageHome v-if="isOpen.home" @more-info-clicked="handleIsOpen('info')" />
+      <PageHome
+        v-if="isOpen.home && !loading"
+        @more-info-clicked="handleIsOpen('info')"
+      />
 
       <PageInfo
-        v-if="isOpen.info"
+        v-if="isOpen.info && !loading"
         @back-clicked="handleIsOpen('home')"
         @map-clicked="handleIsOpen('map')"
       />
 
-      <PageMap v-if="isOpen.map" @back-clicked="handleIsOpen('info')" />
+      <PageMap
+        v-if="isOpen.map && !loading"
+        @back-clicked="handleIsOpen('info')"
+      />
+
+      <div class="loader" v-else>
+        <p>Loading</p>
+      </div>
     </div>
 
     <PageFooter />

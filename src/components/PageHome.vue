@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import type { Current } from "@/types";
+import { inject } from "vue";
 const emit = defineEmits<{
   (e: "moreInfoClicked", pageToOpen: "home" | "info" | "map"): void;
 }>();
+
+const current: Current | undefined = inject("current");
 </script>
 
 <template>
@@ -9,9 +13,9 @@ const emit = defineEmits<{
     <span class="icon">
       <font-awesome-icon icon="fa-solid fa-cloud-rain" />
     </span>
-    <p class="weather shadow">Rain</p>
-    <p class="temp shadow">23</p>
-    <p class="location shadow">Tokyo</p>
+    <p class="weather shadow">{{ current?.weather[0].main }}</p>
+    <p class="temp shadow">{{ Math.round(current ? current.main.temp : 0) }}</p>
+    <p class="location shadow">{{ current?.sys.country }}</p>
     <input placeholder="Search city" class="search" type="text" />
     <button @click="$emit('moreInfoClicked')">View more information</button>
   </div>

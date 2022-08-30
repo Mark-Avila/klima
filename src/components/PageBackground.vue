@@ -228,14 +228,14 @@ const skyBotMobile = ref("#B0ECFF");
 //Desktop colors
 const frontMnt = ref("#44797D");
 const backMnt = ref("#97B7BE");
-const frontTrees = ref("#00625A");
-const backTrees = ref("#005459");
+const frontTrees = ref("#013F3A");
+const backTrees = ref("#005250");
 const upperLake = ref("#588588");
 const lowerLake = ref("#5EA1AA");
 const clouds = ref("white");
 const skyTop = ref("#2DD0DB");
 const skyBottom = ref("#FFFFFF");
-const fog = ref(0.5);
+const fog = ref(0);
 
 const changeToDefault = () => {
   //Mobile colors
@@ -248,8 +248,8 @@ const changeToDefault = () => {
   //Desktop colors
   frontMnt.value = "#44797D";
   backMnt.value = "#97B7BE";
-  frontTrees.value = "#00625A";
-  backTrees.value = "#005459";
+  frontTrees.value = "#013F3A";
+  backTrees.value = "#005250";
   upperLake.value = "#588588";
   lowerLake.value = "#5EA1AA";
   clouds.value = "white";
@@ -257,6 +257,10 @@ const changeToDefault = () => {
   skyBottom.value = "white";
 
   currentParticles.value = "";
+};
+
+const changeToFoggy = () => {
+  fog.value = 0.5;
 };
 
 const changeToCloudy = () => {
@@ -325,10 +329,6 @@ const changeToSnowy = () => {
 
   currentParticles.value = "snow";
 };
-
-setTimeout(() => {
-  changeToRainy();
-}, 5000);
 </script>
 
 <style scoped>
