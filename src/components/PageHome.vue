@@ -44,7 +44,9 @@ const onInput = debounce((event: Event) => {
       <font-awesome-icon icon="fa-solid fa-cloud-rain" />
     </span>
     <p class="weather shadow">{{ current?.weather[0].main }}</p>
-    <p class="temp shadow">{{ Math.round(current ? current.main.temp : 0) }}</p>
+    <p class="temp shadow">
+      {{ Math.round(current ? current.main.temp : 0) }}°
+    </p>
     <p class="location shadow">{{ city }}, {{ current?.sys.country }}</p>
     <div class="input__wrapper">
       <input

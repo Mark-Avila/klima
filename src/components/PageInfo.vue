@@ -3,11 +3,17 @@ import InfoBox from "./InfoBox.vue";
 import InfoGeneral from "./InfoGeneral.vue";
 import InfoForecast from "./InfoForecast.vue";
 import Weathermap from "./WeatherMap.vue";
+import type { Current, Forecast } from "@/types";
+import { inject } from "vue";
 
 const emit = defineEmits<{
   (e: "backClicked", pageToOpen: "home" | "info" | "map"): void;
   (e: "mapClicked", pageToOpen: "home" | "info" | "map"): void;
 }>();
+
+const current: Current | undefined = inject("current");
+const forecast: Forecast | undefined = inject("forecast");
+const city: string | undefined = inject("city");
 </script>
 
 <template>
@@ -19,10 +25,20 @@ const emit = defineEmits<{
     </div>
     <div class="info__list">
       <InfoBox id="general">
-        <InfoGeneral />
+        <InfoGeneral
+          :timezone="current?.timezone || 0"
+          :city="city || 'NA'"
+          :country="current?.sys.country || 'NA'"
+          :feels-like="current?.main.feels_like || 0"
+          :temp="current?.main.temp || 0"
+          :windSpeed="current?.wind.speed || 0"
+          :pressure="current?.main.pressure || 0"
+          :humidity="current?.main.humidity || 0"
+          :visibility="current?.visibility || 0"
+        />
       </InfoBox>
       <InfoBox id="forecast">
-        <InfoForecast />
+        <InfoForecast :forecastData="forecast" v-if="forecast" />
       </InfoBox>
       <span class="weathermap">
         <Weathermap />

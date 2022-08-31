@@ -1,12 +1,20 @@
+<script setup lang="ts">
+import type { Forecast } from "@/types";
+
+defineProps<{
+  forecastData: Forecast;
+}>();
+</script>
+
 <template>
   <div class="wrapper">
-    <div class="item" v-for="index in 5" :key="index">
+    <div class="item" v-for="(item, index) in forecastData.list" :key="index">
       <p class="item__day text__less">Thur</p>
       <span class="icon">
         <font-awesome-icon icon="fa-solid fa-cloud-rain" />
       </span>
-      <p class="item__weather text__less">Rain</p>
-      <p class="item__temp text__less">32 C</p>
+      <p class="item__weather text__less">{{ item.weather[0].main }}</p>
+      <p class="item__temp text__less">{{ Math.round(item.main.temp) }} C</p>
     </div>
   </div>
 </template>

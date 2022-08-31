@@ -1,31 +1,45 @@
+<script setup lang="ts">
+defineProps<{
+  timezone: number;
+  city: string;
+  country: string;
+  feelsLike: number;
+  temp: number;
+  windSpeed: number;
+  pressure: number;
+  humidity: number;
+  visibility: number;
+}>();
+</script>
+
 <template>
   <div class="wrapper">
     <div class="upper">
       <div>
-        <p id="current-time" class="text__less">00:00:00AM</p>
-        <p id="current-loc">Manila, PH</p>
-        <p id="current-feels" class="text__less">Feels like 34</p>
+        <p id="current-time" class="text__less">{{ timezone }}</p>
+        <p id="current-loc">{{ city }}, {{ country }}</p>
+        <p id="current-feels" class="text__less">Feels like {{ feelsLike }}</p>
       </div>
       <div>
-        <p id="current-temp">37</p>
+        <p id="current-temp">{{ Math.round(temp) }}°</p>
       </div>
     </div>
     <div class="lower">
       <div class="lower__item">
         <p class="lower__title text__less">Wind Speed</p>
-        <p class="lower__data" id="wind-data">0 m/s</p>
+        <p class="lower__data" id="wind-data">{{ windSpeed }} m/s</p>
       </div>
       <div class="lower__item">
         <p class="lower__title text__less">Pressure</p>
-        <p class="lower__data" id="pressure-data">0 pHA</p>
+        <p class="lower__data" id="pressure-data">{{ pressure }} pHA</p>
       </div>
       <div class="lower__item">
         <p class="lower__title text__less">Humidity</p>
-        <p class="lower__data" id="humid-data">0%</p>
+        <p class="lower__data" id="humid-data">{{ humidity }}%</p>
       </div>
       <div class="lower__item">
         <p class="lower__title text__less">Visibility</p>
-        <p class="lower__data" id="vis-data">0 km</p>
+        <p class="lower__data" id="vis-data">{{ visibility / 1000 }} km</p>
       </div>
     </div>
   </div>
