@@ -99,3 +99,13 @@ export interface Forecast {
     sunset: number;
   };
 }
+
+export interface Suggestion {
+  name: string;
+  local_names: {
+    en: string;
+  };
+  lat: string;
+  lon: string;
+  country: string;
+}

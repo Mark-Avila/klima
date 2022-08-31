@@ -6,7 +6,19 @@ import PageInfo from "./components/PageInfo.vue";
 import PageMap from "./components/PageMap.vue";
 import axios from "axios";
 import { onMounted, provide, ref } from "vue";
-import type { Current, Forecast } from "./types";
+import type { Current, Forecast, Suggestion } from "./types";
+
+const city = ref<string>("");
+const current = ref<Current | []>([]);
+const suggestions = ref<Suggestion[] | []>([]);
+const forecast = ref<Forecast | []>([]);
+const loading = ref<boolean>(true);
+
+provide("current", current);
+provide("suggestions", suggestions);
+provide("forecast", forecast);
+provide("loading", loading);
+provide("city", city);
 
 const isOpen = ref({
   home: true,
@@ -24,20 +36,12 @@ const handleIsOpen = (pageToOpen: "home" | "info" | "map") => {
   isOpen.value = { ...initialState, [pageToOpen]: true };
 };
 
-const current = ref<Current | []>([]);
-const forecast = ref<Forecast | []>([]);
-const loading = ref<boolean>(true);
-
-provide("current", current);
-provide("forecast", forecast);
-provide("loading", loading);
-
-onMounted(() => {
+const fetchWeatherData = (lat: number, lon: number) => {
   axios
     .get<Current>("https://api.openweathermap.org/data/2.5/weather", {
       params: {
-        lat: 14,
-        lon: 120,
+        lat: lat,
+        lon: lon,
         appid: import.meta.env.VITE_OWMKEY,
         units: "metric",
       },
@@ -48,8 +52,8 @@ onMounted(() => {
         "https://api.openweathermap.org/data/2.5/forecast",
         {
           params: {
-            lat: 14,
-            lon: 120,
+            lat: lat,
+            lon: lon,
             appid: import.meta.env.VITE_OWMKEY,
             units: "metric",
             cnt: 5,
@@ -62,6 +66,33 @@ onMounted(() => {
     })
     .then(() => (loading.value = false))
     .catch((error) => console.error("Failed to fetch weather data\n" + error));
+};
+
+const fetchLocations = (query: string) => {
+  suggestions.value = [];
+
+  if (query !== "") {
+    axios
+      .get("http://api.openweathermap.org/geo/1.0/direct", {
+        params: {
+          q: query,
+          appid: import.meta.env.VITE_OWMKEY,
+          limit: 5,
+        },
+      })
+      .then((response) => {
+        suggestions.value = response.data;
+      });
+  }
+};
+
+const initWeatherData = (lat: number, lon: number, location: string) => {
+  fetchWeatherData(lat, lon);
+  city.value = location;
+};
+
+onMounted(() => {
+  initWeatherData(14, 120, "Manila");
 });
 </script>
 
@@ -73,6 +104,8 @@ onMounted(() => {
       <PageHome
         v-if="isOpen.home && !loading"
         @more-info-clicked="handleIsOpen('info')"
+        @on-search-input="fetchLocations"
+        @on-item-click="initWeatherData"
       />
 
       <PageInfo
@@ -86,7 +119,7 @@ onMounted(() => {
         @back-clicked="handleIsOpen('info')"
       />
 
-      <div class="loader" v-else>
+      <div class="loader" v-if="loading">
         <p>Loading</p>
       </div>
     </div>
@@ -96,6 +129,8 @@ onMounted(() => {
 </template>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto:wght@400;700&display=swap");
+
 html,
 body,
 #app {
