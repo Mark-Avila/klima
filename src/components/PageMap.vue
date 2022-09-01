@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import Weathermap from "./Weathermap.vue";
+import type { Current } from "@/types";
+import { inject } from "vue";
+import Weathermap from "./WeatherMap.vue";
 const emit = defineEmits<{
   (e: "backClicked", pageToOpen: "home" | "info" | "map"): void;
 }>();
+
+const current = inject<Current>("current");
 </script>
 
 <template>
@@ -12,7 +16,10 @@ const emit = defineEmits<{
         Back
       </button>
     </div>
-    <Weathermap />
+    <Weathermap
+      :lat="current?.coord.lat || 14"
+      :lon="current?.coord.lon || 14"
+    />
   </div>
 </template>
 

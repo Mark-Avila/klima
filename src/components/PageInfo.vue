@@ -4,9 +4,9 @@ import InfoGeneral from "./InfoGeneral.vue";
 import InfoForecast from "./InfoForecast.vue";
 import Weathermap from "./WeatherMap.vue";
 import type { Current, Forecast } from "@/types";
-import { computed, inject } from "vue";
+import { inject } from "vue";
 
-const emit = defineEmits<{
+defineEmits<{
   (e: "backClicked", pageToOpen: "home" | "info" | "map"): void;
   (e: "mapClicked", pageToOpen: "home" | "info" | "map"): void;
 }>();
