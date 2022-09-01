@@ -112,7 +112,7 @@ export interface Suggestion {
 
 export type MapLayers =
   | "clouds_new"
-  | "precipitation_new"
+  | "precipitation"
   | "pressure_new"
   | "wind_new"
   | "temp_new";

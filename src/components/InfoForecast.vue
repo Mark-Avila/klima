@@ -1,15 +1,41 @@
 <script setup lang="ts">
 import type { Forecast } from "@/types";
+import { computed, toRefs } from "vue";
+import moment from "moment";
 
-defineProps<{
+const props = defineProps<{
+  timezone: number;
   forecastData: Forecast;
 }>();
+
+const { timezone } = toRefs(props);
+
+const days = computed<string[]>(() => {
+  const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const timezoneInMinutes = timezone.value / 60;
+  let startDay = moment().utcOffset(timezoneInMinutes).isoWeekday();
+
+  const finalDays: string[] = [];
+  let index = 1;
+
+  while (index !== 6) {
+    if (startDay == 6) {
+      startDay = 0;
+    } else {
+      startDay += 1;
+    }
+
+    finalDays.push(week[startDay]);
+    index++;
+  }
+  return finalDays;
+});
 </script>
 
 <template>
   <div class="wrapper">
     <div class="item" v-for="(item, index) in forecastData.list" :key="index">
-      <p class="item__day text__less">Thur</p>
+      <p class="item__day text__less">{{ days[index] }}</p>
       <span class="icon">
         <font-awesome-icon icon="fa-solid fa-cloud-rain" />
       </span>

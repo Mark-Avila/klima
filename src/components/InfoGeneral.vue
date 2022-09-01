@@ -1,5 +1,9 @@
 <script setup lang="ts">
-defineProps<{
+import moment from "moment-timezone";
+import { toRefs } from "vue";
+import { computed } from "vue";
+
+const props = defineProps<{
   timezone: number;
   city: string;
   country: string;
@@ -10,13 +14,23 @@ defineProps<{
   humidity: number;
   visibility: number;
 }>();
+
+const { timezone } = toRefs(props);
+
+const fullDate = computed<string>(() => {
+  const timezoneInMinutes = timezone.value / 60;
+  const currTime = moment()
+    .utcOffset(timezoneInMinutes)
+    .format("MMMM Do YYYY, h:mm a");
+  return currTime;
+});
 </script>
 
 <template>
   <div class="wrapper">
     <div class="upper">
       <div>
-        <p id="current-time" class="text__less">{{ timezone }}</p>
+        <p id="current-time" class="text__less">{{ fullDate }}</p>
         <p id="current-loc">{{ city }}, {{ country }}</p>
         <p id="current-feels" class="text__less">Feels like {{ feelsLike }}</p>
       </div>

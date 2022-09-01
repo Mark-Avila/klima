@@ -38,7 +38,11 @@ const city: string | undefined = inject("city");
         />
       </InfoBox>
       <InfoBox id="forecast">
-        <InfoForecast :forecastData="forecast" v-if="forecast" />
+        <InfoForecast
+          :forecastData="forecast"
+          :timezone="current?.timezone || 0"
+          v-if="forecast"
+        />
       </InfoBox>
       <span class="weathermap">
         <Weathermap
