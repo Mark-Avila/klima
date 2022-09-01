@@ -109,3 +109,10 @@ export interface Suggestion {
   lon: string;
   country: string;
 }
+
+export type MapLayers =
+  | "clouds_new"
+  | "precipitation_new"
+  | "pressure_new"
+  | "wind_new"
+  | "temp_new";

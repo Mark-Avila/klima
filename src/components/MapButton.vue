@@ -1,5 +1,11 @@
+<script setup lang="ts">
+const emit = defineEmits<{
+  (e: "buttonClicked", newMode: string): void;
+}>();
+</script>
+
 <template>
-  <button>
+  <button @click="$emit('buttonClicked')">
     <slot>NA</slot>
   </button>
 </template>

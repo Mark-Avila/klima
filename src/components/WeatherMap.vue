@@ -1,23 +1,36 @@
 <script setup lang="ts">
 import MapButton from "./MapButton.vue";
 import LeafletMap from "./LeafletMap.vue";
+import { ref } from "vue";
+import type { MapLayers } from "@/types";
+
+defineProps<{
+  lat: number;
+  lon: number;
+}>();
+
+const mode = ref<MapLayers>("precipitation");
+
+const changeMode = (newMode: MapLayers) => {
+  mode.value = newMode;
+};
 </script>
 
 <template>
   <div class="map__body">
-    <LeafletMap />
+    <LeafletMap :layer="mode" :lat="lat" :lon="lon" :key="mode" />
     <div class="map__buttons">
-      <MapButton>
-        <font-awesome-icon icon="fa-solid fa-cloud-rain" />
+      <MapButton @button-clicked="changeMode('precipitation')">
+        <font-awesome-icon icon="fa-solid fa-droplet" />
       </MapButton>
-      <MapButton>
-        <font-awesome-icon icon="fa-solid fa-cloud-rain" />
+      <MapButton @button-clicked="changeMode('pressure_new')">
+        <font-awesome-icon icon="fa-solid fa-weight" />
       </MapButton>
-      <MapButton>
-        <font-awesome-icon icon="fa-solid fa-cloud-rain" />
+      <MapButton @button-clicked="changeMode('wind_new')">
+        <font-awesome-icon icon="fa-solid fa-wind" />
       </MapButton>
-      <MapButton>
-        <font-awesome-icon icon="fa-solid fa-cloud-rain" />
+      <MapButton @button-clicked="changeMode('temp_new')">
+        <font-awesome-icon icon="fa-solid fa-temperature-quarter" />
       </MapButton>
     </div>
   </div>

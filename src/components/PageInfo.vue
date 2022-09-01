@@ -4,7 +4,7 @@ import InfoGeneral from "./InfoGeneral.vue";
 import InfoForecast from "./InfoForecast.vue";
 import Weathermap from "./WeatherMap.vue";
 import type { Current, Forecast } from "@/types";
-import { inject } from "vue";
+import { computed, inject } from "vue";
 
 const emit = defineEmits<{
   (e: "backClicked", pageToOpen: "home" | "info" | "map"): void;
@@ -41,7 +41,10 @@ const city: string | undefined = inject("city");
         <InfoForecast :forecastData="forecast" v-if="forecast" />
       </InfoBox>
       <span class="weathermap">
-        <Weathermap />
+        <Weathermap
+          :lat="current?.coord.lat || 14"
+          :lon="current?.coord.lon || 120"
+        />
       </span>
     </div>
     <button @click="$emit('mapClicked')" id="weathermap-btn">
