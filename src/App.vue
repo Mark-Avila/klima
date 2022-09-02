@@ -5,7 +5,7 @@ import PageBackground from "./components/PageBackground.vue";
 import PageInfo from "./components/PageInfo.vue";
 import PageMap from "./components/PageMap.vue";
 import axios from "axios";
-import { onMounted, provide, ref } from "vue";
+import { computed, onMounted, provide, ref } from "vue";
 import type { Current, Forecast, Suggestion } from "./types";
 
 const city = ref<string>("");
@@ -13,12 +13,15 @@ const current = ref<Current | []>([]);
 const suggestions = ref<Suggestion[] | []>([]);
 const forecast = ref<Forecast | []>([]);
 const loading = ref<boolean>(true);
+const initialLoading = ref<boolean>(true);
 
 provide("current", current);
 provide("suggestions", suggestions);
 provide("forecast", forecast);
 provide("loading", loading);
 provide("city", city);
+
+const backgroundRef = ref();
 
 const isOpen = ref({
   home: true,
@@ -37,6 +40,8 @@ const handleIsOpen = (pageToOpen: "home" | "info" | "map") => {
 };
 
 const fetchWeatherData = (lat: number, lon: number) => {
+  loading.value = true;
+
   axios
     .get<Current>("https://api.openweathermap.org/data/2.5/weather", {
       params: {
@@ -48,6 +53,7 @@ const fetchWeatherData = (lat: number, lon: number) => {
     })
     .then((response) => {
       current.value = response.data;
+      backgroundRef.value.handleUpdate(response.data.weather[0].id);
       return axios.get<Forecast>(
         "https://api.openweathermap.org/data/2.5/forecast",
         {
@@ -64,7 +70,10 @@ const fetchWeatherData = (lat: number, lon: number) => {
     .then((response) => {
       forecast.value = response.data;
     })
-    .then(() => (loading.value = false))
+    .then(() => {
+      initialLoading.value = false;
+      loading.value = false;
+    })
     .catch((error) => console.error("Failed to fetch weather data\n" + error));
 };
 
@@ -98,28 +107,28 @@ onMounted(() => {
 
 <template>
   <main>
-    <PageBackground />
+    <PageBackground ref="backgroundRef" />
 
     <div class="content">
       <PageHome
-        v-if="isOpen.home && !loading"
+        v-if="isOpen.home && !initialLoading"
         @more-info-clicked="handleIsOpen('info')"
         @on-search-input="fetchLocations"
         @on-item-click="initWeatherData"
       />
 
       <PageInfo
-        v-if="isOpen.info && !loading"
+        v-if="isOpen.info && !initialLoading"
         @back-clicked="handleIsOpen('home')"
         @map-clicked="handleIsOpen('map')"
       />
 
       <PageMap
-        v-if="isOpen.map && !loading"
+        v-if="isOpen.map && !initialLoading"
         @back-clicked="handleIsOpen('info')"
       />
 
-      <div class="loader" v-if="loading">
+      <div class="loader" v-if="initialLoading">
         <p>Loading</p>
       </div>
     </div>

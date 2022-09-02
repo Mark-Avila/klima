@@ -11,17 +11,12 @@ const props = defineProps<{
 const particlesInit = async (engine: Engine) => {
   await loadFull(engine);
 };
-
-const particlesLoaded = async (container: Container) => {
-  console.log("Particles container loaded", container);
-};
 </script>
 
 <template>
   <Particles
     id="tsparticles"
     :particlesInit="particlesInit"
-    :particlesLoaded="particlesLoaded"
     :options="weather === 'rain' ? rainConfig : snowConfig"
     v-if="weather !== ''"
     :key="weather"
