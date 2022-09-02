@@ -32,7 +32,9 @@ const fullDate = computed<string>(() => {
       <div>
         <p id="current-time" class="text__less">{{ fullDate }}</p>
         <p id="current-loc">{{ city }}, {{ country }}</p>
-        <p id="current-feels" class="text__less">Feels like {{ feelsLike }}</p>
+        <p id="current-feels" class="text__less">
+          Feels like <span>{{ feelsLike }}°</span>
+        </p>
       </div>
       <div>
         <p id="current-temp">{{ Math.round(temp) }}°</p>
@@ -74,6 +76,11 @@ const fullDate = computed<string>(() => {
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
   margin: 0.5rem 0;
+}
+
+#current-feels > span {
+  font-weight: bold;
+  color: white;
 }
 
 #current-temp {

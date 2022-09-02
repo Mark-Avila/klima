@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Current, Suggestion } from "@/types";
+import useIcon from "@/use/useIcon";
 import { inject, ref } from "vue";
 const emit = defineEmits<{
   (e: "moreInfoClicked", pageToOpen: "home" | "info" | "map"): void;
@@ -41,9 +42,11 @@ const onInput = debounce((event: Event) => {
 <template>
   <div class="wrapper">
     <span class="icon">
-      <font-awesome-icon icon="fa-solid fa-cloud-rain" />
+      <font-awesome-icon
+        :icon="'fa-solid ' + useIcon(current?.weather[0].id || 800)"
+      />
     </span>
-    <p class="weather shadow">{{ current?.weather[0].main }}</p>
+    <p class="weather shadow">{{ current?.weather[0].description || "NA" }}</p>
     <p class="temp shadow">
       {{ Math.round(current ? current.main.temp : 0) }}°
     </p>
@@ -172,6 +175,7 @@ const onInput = debounce((event: Event) => {
   padding: 0;
   margin: 0;
   font-family: "Montserrat", sans-serif;
+  text-transform: capitalize;
 }
 
 @media only screen and (min-width: 1024px) {

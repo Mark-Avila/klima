@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Forecast } from "@/types";
 import { computed, toRefs } from "vue";
+import useIcon from "@/use/useIcon";
 import moment from "moment";
 
 const props = defineProps<{
@@ -37,7 +38,7 @@ const days = computed<string[]>(() => {
     <div class="item" v-for="(item, index) in forecastData.list" :key="index">
       <p class="item__day text__less">{{ days[index] }}</p>
       <span class="icon">
-        <font-awesome-icon icon="fa-solid fa-cloud-rain" />
+        <font-awesome-icon :icon="'fa-solid ' + useIcon(item.weather[0].id)" />
       </span>
       <p class="item__weather text__less">{{ item.weather[0].main }}</p>
       <p class="item__temp text__less">{{ Math.round(item.main.temp) }} C</p>

@@ -92,7 +92,7 @@ const initWeatherData = (lat: number, lon: number, location: string) => {
 };
 
 onMounted(() => {
-  initWeatherData(14, 120, "Manila");
+  initWeatherData(14.5995, 120.9842, "Manila");
 });
 </script>
 

@@ -2,12 +2,17 @@ import { createApp } from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
-  faCloudRain,
   faDroplet,
   faWeight,
   faWind,
   faTemperatureQuarter,
-  faCloud,
+  faCloud, //Clouds
+  faCloudRain, //Drizzle
+  faCloudShowersHeavy, //Rain
+  faCloudBolt, //Thunderstorm
+  faSnowflake, //Snow
+  faSmog, //Haze / smog / fog
+  faSun, //Clear
 } from "@fortawesome/free-solid-svg-icons";
 import Particles from "vue3-particles";
 import App from "./App.vue";
@@ -18,7 +23,12 @@ library.add(
   faWeight,
   faWind,
   faTemperatureQuarter,
-  faCloud
+  faCloud,
+  faCloudShowersHeavy,
+  faCloudBolt,
+  faSnowflake,
+  faSmog,
+  faSun
 );
 
 createApp(App)

@@ -20,16 +20,28 @@ const changeMode = (newMode: MapLayers) => {
   <div class="map__body">
     <LeafletMap :layer="mode" :lat="lat" :lon="lon" :key="mode" />
     <div class="map__buttons">
-      <MapButton @button-clicked="changeMode('precipitation')">
+      <MapButton
+        placeholder="Precipitation"
+        @button-clicked="changeMode('precipitation')"
+      >
         <font-awesome-icon icon="fa-solid fa-droplet" />
       </MapButton>
-      <MapButton @button-clicked="changeMode('pressure_new')">
+      <MapButton
+        placeholder="Pressure"
+        @button-clicked="changeMode('pressure_new')"
+      >
         <font-awesome-icon icon="fa-solid fa-weight" />
       </MapButton>
-      <MapButton @button-clicked="changeMode('wind_new')">
+      <MapButton
+        placeholder="Wind Speed"
+        @button-clicked="changeMode('wind_new')"
+      >
         <font-awesome-icon icon="fa-solid fa-wind" />
       </MapButton>
-      <MapButton @button-clicked="changeMode('temp_new')">
+      <MapButton
+        placeholder="Temperature"
+        @button-clicked="changeMode('temp_new')"
+      >
         <font-awesome-icon icon="fa-solid fa-temperature-quarter" />
       </MapButton>
     </div>
