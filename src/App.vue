@@ -5,8 +5,9 @@ import PageBackground from "./components/PageBackground.vue";
 import PageInfo from "./components/PageInfo.vue";
 import PageMap from "./components/PageMap.vue";
 import axios from "axios";
-import { computed, onMounted, provide, ref } from "vue";
+import { onMounted, provide, ref } from "vue";
 import type { Current, Forecast, Suggestion } from "./types";
+import useGeoLocation from "./use/useGeoLocation";
 
 const city = ref<string>("");
 const current = ref<Current | []>([]);
@@ -69,6 +70,7 @@ const fetchWeatherData = (lat: number, lon: number) => {
     })
     .then((response) => {
       forecast.value = response.data;
+      city.value = `${response.data.city.name}, ${response.data.city.country}`;
     })
     .then(() => {
       initialLoading.value = false;
@@ -95,13 +97,24 @@ const fetchLocations = (query: string) => {
   }
 };
 
-const initWeatherData = (lat: number, lon: number, location: string) => {
+const initWeatherData = (lat: number, lon: number) => {
   fetchWeatherData(lat, lon);
-  city.value = location;
 };
 
 onMounted(() => {
-  initWeatherData(14.5995, 120.9842, "Manila");
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        initWeatherData(position.coords.latitude, position.coords.longitude);
+      },
+      () => {
+        initWeatherData(34.0522, -118.2437);
+      }
+    );
+  } else {
+    //Los Angeles, CA
+    initWeatherData(34.0522, -118.2437);
+  }
 });
 </script>
 

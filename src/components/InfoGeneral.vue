@@ -6,7 +6,6 @@ import { computed } from "vue";
 const props = defineProps<{
   timezone: number;
   city: string;
-  country: string;
   feelsLike: number;
   temp: number;
   windSpeed: number;
@@ -31,7 +30,7 @@ const fullDate = computed<string>(() => {
     <div class="upper">
       <div>
         <p id="current-time" class="text__less">{{ fullDate }}</p>
-        <p id="current-loc">{{ city }}, {{ country }}</p>
+        <p id="current-loc">{{ city }}</p>
         <p id="current-feels" class="text__less">
           Feels like <span>{{ feelsLike }}°</span>
         </p>

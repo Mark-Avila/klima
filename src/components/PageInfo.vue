@@ -29,7 +29,6 @@ const city: string | undefined = inject("city");
         <InfoGeneral
           :timezone="current?.timezone || 0"
           :city="city || 'NA'"
-          :country="current?.sys.country || 'NA'"
           :feels-like="current?.main.feels_like || 0"
           :temp="current?.main.temp || 0"
           :windSpeed="current?.wind.speed || 0"

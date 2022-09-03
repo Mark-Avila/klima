@@ -50,7 +50,7 @@ const onInput = debounce((event: Event) => {
     <p class="temp shadow">
       {{ Math.round(current ? current.main.temp : 0) }}°
     </p>
-    <p class="location shadow">{{ city }}, {{ current?.sys.country }}</p>
+    <p class="location shadow">{{ city }}</p>
     <div class="input__wrapper">
       <input
         placeholder="Search city"
