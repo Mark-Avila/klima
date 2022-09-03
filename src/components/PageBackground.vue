@@ -233,7 +233,7 @@ const currentParticles = ref<"rain" | "snow" | "">("");
 const frontMntMobile = ref("#44797D");
 const backMntMobile = ref("#97B7BE");
 const cloudsMobile = ref("white");
-const skyTopMobile = ref("#2DD0DB");
+const skyTopMobile = ref("#0085FF");
 const skyBotMobile = ref("#B0ECFF");
 
 //Desktop colors
@@ -244,7 +244,7 @@ const backTrees = ref("#005250");
 const upperLake = ref("#588588");
 const lowerLake = ref("#5EA1AA");
 const clouds = ref("white");
-const skyTop = ref("#2DD0DB");
+const skyTop = ref("#0085FF");
 const skyBottom = ref("#FFFFFF");
 const fog = ref(0);
 
@@ -253,7 +253,7 @@ const changeToDefault = () => {
   frontMntMobile.value = "#44797D";
   backMntMobile.value = "#97B7BE";
   cloudsMobile.value = "white";
-  skyTopMobile.value = "#049CCC";
+  skyTopMobile.value = "#0085FF";
   skyBotMobile.value = "#B0ECFF";
 
   //Desktop colors
@@ -264,7 +264,7 @@ const changeToDefault = () => {
   upperLake.value = "#588588";
   lowerLake.value = "#5EA1AA";
   clouds.value = "white";
-  skyTop.value = "#8EF8FF";
+  skyTop.value = "#0085FF";
   skyBottom.value = "white";
 
   currentParticles.value = "";

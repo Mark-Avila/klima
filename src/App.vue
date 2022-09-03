@@ -7,7 +7,7 @@ import PageMap from "./components/PageMap.vue";
 import axios from "axios";
 import { onMounted, provide, ref } from "vue";
 import type { Current, Forecast, Suggestion } from "./types";
-import useGeoLocation from "./use/useGeoLocation";
+import { Motion, Presence } from "motion/vue";
 
 const city = ref<string>("");
 const current = ref<Current | []>([]);
@@ -15,6 +15,7 @@ const suggestions = ref<Suggestion[] | []>([]);
 const forecast = ref<Forecast | []>([]);
 const loading = ref<boolean>(true);
 const initialLoading = ref<boolean>(true);
+const initialAnimation = ref<boolean>(true);
 
 provide("current", current);
 provide("suggestions", suggestions);
@@ -123,26 +124,48 @@ onMounted(() => {
     <PageBackground ref="backgroundRef" />
 
     <div class="content">
-      <PageHome
-        v-if="isOpen.home && !initialLoading"
-        @more-info-clicked="handleIsOpen('info')"
-        @on-search-input="fetchLocations"
-        @on-item-click="initWeatherData"
-      />
+      <Presence :exit-before-enter="true">
+        <Motion
+          :initial="initialAnimation ? { opacity: 0 } : { x: -400, opacity: 0 }"
+          :animate="initialAnimation ? { opacity: 1 } : { x: 0, opacity: 1 }"
+          :exit="{ x: -400, opacity: 0 }"
+          @motioncomplete="() => (initialAnimation = false)"
+          class="motion__wrapper"
+          v-if="isOpen.home && !initialLoading"
+        >
+          <PageHome
+            @more-info-clicked="handleIsOpen('info')"
+            @on-search-input="fetchLocations"
+            @on-item-click="initWeatherData"
+          />
+        </Motion>
 
-      <PageInfo
-        v-if="isOpen.info && !initialLoading"
-        @back-clicked="handleIsOpen('home')"
-        @map-clicked="handleIsOpen('map')"
-      />
+        <Motion
+          :initial="{ x: 400, opacity: 0 }"
+          :animate="{ x: 0, opacity: 1 }"
+          :exit="{ x: 400, opacity: 0 }"
+          class="motion__wrapper"
+          v-if="isOpen.info && !initialLoading"
+        >
+          <PageInfo
+            @back-clicked="handleIsOpen('home')"
+            @map-clicked="handleIsOpen('map')"
+          />
+        </Motion>
 
-      <PageMap
-        v-if="isOpen.map && !initialLoading"
-        @back-clicked="handleIsOpen('info')"
-      />
+        <Motion
+          :initial="{ y: 400, opacity: 0 }"
+          :animate="{ y: 0, opacity: 1 }"
+          :exit="{ y: 400, opacity: 0 }"
+          class="motion__wrapper"
+          v-if="isOpen.map && !initialLoading"
+        >
+          <PageMap @back-clicked="handleIsOpen('info')" />
+        </Motion>
+      </Presence>
 
       <div class="loader" v-if="initialLoading">
-        <p>Loading</p>
+        <font-awesome-icon icon="fa-solid fa-hurricane" />
       </div>
     </div>
 
@@ -159,6 +182,14 @@ body,
   box-sizing: border-box;
   margin: 0;
   height: 100%;
+}
+
+.motion__wrapper {
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  max-width: 1400px;
+  max-height: 1200px;
 }
 
 main {
@@ -179,6 +210,44 @@ main {
   align-items: center;
   overflow: hidden;
   box-sizing: border-box;
+}
+
+.loader {
+  z-index: 3;
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-size: 2rem;
+  animation: 1s spin infinite linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(-360deg);
+  }
+}
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(-360deg);
+  }
 }
 
 .shadow {

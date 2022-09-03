@@ -14,6 +14,7 @@ import {
   faSmog, //Haze / smog / fog
   faSun, //Clear
   faAngleLeft,
+  faHurricane,
 } from "@fortawesome/free-solid-svg-icons";
 import Particles from "vue3-particles";
 import App from "./App.vue";
@@ -30,7 +31,8 @@ library.add(
   faSnowflake,
   faSmog,
   faSun,
-  faAngleLeft
+  faAngleLeft,
+  faHurricane
 );
 
 createApp(App)

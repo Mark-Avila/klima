@@ -1,10 +1,11 @@
 {
   "particles": {
+    "fpsLimit": 12,
     "number": {
-      "value": 80,
+      "value": 30,
       "density": {
-        "enable": true,
-        "value_area": 800
+        "enable": false,
+        "value_area": 1000
       }
     },
     "color": {
@@ -54,7 +55,7 @@
     },
     "move": {
       "enable": true,
-      "speed": 30,
+      "speed": 24,
       "direction": "bottom",
       "random": false,
       "straight": true,

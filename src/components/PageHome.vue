@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Motion } from "motion/vue";
 import type { Current, Suggestion } from "@/types";
 import useIcon from "@/use/useIcon";
 import { inject, ref } from "vue";
@@ -87,11 +88,13 @@ const onInput = debounce((event: Event) => {
 <style scoped>
 .wrapper {
   z-index: 3;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100%;
   color: white;
-  padding-bottom: 3rem;
 }
 
 .icon {
@@ -125,7 +128,7 @@ const onInput = debounce((event: Event) => {
 .search__suggestions {
   position: absolute;
   margin: 0;
-  margin-top: -15px;
+  margin-top: -20px;
   border-radius: 0 0 12px 12px;
   list-style-type: none;
   display: flex;
@@ -148,7 +151,9 @@ const onInput = debounce((event: Event) => {
   border: none;
   outline: none;
   width: 100%;
-  padding: 0.7rem 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
   text-align: left;
   background: none;
 }

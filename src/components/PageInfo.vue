@@ -62,7 +62,7 @@ const city: string | undefined = inject("city");
   height: 100%;
   width: 100%;
   max-width: 1400px;
-  max-height: 700px;
+  max-height: 600px;
   z-index: 2;
   display: flex;
   flex-direction: column;

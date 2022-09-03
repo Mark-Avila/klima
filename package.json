@@ -17,6 +17,7 @@
     "axios": "^0.27.2",
     "leaflet": "^1.8.0",
     "moment-timezone": "^0.5.37",
+    "motion": "^10.14.1",
     "tsparticles": "^2.2.4",
     "tsparticles-engine": "^2.2.4",
     "vue": "^3.2.37",
