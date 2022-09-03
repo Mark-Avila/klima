@@ -20,7 +20,8 @@ const city: string | undefined = inject("city");
   <div class="info">
     <div class="info__back__wrapper">
       <button @click="$emit('backClicked')" class="info__back__button">
-        Back
+        <font-awesome-icon icon="fa-solid fa-angle-left" />
+        <span>Back</span>
       </button>
     </div>
     <div class="info__list">
@@ -61,6 +62,8 @@ const city: string | undefined = inject("city");
 .info {
   height: 100%;
   width: 100%;
+  max-width: 1400px;
+  max-height: 700px;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -80,6 +83,10 @@ const city: string | undefined = inject("city");
   color: white;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.info__back__button > span {
+  margin-left: 0.5rem;
 }
 
 .info__list {
@@ -167,4 +174,11 @@ const city: string | undefined = inject("city");
     padding: 5rem 2rem;
   }
 }
+
+/* @media only screen and (min-width: 1600px) {
+  .info {
+    width: 60%;
+    height: 70%;
+  }
+} */
 </style>

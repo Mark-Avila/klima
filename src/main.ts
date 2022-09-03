@@ -13,6 +13,7 @@ import {
   faSnowflake, //Snow
   faSmog, //Haze / smog / fog
   faSun, //Clear
+  faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import Particles from "vue3-particles";
 import App from "./App.vue";
@@ -28,7 +29,8 @@ library.add(
   faCloudBolt,
   faSnowflake,
   faSmog,
-  faSun
+  faSun,
+  faAngleLeft
 );
 
 createApp(App)
