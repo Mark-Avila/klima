@@ -3,6 +3,7 @@ import { Motion } from "motion/vue";
 import type { Current, Suggestion } from "@/types";
 import useIcon from "@/use/useIcon";
 import { inject, ref } from "vue";
+import HomeInput from "./HomeInput.vue";
 const emit = defineEmits<{
   (e: "moreInfoClicked", pageToOpen: "home" | "info" | "map"): void;
   (e: "onSearchInput", query: string): void;
@@ -52,35 +53,16 @@ const onInput = debounce((event: Event) => {
       {{ Math.round(current ? current.main.temp : 0) }}°
     </p>
     <p class="location shadow">{{ city }}</p>
-    <div class="input__wrapper">
-      <input
-        placeholder="Search city"
-        class="search"
-        type="text"
-        @input="onInput"
-        @focusout="toggleFocus(false)"
-        @focus="toggleFocus(true)"
-      />
-      <ul
-        class="search__suggestions"
-        v-if="suggestions && suggestions.length > 0 && inputFocus"
-      >
-        <li
-          class="search__item"
-          v-for="(item, index) in suggestions"
-          :key="index"
-        >
-          <button
-            class="search__item__btn"
-            @click="$emit('onItemClick', item.lat, item.lon, item.name)"
-          >
-            {{ item.name }}, {{ item.country }}
-          </button>
-        </li>
-      </ul>
-    </div>
+    <HomeInput
+      :onInput="onInput"
+      :suggestions="(suggestions || [] as Suggestion[])"
+    />
     <button class="view__more" type="button" @click="$emit('moreInfoClicked')">
       View more information
+      <font-awesome-icon
+        class="view__more__icon"
+        icon="fa-solid fa-angle-right"
+      />
     </button>
   </div>
 </template>
@@ -110,9 +92,19 @@ const onInput = debounce((event: Event) => {
   margin-top: 1rem;
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-.search {
+.view__more__icon {
+  margin-left: 1rem;
+}
+
+.view__more:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* .search {
   position: relative;
   padding: 0.7rem 1.5rem;
   margin-top: 1rem;
@@ -161,7 +153,7 @@ const onInput = debounce((event: Event) => {
 .search__item__btn:hover {
   background-color: rgba(231, 231, 231, 0.7);
   cursor: pointer;
-}
+} */
 
 .temp {
   font-family: "Montserrat", sans-serif;
@@ -176,6 +168,7 @@ const onInput = debounce((event: Event) => {
   font-size: 1.4em;
   font-family: "Montserrat", sans-serif;
 }
+
 .weather {
   padding: 0;
   margin: 0;

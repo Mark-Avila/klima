@@ -84,6 +84,10 @@ const city: string | undefined = inject("city");
   cursor: pointer;
 }
 
+.info__back__button:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .info__back__button > span {
   margin-left: 0.5rem;
 }

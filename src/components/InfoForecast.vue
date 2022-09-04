@@ -18,10 +18,9 @@ const days = computed<string[]>(() => {
 
   const finalDays: string[] = [];
   let index = 1;
-
-  while (index !== 6) {
-    if (startDay == 6) {
-      startDay = 0;
+  while (index !== 7) {
+    if (startDay == 7) {
+      startDay = 1;
     } else {
       startDay += 1;
     }
@@ -29,6 +28,7 @@ const days = computed<string[]>(() => {
     finalDays.push(week[startDay]);
     index++;
   }
+
   return finalDays;
 });
 </script>
