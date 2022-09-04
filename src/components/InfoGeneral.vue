@@ -28,7 +28,7 @@ const fullDate = computed<string>(() => {
 <template>
   <div class="wrapper">
     <div class="upper">
-      <div>
+      <div class="upper__left">
         <p id="current-time" class="text__less">{{ fullDate }}</p>
         <p id="current-loc">{{ city }}</p>
         <p id="current-feels" class="text__less">
@@ -71,10 +71,19 @@ const fullDate = computed<string>(() => {
   display: flex;
   justify-content: space-between;
 }
+
+.upper__left {
+  padding-right: 1rem;
+}
+
 #current-loc {
   font-family: "Montserrat", sans-serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 0.5rem 0;
+}
+
+#current-feels {
+  font-size: 0.75rem;
 }
 
 #current-feels > span {

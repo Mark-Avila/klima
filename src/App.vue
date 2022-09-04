@@ -41,7 +41,7 @@ const handleIsOpen = (pageToOpen: "home" | "info" | "map") => {
   isOpen.value = { ...initialState, [pageToOpen]: true };
 };
 
-const fetchWeatherData = (lat: number, lon: number) => {
+const fetchWeatherData = (lat: number, lon: number, location?: string) => {
   loading.value = true;
 
   axios
@@ -71,7 +71,9 @@ const fetchWeatherData = (lat: number, lon: number) => {
     })
     .then((response) => {
       forecast.value = response.data;
-      city.value = `${response.data.city.name}, ${response.data.city.country}`;
+      city.value = location
+        ? `${location}, ${response.data.city.country}`
+        : `${response.data.city.name}, ${response.data.city.country}`;
     })
     .then(() => {
       initialLoading.value = false;
@@ -98,8 +100,8 @@ const fetchLocations = (query: string) => {
   }
 };
 
-const initWeatherData = (lat: number, lon: number) => {
-  fetchWeatherData(lat, lon);
+const initWeatherData = (lat: number, lon: number, location?: string) => {
+  fetchWeatherData(lat, lon, location);
 };
 
 onMounted(() => {

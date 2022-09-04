@@ -105,8 +105,8 @@ export interface Suggestion {
   local_names: {
     en: string;
   };
-  lat: string;
-  lon: string;
+  lat: number;
+  lon: number;
   country: string;
 }
 

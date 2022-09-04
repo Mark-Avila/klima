@@ -2,13 +2,18 @@
 import type { Suggestion } from "@/types";
 import { ref, toRefs } from "vue";
 
+// const emit = defineEmits<{
+//   (e: "onItemClick", lat: number, lon: number, location: string): void;
+// }>();
+
 const props = defineProps<{
   onInput: () => void;
   suggestions: Suggestion[];
+  onItemClick: (lat: number, lon: number, location?: string) => void;
 }>();
 
 const inputFocus = ref<boolean>(false);
-const { onInput } = toRefs(props);
+const { onInput, suggestions, onItemClick } = toRefs(props);
 
 const toggleFocus = (value: boolean) => {
   //Function has a slight delay to prevent closing suggestions before button click
@@ -39,9 +44,18 @@ const toggleFocus = (value: boolean) => {
       >
         <button
           class="search__item__btn"
-          @click="$emit('onItemClick', item.lat, item.lon, item.name)"
+          @click="onItemClick(item.lat, item.lon, item.name)"
         >
-          {{ item.name }}, {{ item.country }}
+          <span class="item__btn__location">
+            {{ item.name }}, {{ item.country }}
+          </span>
+          <span class="item__icon__wrapper">
+            <img
+              class="item__icon"
+              :src="`https://countryflagsapi.com/svg/${item.country}`"
+              type="image/svg+xml"
+            />
+          </span>
         </button>
       </li>
     </ul>
@@ -51,15 +65,24 @@ const toggleFocus = (value: boolean) => {
 <style scoped>
 .search {
   position: relative;
-  padding: 0.7rem 1.5rem;
+  padding: 1rem 1.5rem;
   margin-top: 1rem;
-  width: 12rem;
+  width: 250px;
   outline: none;
   border-radius: 50px;
   border: none;
   font-size: 0.8rem;
   color: rgba(0, 0, 0, 0.5);
   z-index: 10;
+}
+
+.item__icon {
+  position: relative;
+}
+
+.item__icon {
+  height: 12px;
+  width: 19px;
 }
 
 .search__suggestions {
@@ -90,6 +113,7 @@ const toggleFocus = (value: boolean) => {
   width: 100%;
   padding: 0.5rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   text-align: left;
   background: none;
@@ -99,5 +123,13 @@ const toggleFocus = (value: boolean) => {
 .search__item__btn:hover {
   background-color: rgba(231, 231, 231, 0.7);
   cursor: pointer;
+}
+
+@media only screen and (min-width: 1024px) {
+  .search {
+    font-size: 0.8rem;
+    padding: 0.7rem 1rem;
+    width: 200px;
+  }
 }
 </style>

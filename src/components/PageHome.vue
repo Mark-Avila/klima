@@ -7,7 +7,7 @@ import HomeInput from "./HomeInput.vue";
 const emit = defineEmits<{
   (e: "moreInfoClicked", pageToOpen: "home" | "info" | "map"): void;
   (e: "onSearchInput", query: string): void;
-  (e: "onItemClick", lat: number, lon: number, location: string): void;
+  (e: "onItemClick", lat: number, lon: number, location?: string): void;
 }>();
 
 const current: Current | undefined = inject("current");
@@ -39,6 +39,10 @@ const toggleFocus = (value: boolean) => {
 const onInput = debounce((event: Event) => {
   emit("onSearchInput", (event.target as HTMLInputElement).value);
 }, 500);
+
+const handleOnItemClick = (lat: number, lon: number, location?: string) => {
+  emit("onItemClick", lat, lon, location);
+};
 </script>
 
 <template>
@@ -56,6 +60,7 @@ const onInput = debounce((event: Event) => {
     <HomeInput
       :onInput="onInput"
       :suggestions="(suggestions || [] as Suggestion[])"
+      :onItemClick="handleOnItemClick"
     />
     <button class="view__more" type="button" @click="$emit('moreInfoClicked')">
       View more information
@@ -103,57 +108,6 @@ const onInput = debounce((event: Event) => {
 .view__more:hover {
   color: rgba(255, 255, 255, 0.7);
 }
-
-/* .search {
-  position: relative;
-  padding: 0.7rem 1.5rem;
-  margin-top: 1rem;
-  width: 250px;
-  outline: none;
-  border-radius: 50px;
-  border: none;
-  font-size: 1rem;
-  color: rgba(0, 0, 0, 0.5);
-  z-index: 10;
-}
-
-.search__suggestions {
-  position: absolute;
-  margin: 0;
-  margin-top: -20px;
-  border-radius: 0 0 12px 12px;
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 1rem;
-  background-color: white;
-  z-index: 9;
-}
-
-.input__wrapper {
-  position: relative;
-  box-sizing: border-box;
-}
-
-.search__item__btn {
-  color: rgba(0, 0, 0, 0.7);
-  font-family: "Roboto", sans-serif;
-  border: none;
-  outline: none;
-  width: 100%;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  text-align: left;
-  background: none;
-}
-
-.search__item__btn:hover {
-  background-color: rgba(231, 231, 231, 0.7);
-  cursor: pointer;
-} */
 
 .temp {
   font-family: "Montserrat", sans-serif;
