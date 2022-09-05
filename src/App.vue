@@ -87,7 +87,7 @@ const fetchLocations = (query: string) => {
 
   if (query !== "") {
     axios
-      .get("http://api.openweathermap.org/geo/1.0/direct", {
+      .get("https://api.openweathermap.org/geo/1.0/direct", {
         params: {
           q: query,
           appid: import.meta.env.VITE_OWMKEY,
