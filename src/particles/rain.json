@@ -21,7 +21,7 @@
         "nb_sides": 3
       },
       "image": {
-        "src": "src/assets/rainparticle.svg",
+        "src": "/assets/rainparticle.svg",
         "width": 20,
         "height": 100
       }
