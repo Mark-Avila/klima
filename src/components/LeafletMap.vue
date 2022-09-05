@@ -13,7 +13,9 @@ const props = defineProps<{
 const { layer, lat, lon } = toRefs(props);
 
 const initMap = (layer: MapLayers, lat: number, lon: number) => {
-  const weathermap = L.map("weathermap").setView([lat, lon], 9);
+  const weathermap = L.map("weathermap", {
+    renderer: L.canvas(),
+  }).setView([lat, lon], 9);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
