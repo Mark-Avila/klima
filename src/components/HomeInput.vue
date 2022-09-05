@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { Suggestion } from "@/types";
-import { ref, toRefs } from "vue";
+import { computed, inject, ref, toRefs } from "vue";
 
 // const emit = defineEmits<{
 //   (e: "onItemClick", lat: number, lon: number, location: string): void;
 // }>();
+
+const loading = inject("suggestionLoading");
 
 const props = defineProps<{
   onInput: () => void;
@@ -25,14 +27,19 @@ const toggleFocus = (value: boolean) => {
 
 <template>
   <div class="input__wrapper">
-    <input
-      placeholder="Search city"
-      class="search"
-      type="text"
-      @input="onInput"
-      @focusout="toggleFocus(false)"
-      @focus="toggleFocus(true)"
-    />
+    <div class="input__inner__wrapper">
+      <input
+        placeholder="Search city"
+        class="search"
+        type="text"
+        @input="onInput"
+        @focusout="toggleFocus(false)"
+        @focus="toggleFocus(true)"
+      />
+      <span :class="`input__spinner${loading ? '' : '--hide'}`">
+        <font-awesome-icon icon="fa-solid fa-spinner" />
+      </span>
+    </div>
     <ul
       class="search__suggestions"
       v-if="suggestions && suggestions.length > 0 && inputFocus"
@@ -63,17 +70,50 @@ const toggleFocus = (value: boolean) => {
 </template>
 
 <style scoped>
+.input__wrapper {
+  position: relative;
+  box-sizing: border-box;
+  background-color: white;
+  margin-top: 1rem;
+  border-radius: 50px;
+}
+
+.input__inner__wrapper {
+  padding: 0 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input__spinner {
+  color: rgba(0, 0, 0, 0.8);
+  animation: spin 1s infinite;
+  visibility: visible;
+}
+
+.input__spinne--hide {
+  visibility: hidden;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .search {
   position: relative;
   padding: 1rem 1.5rem;
-  margin-top: 1rem;
-  width: 250px;
+  width: 100%;
   outline: none;
-  border-radius: 50px;
   border: none;
   font-size: 0.8rem;
   color: rgba(0, 0, 0, 0.8);
   z-index: 10;
+  background: none;
 }
 
 .item__icon {
@@ -100,11 +140,6 @@ const toggleFocus = (value: boolean) => {
   z-index: 9;
 }
 
-.input__wrapper {
-  position: relative;
-  box-sizing: border-box;
-}
-
 .search__item__btn {
   color: rgba(0, 0, 0, 0.7);
   font-family: "Roboto", sans-serif;
@@ -128,7 +163,7 @@ const toggleFocus = (value: boolean) => {
 @media only screen and (min-width: 1024px) {
   .search {
     font-size: 0.8rem;
-    padding: 0.7rem 1rem;
+    padding: 0.7rem 0rem;
     width: 200px;
   }
 }

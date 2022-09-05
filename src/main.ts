@@ -16,6 +16,7 @@ import {
   faAngleLeft,
   faHurricane,
   faAngleRight,
+  faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import Particles from "vue3-particles";
 import App from "./App.vue";
@@ -34,7 +35,8 @@ library.add(
   faSun,
   faAngleLeft,
   faHurricane,
-  faAngleRight
+  faAngleRight,
+  faSpinner
 );
 
 createApp(App)

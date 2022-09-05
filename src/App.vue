@@ -14,6 +14,7 @@ const current = ref<Current | []>([]);
 const suggestions = ref<Suggestion[] | []>([]);
 const forecast = ref<Forecast | []>([]);
 const loading = ref<boolean>(true);
+const suggestionLoading = ref<boolean>(false);
 const initialLoading = ref<boolean>(true);
 const initialAnimation = ref<boolean>(true);
 
@@ -22,6 +23,7 @@ provide("suggestions", suggestions);
 provide("forecast", forecast);
 provide("loading", loading);
 provide("city", city);
+provide("suggestionLoading", suggestionLoading);
 
 const backgroundRef = ref();
 
@@ -84,6 +86,7 @@ const fetchWeatherData = (lat: number, lon: number, location?: string) => {
 
 const fetchLocations = (query: string) => {
   suggestions.value = [];
+  suggestionLoading.value = true;
 
   if (query !== "") {
     axios
@@ -96,7 +99,10 @@ const fetchLocations = (query: string) => {
       })
       .then((response) => {
         suggestions.value = response.data;
+        suggestionLoading.value = false;
       });
+  } else {
+    suggestionLoading.value = false;
   }
 };
 
@@ -128,9 +134,9 @@ onMounted(() => {
     <div class="content">
       <Presence :exit-before-enter="true">
         <Motion
-          :initial="initialAnimation ? { opacity: 0 } : { x: -400, opacity: 0 }"
+          :initial="initialAnimation ? { opacity: 0 } : { x: -50, opacity: 0 }"
           :animate="initialAnimation ? { opacity: 1 } : { x: 0, opacity: 1 }"
-          :exit="{ x: -400, opacity: 0 }"
+          :exit="{ x: -50, opacity: 0 }"
           @motioncomplete="() => (initialAnimation = false)"
           class="motion__wrapper"
           v-if="isOpen.home && !initialLoading"
@@ -143,9 +149,9 @@ onMounted(() => {
         </Motion>
 
         <Motion
-          :initial="{ x: 400, opacity: 0 }"
+          :initial="{ x: 50, opacity: 0 }"
           :animate="{ x: 0, opacity: 1 }"
-          :exit="{ x: 400, opacity: 0 }"
+          :exit="{ x: 50, opacity: 0 }"
           class="motion__wrapper"
           v-if="isOpen.info && !initialLoading"
         >
@@ -156,9 +162,9 @@ onMounted(() => {
         </Motion>
 
         <Motion
-          :initial="{ y: 400, opacity: 0 }"
+          :initial="{ y: 100, opacity: 0 }"
           :animate="{ y: 0, opacity: 1 }"
-          :exit="{ y: 400, opacity: 0 }"
+          :exit="{ y: 100, opacity: 0 }"
           class="motion__wrapper"
           v-if="isOpen.map && !initialLoading"
         >
