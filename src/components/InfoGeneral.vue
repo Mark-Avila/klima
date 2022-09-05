@@ -83,7 +83,7 @@ const fullDate = computed<string>(() => {
 }
 
 #current-feels {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 }
 
 #current-feels > span {
@@ -135,11 +135,15 @@ p {
   p {
     font-size: 0.9rem;
   }
+
+  #current-loc {
+    font-size: 1.3rem;
+  }
 }
 
 @media only screen and (min-width: 1240px) {
   p {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 }
 </style>

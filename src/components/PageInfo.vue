@@ -7,8 +7,8 @@ import type { Current, Forecast } from "@/types";
 import { inject } from "vue";
 
 defineEmits<{
-  (e: "backClicked", pageToOpen: "home" | "info" | "map"): void;
-  (e: "mapClicked", pageToOpen: "home" | "info" | "map"): void;
+  (e: "backClicked"): void;
+  (e: "mapClicked"): void;
 }>();
 
 const current: Current | undefined = inject("current");
@@ -62,7 +62,6 @@ const city: string | undefined = inject("city");
   height: 100%;
   width: 100%;
   max-width: 1400px;
-  max-height: 600px;
   z-index: 2;
   display: flex;
   flex-direction: column;

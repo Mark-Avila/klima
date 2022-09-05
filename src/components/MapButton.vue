@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const emit = defineEmits<{
-  (e: "buttonClicked", newMode: string): void;
+  (e: "buttonClicked"): void;
 }>();
 
 defineProps<{

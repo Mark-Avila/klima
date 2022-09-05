@@ -272,6 +272,10 @@ const changeToDefault = () => {
 
 const changeToFoggy = () => {
   fog.value = 0.5;
+
+  changeToDefault();
+
+  currentParticles.value = "";
 };
 
 const changeToCloudy = () => {

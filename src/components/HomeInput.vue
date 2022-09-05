@@ -72,7 +72,7 @@ const toggleFocus = (value: boolean) => {
   border-radius: 50px;
   border: none;
   font-size: 0.8rem;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.8);
   z-index: 10;
 }
 

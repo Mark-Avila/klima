@@ -88,7 +88,7 @@ p {
 
 @media only screen and (min-width: 1240px) {
   p {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   .item {

@@ -12,7 +12,7 @@ const props = defineProps<{
 
 const { layer, lat, lon } = toRefs(props);
 
-const initMap = (mode: MapLayers, lat: number, lon: number) => {
+const initMap = (layer: MapLayers, lat: number, lon: number) => {
   const weathermap = L.map("weathermap").setView([lat, lon], 9);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
@@ -26,11 +26,15 @@ const initMap = (mode: MapLayers, lat: number, lon: number) => {
   ).addTo(weathermap);
 
   L.tileLayer(
-    `https://tile.openweatherMap.org/map/${mode}/{z}/{x}/{y}.png?appid=${
+    `https://tile.openweatherMap.org/map/${layer}/{z}/{x}/{y}.png?appid=${
       import.meta.env.VITE_OWMKEY
     }`
   ).addTo(weathermap);
 };
+
+defineExpose({
+  initMap,
+});
 
 onMounted(() => {
   initMap(layer.value, lat.value, lon.value);

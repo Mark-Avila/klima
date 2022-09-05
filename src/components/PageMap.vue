@@ -3,7 +3,7 @@ import type { Current } from "@/types";
 import { inject } from "vue";
 import Weathermap from "./WeatherMap.vue";
 const emit = defineEmits<{
-  (e: "backClicked", pageToOpen: "home" | "info" | "map"): void;
+  (e: "backClicked"): void;
 }>();
 
 const current = inject<Current>("current");

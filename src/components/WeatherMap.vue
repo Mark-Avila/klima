@@ -10,6 +10,7 @@ defineProps<{
 }>();
 
 const mode = ref<MapLayers>("precipitation");
+const wmRef = ref();
 
 const changeMode = (newMode: MapLayers) => {
   mode.value = newMode;
@@ -18,7 +19,7 @@ const changeMode = (newMode: MapLayers) => {
 
 <template>
   <div class="map__body">
-    <LeafletMap :layer="mode" :lat="lat" :lon="lon" :key="mode" />
+    <LeafletMap ref="wmRef" :layer="mode" :lat="lat" :lon="lon" :key="mode" />
     <div class="map__buttons">
       <MapButton
         placeholder="Precipitation"

@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { Motion } from "motion/vue";
 import type { Current, Suggestion } from "@/types";
 import useIcon from "@/use/useIcon";
-import { inject, ref } from "vue";
+import { inject } from "vue";
 import HomeInput from "./HomeInput.vue";
 const emit = defineEmits<{
-  (e: "moreInfoClicked", pageToOpen: "home" | "info" | "map"): void;
+  (e: "moreInfoClicked"): void;
   (e: "onSearchInput", query: string): void;
   (e: "onItemClick", lat: number, lon: number, location?: string): void;
 }>();
@@ -13,7 +12,6 @@ const emit = defineEmits<{
 const current: Current | undefined = inject("current");
 const suggestions: Suggestion[] | undefined = inject("suggestions");
 const city: string | undefined = inject("city");
-const inputFocus = ref<boolean>(false);
 
 const debounce = (fn: (...args: any[]) => void, delay: number) => {
   let timeout: number | null = null;
@@ -27,13 +25,6 @@ const debounce = (fn: (...args: any[]) => void, delay: number) => {
       fn(...args);
     }, delay);
   };
-};
-
-const toggleFocus = (value: boolean) => {
-  //Function has a slight delay to prevent closing suggestions before button click
-  setTimeout(() => {
-    inputFocus.value = value;
-  }, 100);
 };
 
 const onInput = debounce((event: Event) => {
