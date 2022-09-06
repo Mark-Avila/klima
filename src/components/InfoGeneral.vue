@@ -36,7 +36,7 @@ const fullDate = computed<string>(() => {
         </p>
       </div>
       <div>
-        <p id="current-temp">{{ Math.round(temp) }}°</p>
+        <p id="current-temp">{{ Math.round(temp) }}°C</p>
       </div>
     </div>
     <div class="lower">
