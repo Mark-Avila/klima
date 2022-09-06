@@ -15,7 +15,6 @@ const days = computed<string[]>(() => {
   const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const timezoneInMinutes = timezone.value / 60;
   let startDay = moment().utcOffset(timezoneInMinutes).isoWeekday();
-  console.log(startDay);
 
   const finalDays: string[] = [];
   let index = 1;
