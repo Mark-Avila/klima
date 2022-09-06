@@ -1,4 +1,4 @@
-# klima
+# Kikoo (prev. Klima)
 
 Simple Weather monitoring website developed with Vue
 
