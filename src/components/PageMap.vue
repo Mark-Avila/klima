@@ -2,7 +2,7 @@
 import type { Current } from "@/types";
 import { inject } from "vue";
 import Weathermap from "./WeatherMap.vue";
-const emit = defineEmits<{
+defineEmits<{
   (e: "backClicked"): void;
 }>();
 

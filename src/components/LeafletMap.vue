@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { onMounted, ref, toRefs } from "vue";
+import { onMounted, toRefs } from "vue";
 import type { MapLayers } from "@/types";
 
 const props = defineProps<{

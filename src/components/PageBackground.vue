@@ -272,9 +272,8 @@ const changeToDefault = () => {
 };
 
 const changeToFoggy = () => {
-  fog.value = 0.5;
-
   changeToDefault();
+  fog.value = 0.5;
 
   currentParticles.value = "";
 };
