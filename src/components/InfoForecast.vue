@@ -15,12 +15,13 @@ const days = computed<string[]>(() => {
   const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const timezoneInMinutes = timezone.value / 60;
   let startDay = moment().utcOffset(timezoneInMinutes).isoWeekday();
+  console.log(startDay);
 
   const finalDays: string[] = [];
   let index = 1;
-  while (index !== 7) {
-    if (startDay == 7) {
-      startDay = 1;
+  while (index !== 6) {
+    if (startDay == 6) {
+      startDay = 0;
     } else {
       startDay += 1;
     }

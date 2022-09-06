@@ -266,6 +266,7 @@ const changeToDefault = () => {
   clouds.value = "white";
   skyTop.value = "#0085FF";
   skyBottom.value = "white";
+  fog.value = 0;
 
   currentParticles.value = "";
 };
@@ -296,6 +297,7 @@ const changeToCloudy = () => {
   clouds.value = "rgba(0, 0, 0, 0)";
   skyTop.value = "#558FA1";
   skyBottom.value = "#D9EDFF";
+  fog.value = 0;
 
   currentParticles.value = "";
 };
@@ -341,6 +343,7 @@ const changeToSnowy = () => {
   clouds.value = "rgba(0, 0, 0, 0)";
   skyTop.value = "#A1CDFF";
   skyBottom.value = "#D9EDFF";
+  fog.value = 0;
 
   currentParticles.value = "snow";
 };

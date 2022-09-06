@@ -69,9 +69,18 @@ const changeMode = (newMode: MapLayers) => {
   gap: 0.5rem;
 }
 
-@media only screen and (min-width: 1240px) {
+@media only screen and (min-width: 1024px) {
   .map__buttons {
     left: 2%;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1240px) {
+  .map__buttons {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
   }
 }
 </style>

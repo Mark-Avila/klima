@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { loadFull } from "tsparticles";
 import type { Engine } from "tsparticles-engine";
+import { toRefs } from "vue";
 import rainConfig from "../particles/rain.json";
 import snowConfig from "../particles/snow.json";
 
 const props = defineProps<{
   weather: "rain" | "snow" | "";
 }>();
+
+const { weather } = toRefs(props);
 
 const particlesInit = async (engine: Engine) => {
   await loadFull(engine);

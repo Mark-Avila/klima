@@ -12,6 +12,7 @@ const emit = defineEmits<{
 const current: Current | undefined = inject("current");
 const suggestions: Suggestion[] | undefined = inject("suggestions");
 const city: string | undefined = inject("city");
+const loading: boolean | undefined = inject("loading");
 
 const debounce = (fn: (...args: any[]) => void, delay: number) => {
   let timeout: number | null = null;
@@ -29,7 +30,7 @@ const debounce = (fn: (...args: any[]) => void, delay: number) => {
 
 const onInput = debounce((event: Event) => {
   emit("onSearchInput", (event.target as HTMLInputElement).value);
-}, 500);
+}, 200);
 
 const handleOnItemClick = (lat: number, lon: number, location?: string) => {
   emit("onItemClick", lat, lon, location);
@@ -40,10 +41,18 @@ const handleOnItemClick = (lat: number, lon: number, location?: string) => {
   <div class="wrapper">
     <span class="icon">
       <font-awesome-icon
+        v-if="!loading"
         :icon="'fa-solid ' + useIcon(current?.weather[0].id || 800)"
       />
+      <font-awesome-icon
+        v-if="loading"
+        icon="fa-solid fa-spinner"
+        class="spinner"
+      />
     </span>
-    <p class="weather shadow">{{ current?.weather[0].description || "NA" }}</p>
+    <p class="weather shadow">
+      {{ current?.weather[0].description || "NA" }}
+    </p>
     <p class="temp shadow">
       {{ Math.round(current ? current.main.temp : 0) }}°
     </p>
@@ -60,6 +69,7 @@ const handleOnItemClick = (lat: number, lon: number, location?: string) => {
         icon="fa-solid fa-angle-right"
       />
     </button>
+    <div class="wrapper__mobile__padding"></div>
   </div>
 </template>
 
@@ -73,6 +83,10 @@ const handleOnItemClick = (lat: number, lon: number, location?: string) => {
   justify-content: center;
   height: 100%;
   color: white;
+}
+
+.wrapper__mobile__padding {
+  height: 10rem;
 }
 
 .icon {
@@ -121,13 +135,26 @@ const handleOnItemClick = (lat: number, lon: number, location?: string) => {
   text-transform: capitalize;
 }
 
-@media only screen and (min-width: 1024px) {
-  .search {
-    font-size: 0.8rem;
-    padding: 0.7rem 1rem;
-    width: 200px;
-  }
+.spinner {
+  animation: 1s spin ease-in infinite;
+}
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper__mobile__padding {
+    height: 0;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
   .weather {
     font-size: 0.8rem;
   }

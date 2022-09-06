@@ -33,6 +33,10 @@ a {
   font-weight: bold;
 }
 
+a:hover {
+  color: white;
+}
+
 @media only screen and (min-width: 768px) {
   .weatherdata {
     display: block;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { onMounted, toRefs } from "vue";
+import { onMounted, ref, toRefs } from "vue";
 import type { MapLayers } from "@/types";
 
 const props = defineProps<{
@@ -14,7 +14,7 @@ const { layer, lat, lon } = toRefs(props);
 
 const initMap = (layer: MapLayers, lat: number, lon: number) => {
   const weathermap = L.map("weathermap", {
-    renderer: L.canvas(),
+    preferCanvas: true,
   }).setView([lat, lon], 5);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:

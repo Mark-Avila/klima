@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Suggestion } from "@/types";
-import { computed, inject, ref, toRefs } from "vue";
+import { inject, ref, toRefs } from "vue";
 
 // const emit = defineEmits<{
 //   (e: "onItemClick", lat: number, lon: number, location: string): void;
@@ -21,7 +21,7 @@ const toggleFocus = (value: boolean) => {
   //Function has a slight delay to prevent closing suggestions before button click
   setTimeout(() => {
     inputFocus.value = value;
-  }, 100);
+  }, 200);
 };
 </script>
 
@@ -79,10 +79,10 @@ const toggleFocus = (value: boolean) => {
 }
 
 .input__inner__wrapper {
-  padding: 0 1.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 1.5rem;
 }
 
 .input__spinner {
@@ -106,7 +106,7 @@ const toggleFocus = (value: boolean) => {
 
 .search {
   position: relative;
-  padding: 1rem 1.5rem;
+  padding: 1rem 0;
   width: 100%;
   outline: none;
   border: none;
@@ -114,6 +114,7 @@ const toggleFocus = (value: boolean) => {
   color: rgba(0, 0, 0, 0.8);
   z-index: 10;
   background: none;
+  width: 250px;
 }
 
 .item__icon {
@@ -160,11 +161,19 @@ const toggleFocus = (value: boolean) => {
   cursor: pointer;
 }
 
+.search__item__btn:active {
+  background-color: rgb(208, 208, 208);
+}
+
 @media only screen and (min-width: 1024px) {
   .search {
     font-size: 0.8rem;
     padding: 0.7rem 0rem;
     width: 200px;
+  }
+
+  .input__inner__wrapper {
+    padding: 0 1.2rem;
   }
 }
 </style>
